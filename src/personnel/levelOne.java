@@ -39,9 +39,11 @@ public class levelOne extends Personnel {
 		awardsRecieved.add(dw);	 		
 	}
 
-	@Override
 	double CalculateIncome() {
 		return this.BaseSalary;
+	}
+	public int getID() {
+		return this.id;
 	}
 
 }
