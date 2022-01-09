@@ -13,4 +13,29 @@ public class TransactionRecord extends Record {
 		this.amount = amount;
 		this.type = type;
 	}
+
+	public Integer getBankAccountNumber() {
+		return bankAccountNumber;
+	}
+
+	public void setBankAccountNumber(Integer bankAccountNumber) {
+		this.bankAccountNumber = bankAccountNumber;
+	}
+
+	public Double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(Double amount) {
+		this.amount = amount;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+	
 }

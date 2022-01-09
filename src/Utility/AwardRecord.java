@@ -11,18 +11,18 @@ public class AwardRecord extends Record{
 		this.awardName = awardName;
 	}
 
-	public Integer getPrizeMoney() {
+	public Double getPrizeMoney() {
 		return prizeMoney;
 	}
 
-	public void setPrizeMoney(Integer prizeMoney) {
+	public void setPrizeMoney(Double prizeMoney) {
 		this.prizeMoney = prizeMoney;
 	}
 
 	private String awardName;
-	private Integer prizeMoney;
+	private Double prizeMoney;
 	
-	public AwardRecord(Integer officerID, Date date, String awardName, Integer prizeMoney) {
+	public AwardRecord(Integer officerID, Date date, String awardName, Double prizeMoney) {
 		super(officerID, date);
 		this.awardName = awardName;
 		this.prizeMoney = prizeMoney;

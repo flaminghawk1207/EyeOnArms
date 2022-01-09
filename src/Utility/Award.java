@@ -4,16 +4,16 @@ import java.util.Date;
 
 public class Award {
 	private String name;
-	private Integer prizeMoney;
+	private Double prizeMoney;
 	private Date date;
 	
 	public Award()
 	{
 		this.name=" ";
-		this.prizeMoney=0;
+		this.prizeMoney=0.0;
 		this.date= new Date();
 	}
-	public Award(String name, Integer prizeMoney, Date date) {
+	public Award(String name, Double prizeMoney, Date date) {
 		this.name = name;
 		this.prizeMoney = prizeMoney;
 		this.date = date;
@@ -27,11 +27,11 @@ public class Award {
 		this.name = name;
 	}
 
-	public Integer getPrizeMoney() {
+	public Double getPrizeMoney() {
 		return prizeMoney;
 	}
 
-	public void setPrizeMoney(Integer prizeMoney) {
+	public void setPrizeMoney(Double prizeMoney) {
 		this.prizeMoney = prizeMoney;
 	}
 
