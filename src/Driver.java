@@ -1,5 +1,9 @@
 import java.util.Scanner;
 
+import Utility.AwardRecord;
+import Utility.PromotionRecord;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -53,7 +57,7 @@ public class Driver {
 					{
 						for(i=0;i<LevelOne.size();i++)
 						{
-							if(LevelOne.get(i).getID())
+							if(LevelOne.get(i).getID()== id)
 							{
 								flag=true;
 								break;
@@ -351,78 +355,96 @@ public class Driver {
 		}while(true);		
 	}
 	
-	public static void Level3View(levelThree LevelThree, ArrayList <levelOne> LevelOne,  ArrayList <levelTwo> LevelTwo)
+	public static void Level3View(levelThree LevelThree, ArrayList <levelOne> LevelOne,  ArrayList <levelTwo> LevelTwo, 
+			ArrayList<PromotionRecord> promotionRecord)
 	{
 		Scanner sc = new Scanner(System.in);
+		char ch='N';
 		int choice=0;
-		System.out.println("Menu");
-		System.out.println("1.Recruit candidate");
-		System.out.println("2.Promote candidate");
-		System.out.println("3.Exit");
-		System.out.println("Enter a valid choice");
-		choice = sc.nextInt();
-		while(choice<1 || choice>3)
+		do 
 		{
-			System.out.println("Enter a valid choice: ");
+			System.out.println("Menu");
+			System.out.println("1.Recruit candidate");
+			System.out.println("2.Promote candidate");
+			System.out.println("3.Exit");
+			System.out.println("Enter a valid choice");
 			choice = sc.nextInt();
-		}
-		switch(choice)
-		{
-			case 1:
+			while(choice<1 || choice>3)
 			{
-				String name;
-				System.out.println("Enter the candinate's name");
-				name=sc.next();
-				Personnel personnel = new Personnel (name, 0.00);
-				LevelThree.recruit(personnel, LevelOne);			
+				System.out.println("Enter a valid choice: ");
+				choice = sc.nextInt();
 			}
-			break;
-			case 2:
+			switch(choice)
 			{
-				int id=0,i;
-				boolean flag=false;
-				System.out.println("enter the officer Id of level 1 to promote: ");
-				id=sc.nextInt();
-				for(i=0;i<LevelOne.size();i++)
+				case 1:
 				{
-					if(LevelOne.get(i).getID())
+					String name;
+					System.out.println("Enter the candinate's name");
+					name=sc.next();
+					Personnel personnel = new Personnel (name, 0.00);
+					LevelThree.recruit(personnel, LevelOne, promotionRecord);			
+				}
+				break;
+				case 2:
+				{
+					char c='N';
+					do 
 					{
-						flag=true;
-						break;
-					}
-				}
-				if(flag)
-				{
-					LevelThree.promote(LevelOne.get(i)); 
-					/*
-					 * TODO: implement promote function in level 3
-					 */
-				}
-				else
-				{
-					System.out.println("Invalid details..Try again"); 
-
-					/*
-					 * TODO: Implement try again later in multiple parts in the driver code
-					 */
-				}
+						int id=0,i;
+						boolean flag=false;
+						System.out.println("enter the officer Id of level 1 to promote: ");
+						id=sc.nextInt();
+						for(i=0;i<LevelOne.size();i++)
+						{
+							if(LevelOne.get(i).getID()==id)
+							{
+								flag=true;
+								break;
+							}
+						}
+						if(flag)
+						{
+							LevelThree.promote(LevelOne.get(i), LevelOne, LevelTwo, promotionRecord); 
+						}
+						else
+						{
+							System.out.println("Invalid details. \n Do you want to try again (Y/N)"); 
+							c=sc.next().charAt(0);
+							/*
+							 * TODO: Implement try again later in multiple parts in the driver code
+							 */
+						}
+						
+					}while(c=='Y');
 					
+						
+				}
+				break;
+				case 3:
+					break;
+				default:
+					break;
 			}
-		}
+			System.out.println("Do you want to continue(Y/N)");
+			ch=sc.next().charAt(0);
+			
+		}while(ch=='Y');
+		
 	}
 	
 	public static void Level4View(levelFour LevelFour, ArrayList<levelOne> LevelOne, ArrayList<levelTwo> LevelTwo,
-			ArrayList<levelThree> LevelThree)
+			ArrayList<levelThree> LevelThree, ArrayList<PromotionRecord> promotionRecord, ArrayList <AwardRecord> awardRecord)
 	{
 		Scanner sc = new Scanner(System.in);
 		int choice=0;
 		System.out.println("Menu");
 		System.out.println("1.Promote candidate");
 		System.out.println("2.Award candidate");
-		System.out.println("3.Exit");
+		System.out.println("3.Generate reports");
+		System.out.println("4.Exit");
 		System.out.println("Enter a valid choice");
 		choice = sc.nextInt();
-		while(choice<1 || choice>3)
+		while(choice<1 || choice>4)
 		{
 			System.out.println("Enter a valid choice: ");
 			choice = sc.nextInt();
@@ -447,7 +469,7 @@ public class Driver {
 					id=sc.nextInt();
 					for(i=0;i<LevelOne.size();i++)
 					{
-						if(LevelOne.get(i).getID())
+						if(LevelOne.get(i).getID() == id)
 						{
 							flag=true;
 							break;
@@ -455,10 +477,7 @@ public class Driver {
 					}
 					if(flag)
 					{
-						LevelFour.promote(LevelOne.get(i),LevelOne); 
-						/*
-						 * TODO: implement promote function in level 3
-						 */
+						LevelFour.promote(LevelOne.get(i),LevelOne, LevelTwo, promotionRecord); 
 					}
 					else
 					{
@@ -475,7 +494,7 @@ public class Driver {
 					id=sc.nextInt();
 					for(i=0;i<LevelOne.size();i++)
 					{
-						if(LevelTwo.get(i).getID())
+						if(LevelTwo.get(i).getID() == id)
 						{
 							flag=true;
 							break;
@@ -483,7 +502,7 @@ public class Driver {
 					}
 					if(flag)
 					{
-						LevelFour.promote(LevelTwo.get(i),LevelTwo); 
+						LevelFour.promote(LevelTwo.get(i),LevelTwo ,LevelThree, promotionRecord); 
 						/*
 						 * TODO: implement promote function in level 3
 						 */
@@ -519,7 +538,7 @@ public class Driver {
 					id=sc.nextInt();
 					for(i=0;i<LevelOne.size();i++)
 					{
-						if(LevelOne.get(i).getID())
+						if(LevelOne.get(i).getID()== id)
 						{
 							flag=true;
 							break;
@@ -527,9 +546,12 @@ public class Driver {
 					}
 					if(flag)
 					{
-						LevelFour.getAward(LevelOne.get(i),LevelOne); 
+						LevelFour.getAward(LevelOne.get(i), awardRecord); 
 						/*
 						 * TODO: implement promote function in level 3
+						 * 
+						 * LevelOne.get(i) is part of arrayList levelOne..Any changes in the LevelOne.get(i)
+						 * will(should?) be reflected in the array list
 						 */
 					}
 					else
@@ -547,7 +569,7 @@ public class Driver {
 					id=sc.nextInt();
 					for(i=0;i<LevelOne.size();i++)
 					{
-						if(LevelTwo.get(i).getID())
+						if(LevelTwo.get(i).getID() == id)
 						{
 							flag=true;
 							break;
@@ -555,7 +577,7 @@ public class Driver {
 					}
 					if(flag)
 					{
-						LevelFour.getAward(LevelTwo.get(i),LevelTwo); 
+						LevelFour.getAward(LevelTwo.get(i), awardRecord); 
 						/*
 						 * TODO: implement promote function in level 3
 						 */
@@ -575,7 +597,7 @@ public class Driver {
 					id=sc.nextInt();
 					for(i=0;i<LevelOne.size();i++)
 					{
-						if(LevelThree.get(i).getID())
+						if(LevelThree.get(i).getID() == id)
 						{
 							flag=true;
 							break;
@@ -583,7 +605,7 @@ public class Driver {
 					}
 					if(flag)
 					{
-						LevelFour.getAward(LevelThree.get(i),LevelTwo); 
+						LevelFour.getAward(LevelThree.get(i),awardRecord); 
 						/*
 						 * TODO: implement promote function in level 3
 						 */
@@ -598,6 +620,36 @@ public class Driver {
 					}
 				}
 			}
+			break;
+			case 3:
+			{
+				int searchCategory=0;
+				System.out.println("Enter the start date from which the report should be generated: ");
+				String sd;
+				sd=sc.next();
+				Date startDate =new SimpleDateFormat("dd/MM/yyyy").parse(sd);
+				
+				System.out.println("Enter the date till which the report should be generated: ");
+				String ed;
+				sd=sc.next();
+				Date endDate =new SimpleDateFormat("dd/MM/yyyy").parse(sd);
+				
+				System.out.println("Enter the search category\1. Award report\n2. Transaction report\n3. Retirement report"
+						+ "\n4.Promotion report\nEnter a valid choice: ");
+				searchCategory = sc.nextInt();
+				while(searchCategory<=0 || searchCategory>=5)
+				{
+					System.out.println("Enter valid choice: ");
+					searchCategory=sc.nextInt();
+				}
+				
+				LevelFour.getReport(startDate, endDate, searchCategory, awardRecord, promotionRecord);
+			}
+			break;
+			case 4:
+				break;
+			default:
+				break;
 		}
 	}
 	
@@ -608,6 +660,11 @@ public class Driver {
 		ArrayList<Manager> manager = new ArrayList<Manager>();
 		ArrayList<levelThree> LevelThree = new ArrayList<levelThree>();
 		ArrayList<levelFour> LevelFour = new ArrayList<levelFour>();
+		ArrayList<levelOne> LevelOne = new ArrayList<levelOne>();
+		ArrayList<levelTwo> LevelTwo = new ArrayList<levelTwo>();
+		ArrayList<Veteran> veteran = new ArrayList<Veteran>();
+		ArrayList<PromotionRecord> promotionRecord = new ArrayList<PromotionRecord>();
+		ArrayList<AwardRecord> awardRecord = new ArrayList<AwardRecord>();
 		Scanner sc = new Scanner(System.in);
 		int choice=-1,level;
 		char ch='N';
@@ -656,9 +713,9 @@ public class Driver {
 				break;
 				case 2:
 				{
-
 					do
 					{
+						int i=0;
 						System.out.println("Enter your username: ");
 						username=sc.next();
 						System.out.println("Enter your password: ");
@@ -668,7 +725,7 @@ public class Driver {
 						if(level==3)
 						{
 							boolean flag=false;
-							for(int i=0;i<LevelThree.size();i++)
+							for(i=0;i<LevelThree.size();i++)
 							{						
 								if(username==LevelThree.get(i).getUsername() && password == LevelThree.get(i).getPassword())
 								{									
@@ -678,6 +735,7 @@ public class Driver {
 							}	
 							if(flag) {
 								System.out.println("logged in successfully!");
+								Driver.Level3View(LevelThree.get(i), LevelOne, LevelTwo, promotionRecord);
 								break;
 							}
 							else {
@@ -688,7 +746,7 @@ public class Driver {
 						if(level==4)
 						{
 							boolean flag=false;
-							for(int i=0;i<LevelFour.size();i++)
+							for(i=0;i<LevelFour.size();i++)
 							{						
 								if(username==LevelFour.get(i).getUsername() && password == LevelFour.get(i).getPassword())
 								{									
@@ -698,11 +756,16 @@ public class Driver {
 							}	
 							if(flag) {
 								System.out.println("logged in successfully!");
+								Driver.Level4View(LevelFour.get(i), LevelOne, LevelTwo, LevelThree, promotionRecord, awardRecord);
 								break;
+							
 							}
 							else {
 								System.out.println("Invalid credentials\n Do you want to try again(Y/N)");
-								ch=sc.next().charAt(0); 								
+								ch=sc.next().charAt(0); 			
+								/*
+								 * TODO: Implement try again
+								 */
 							}							
 						}
 						
