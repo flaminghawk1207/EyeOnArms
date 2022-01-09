@@ -19,4 +19,11 @@ public class BankAccount {
 		this.balance += amount;
 		return true;
 	}
+	public Integer getBankAccountId() {
+		return this.accountNumber;
+	}
+	public Double getbalance()
+	{
+		return balance;
+	}
 }
