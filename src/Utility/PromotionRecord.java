@@ -9,4 +9,13 @@ public class PromotionRecord extends Record {
 		super(officerID, date);
 		this.nextLevel = nextLevel;
 	}
+
+	public Integer getNextLevel() {
+		return nextLevel;
+	}
+
+	public void setNextLevel(Integer nextLevel) {
+		this.nextLevel = nextLevel;
+	}
+	
 }

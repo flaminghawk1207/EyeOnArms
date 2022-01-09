@@ -1,6 +1,29 @@
 package Utility;
 
 public class BankAccount {
+	public static Integer getAccountCount() {
+		return accountCount;
+	}
+
+	public static void setAccountCount(Integer accountCount) {
+		BankAccount.accountCount = accountCount;
+	}
+
+	public Integer getAccountNumber() {
+		return accountNumber;
+	}
+
+	public void setAccountNumber(Integer accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+
+	public Double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(Double balance) {
+		this.balance = balance;
+	}
 	private static Integer accountCount = 0;
 	private Integer accountNumber;
 	private Double balance;
@@ -21,9 +44,5 @@ public class BankAccount {
 	}
 	public Integer getBankAccountId() {
 		return this.accountNumber;
-	}
-	public Double getbalance()
-	{
-		return balance;
 	}
 }
