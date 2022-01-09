@@ -10,4 +10,29 @@ public class Record {
 		this.officerID = officerID;
 		this.date = date;
 	}
+
+	public static Integer getRecordCount() {
+		return recordCount;
+	}
+
+	public static void setRecordCount(Integer recordCount) {
+		Record.recordCount = recordCount;
+	}
+
+	public Integer getOfficerID() {
+		return officerID;
+	}
+
+	public void setOfficerID(Integer officerID) {
+		this.officerID = officerID;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	
 }
