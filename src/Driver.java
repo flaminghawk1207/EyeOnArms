@@ -13,7 +13,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import personnel.Manager;
 import personnel.Personnel;
+import personnel.Veteran;
 import personnel.levelFour;
 import personnel.levelOne;
 import personnel.levelThree;
@@ -26,7 +28,8 @@ public class Driver {
 	}
 	
 	public static void ManagerView(Manager manager, ArrayList <levelOne> LevelOne, ArrayList <levelTwo> LevelTwo, 
-			ArrayList <levelThree> LevelThree, ArrayList <levelFour> LevelFour, ArrayList<Veteran> veteran) {
+			ArrayList <levelThree> LevelThree, ArrayList <levelFour> LevelFour, ArrayList<Veteran> veteran,
+			ArrayList<RetirementRecord> retirementRecord, ArrayList<TransactionRecord> transactionRecord) {
 		// Menu
 		int choice=0;
 		Scanner sc = new Scanner (System.in);
@@ -71,7 +74,7 @@ public class Driver {
 						}
 						if(flag)
 						{
-							manager.initiateRetirement(LevelOne.get(i), LevelOne, veteran);
+							manager.initiateRetirement(LevelOne.get(i), LevelOne, veteran, retirementRecord);
 						}
 						else
 						{
@@ -92,7 +95,7 @@ public class Driver {
 						}
 						if(flag)
 						{
-							manager.initiateRetirement(LevelTwo.get(i), LevelTwo, veteran);
+							manager.initiateRetirement(LevelTwo.get(i), LevelTwo, veteran, retirementRecord);
 						}
 						else
 						{
@@ -113,7 +116,7 @@ public class Driver {
 						}
 						if(flag)
 						{
-							manager.initiateRetirement(LevelThree.get(i), LevelThree, veteran);
+							manager.initiateRetirement(LevelThree.get(i), LevelThree, veteran, retirementRecord);
 						}
 						else
 						{
@@ -134,7 +137,7 @@ public class Driver {
 						}
 						if(flag)
 						{
-							manager.initiateRetirement(LevelFour.get(i), LevelFour, veteran);
+							manager.initiateRetirement(LevelFour.get(i), LevelFour, veteran, retirementRecord);
 						}
 						else
 						{
@@ -170,7 +173,7 @@ public class Driver {
 						}
 						if(flag)
 						{
-							manager.initiateDischarge(LevelOne.get(i), LevelOne, veteran);
+							manager.initiateDischarge(LevelOne.get(i), LevelOne, veteran, retirementRecord);
 						}
 						else
 						{
@@ -191,7 +194,7 @@ public class Driver {
 						}
 						if(flag)
 						{
-							manager.initiateDischarge(LevelTwo.get(i), LevelTwo, veteran);
+							manager.initiateDischarge(LevelTwo.get(i), LevelTwo, veteran, retirementRecord);
 						}
 						else
 						{
@@ -212,7 +215,7 @@ public class Driver {
 						}
 						if(flag)
 						{
-							manager.initiateDischarge(LevelThree.get(i), LevelThree, veteran);
+							manager.initiateDischarge(LevelThree.get(i), LevelThree, veteran, retirementRecord);
 						}
 						else
 						{
@@ -236,7 +239,7 @@ public class Driver {
 						}
 						if(flag)
 						{
-							manager.initiateDischarge(LevelFour.get(i), LevelFour, veteran);
+							manager.initiateDischarge(LevelFour.get(i), LevelFour, veteran, retirementRecord);
 						}
 						else
 						{
@@ -253,6 +256,9 @@ public class Driver {
 					Integer month = date.getMonth();
 					if(day==1 && month != manager.getMonth())
 					{
+						/*
+						 * Discuss logic
+						 */
 						manager.intiatePayroll(LevelOne, LevelTwo, LevelThree, LevelFour, veteran);
 					}
 					else
@@ -779,7 +785,8 @@ public class Driver {
 						}	
 						if(flag) {
 							System.out.println("logged in successfully!");
-							Driver.ManagerView(manager.get(i));
+							Driver.ManagerView(manager.get(i), LevelOne, LevelTwo, LevelThree, LevelFour, veteran,
+									retirementRecord, transactionRecord);
 							break;
 						}
 						else {
