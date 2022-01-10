@@ -3,10 +3,14 @@ package personnel;
 import java.util.ArrayList;
 import java.util.Date;
 
+import Utility.Login;
 import Utility.PromotionRecord;
 
-public class levelThree extends levelTwo {
+public class levelThree extends levelTwo implements Login {
 	private String username,password;
+	/*
+	 * TODO: should user name and password be private or protected?
+	 */
 	levelThree(String username, String password, String name,String wing,String location,
 			Double BaseSalary, Double balance){
 		super(name,wing,location,BaseSalary,balance);
@@ -63,6 +67,15 @@ public class levelThree extends levelTwo {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public boolean validate(String username,String password)
+	{
+		/*
+		 * TODO: check validate function and integrate
+		 */
+		
+		return (this.username.equals(username) && this.password.equals(password));
 	}
 	
 

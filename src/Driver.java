@@ -6,6 +6,7 @@ import Utility.RetirementRecord;
 import Utility.TransactionRecord;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.PrintWriter;
 import java.text.ParseException;
@@ -259,7 +260,7 @@ public class Driver {
 						/*
 						 * Discuss logic
 						 */
-						manager.intiatePayroll(LevelOne, LevelTwo, LevelThree, LevelFour, veteran);
+						manager.initiatePayroll(LevelOne, LevelTwo, LevelThree, LevelFour, veteran, transactionRecord);
 					}
 					else
 					{
@@ -703,57 +704,53 @@ public class Driver {
 		 * TODO: how to accommodate constant number counts into files
 		 */
 		
-		FileReader fileRead = new FileReader("Files\\LevelOne.txt");
-		Scanner fin = new Scanner(fileRead);
-		totalCount=fin.nextInt();
-		while(totalCount>0)
-		{
-			temp=fin.nextLine();
-			temp=fin.next();		
-			name=fin.next();
-			
-			//temp=fin.next();
-			id=fin.nextInt();
-			
-			//temp=fin.next();
-			//temp=fin.next();
-			//temp=fin.next();
-			bankAccountNumber=fin.nextInt();
-			
-			//temp=fin.next();
-			//temp=fin.next();
-			balance=fin.nextDouble();
-			
-			//temp=fin.next();
-			level=fin.nextInt();
-			
-			temp=fin.next();
-			wing=fin.next();
-
-			baseSalary=fin.nextDouble();
-			
-			awardCount = fin.nextInt();
-			while(awardCount>0)
+		FileReader fileRead;
+		try {
+			fileRead = new FileReader("Files\\LevelOne.txt");
+			Scanner fin = new Scanner(fileRead);
+			totalCount=fin.nextInt();
+			while(totalCount>0)
 			{
-				temp=fin
-				awardCount--;
+				temp=fin.nextLine();
+				temp=fin.next();		
+				name=fin.next();
+				
+				//temp=fin.next();
+				id=fin.nextInt();
+				
+				//temp=fin.next();
+				//temp=fin.next();
+				//temp=fin.next();
+				bankAccountNumber=fin.nextInt();
+				
+				//temp=fin.next();
+				//temp=fin.next();
+				balance=fin.nextDouble();
+				
+				//temp=fin.next();
+				level=fin.nextInt();
+				
+				temp=fin.next();
+				wing=fin.next();
+
+				baseSalary=fin.nextDouble();
+				
+				awardCount = fin.nextInt();
+				while(awardCount>0)
+				{
+					temp=fin.next();
+					awardCount--;
+				}
+				
+				totalCount--;
 			}
-			
-			totalCount--;
+		} catch (FileNotFoundException e) {
+			System.out.println("File not found error");
 		}
 
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		int choice=-1,level;
-		char ch='N';
+		int choice=-1;
+		char ch='N', c='N';
 		String username,password;
 		do
 		{
@@ -769,6 +766,7 @@ public class Driver {
 					int i=0;
 					do 
 					{
+						c='N';
 						System.out.println("Enter your username: ");
 						username=sc.next();
 						System.out.println("Enter your password: ");
@@ -776,7 +774,7 @@ public class Driver {
 						boolean flag=false;
 						for(i=0;i<manager.size();i++)
 						{						
-							if(username==manager.get(i).getUsername() && password == manager.get(i).getPassword())
+							if(manager.get(i).validate(username, password))
 							{
 								
 								flag=true;
@@ -794,7 +792,7 @@ public class Driver {
 							ch=sc.next().charAt(0); 	
 							
 						}
-					}while(ch=='Y');
+					}while(c=='Y');
 
 				}
 				break;
@@ -802,6 +800,7 @@ public class Driver {
 				{
 					do
 					{
+						c='N';
 						int i=0;
 						System.out.println("Enter your username: ");
 						username=sc.next();
@@ -814,7 +813,7 @@ public class Driver {
 							boolean flag=false;
 							for(i=0;i<LevelThree.size();i++)
 							{						
-								if(username==LevelThree.get(i).getUsername() && password == LevelThree.get(i).getPassword())
+								if(LevelThree.get(i).validate(username, password))
 								{									
 									flag=true;
 									break;
@@ -835,7 +834,7 @@ public class Driver {
 							boolean flag=false;
 							for(i=0;i<LevelFour.size();i++)
 							{						
-								if(username==LevelFour.get(i).getUsername() && password == LevelFour.get(i).getPassword())
+								if(LevelFour.get(i).validate(username, password))
 								{									
 									flag=true;
 									break;
@@ -854,7 +853,7 @@ public class Driver {
 							}							
 						}
 						
-					}while(ch=='Y');
+					}while(c=='Y');
 
 				}
 				break;
@@ -862,8 +861,10 @@ public class Driver {
 					break;
 				default:
 					break;
-			}  		
-		}while(true);  	
+			}  
+			System.out.println("Do you want to log in(Y/N)");
+			ch=sc.next().charAt(0);
+		}while(ch=='Y');  	
 		
 		/*
 		 * Write into the files
@@ -875,189 +876,229 @@ public class Driver {
 		 */
 		
 		//Writing into levelOne officer files:
-		
-		PrintWriter fout = new PrintWriter("Files\\LevelOne.txt");
-		fout.println(LevelOne.size());
-		fout.println("------------------------------------------");
 		int i=0;
-		for(i=0;i<LevelOne.size();i++)
-		{
-			fout.println("Name: "+LevelOne.get(i).getName());
-			fout.println("ID: "+LevelOne.get(i).getID());
-			fout.println("Bank account number: "+LevelOne.get(i).bankaccount.getAccountNumber());
-			fout.println("Bank balance: "+LevelOne.get(i).getBalance());
-			fout.println("Level: "+LevelOne.get(i).getLevel());
-			fout.println("Wing: "+LevelOne.get(i).getWing());
-			fout.println("Base salary: "+LevelOne.get(i).getBaseSalary());
-			fout.println("Awards: ");
-			fout.println(LevelOne.get(i).awardsRecieved.size());
-			for(int j=0;j<LevelOne.get(i).awardsRecieved.size();j++)
-			{ //print awards received number
-				if(j!=LevelOne.get(i).awardsRecieved.size()-1)
-				{
-					fout.println("Name: "+LevelOne.get(i).awardsRecieved.get(j).getName());
-					fout.println("Prize money: "+LevelOne.get(i).awardsRecieved.get(j).getPrizeMoney());
-					fout.println("Date: "+LevelOne.get(i).awardsRecieved.get(j).getDate());
-				}
-				else
-				{
-					fout.println("Name: "+LevelOne.get(i).awardsRecieved.get(j).getName());
-					fout.println("Prize money: "+LevelOne.get(i).awardsRecieved.get(j).getPrizeMoney());
-					fout.println("Date: "+LevelOne.get(i).awardsRecieved.get(j).getDate());
-					fout.println("------------------------------------------");
-				}
-			}			
-		}
-		fout = new PrintWriter("Files\\LevelTwo.txt");
-		fout.println(LevelTwo.size());
-		fout.println("------------------------------------------");
-		for(i=0;i<LevelTwo.size();i++)
-		{
-			fout.println("Name: "+LevelTwo.get(i).getName());
-			fout.println("ID: "+LevelTwo.get(i).getID());
-			fout.println("Bank account number: "+LevelTwo.get(i).bankaccount.getAccountNumber());
-			fout.println("Bank balance: "+LevelTwo.get(i).getBalance());
-			fout.println("Level: "+LevelTwo.get(i).getLevel());
-			fout.println("Wing: "+LevelTwo.get(i).getWing());
-			fout.println("Base salary: "+LevelTwo.get(i).getBaseSalary());
-			fout.println("Awards: ");
-			fout.println(LevelTwo.get(i).awardsRecieved.size());
-			for(int j=0;j<LevelTwo.get(i).awardsRecieved.size();j++)
+		PrintWriter fout;
+		try {
+			fout = new PrintWriter("Files\\LevelOne.txt");
+			fout.println(LevelOne.size());
+			fout.println("------------------------------------------");			
+			for(i=0;i<LevelOne.size();i++)
 			{
-				if(j!=LevelTwo.get(i).awardsRecieved.size()-1)
-				{
-					fout.println("Name: "+LevelTwo.get(i).awardsRecieved.get(j).getName());
-					fout.println("Prize money: "+LevelTwo.get(i).awardsRecieved.get(j).getPrizeMoney());
-					fout.println("Date: "+LevelTwo.get(i).awardsRecieved.get(j).getDate());
-				}
-				else
-				{
-					fout.println("Name: "+LevelTwo.get(i).awardsRecieved.get(j).getName());
-					fout.println("Prize money: "+LevelTwo.get(i).awardsRecieved.get(j).getPrizeMoney());
-					fout.println("Date: "+LevelTwo.get(i).awardsRecieved.get(j).getDate());
-					fout.println("------------------------------------------");
-				}
+				fout.println("Name: "+LevelOne.get(i).getName());
+				fout.println("ID: "+LevelOne.get(i).getID());
+				fout.println("Bank account number: "+LevelOne.get(i).bankaccount.getAccountNumber());
+				fout.println("Bank balance: "+LevelOne.get(i).getBalance());
+				fout.println("Level: "+LevelOne.get(i).getLevel());
+				fout.println("Wing: "+LevelOne.get(i).getWing());
+				fout.println("Base salary: "+LevelOne.get(i).getBaseSalary());
+				fout.println("Awards: ");
+				fout.println(LevelOne.get(i).awardsRecieved.size());
+				for(int j=0;j<LevelOne.get(i).awardsRecieved.size();j++)
+				{ //print awards received number
+					if(j!=LevelOne.get(i).awardsRecieved.size()-1)
+					{
+						fout.println("Name: "+LevelOne.get(i).awardsRecieved.get(j).getName());
+						fout.println("Prize money: "+LevelOne.get(i).awardsRecieved.get(j).getPrizeMoney());
+						fout.println("Date: "+LevelOne.get(i).awardsRecieved.get(j).getDate());
+					}
+					else
+					{
+						fout.println("Name: "+LevelOne.get(i).awardsRecieved.get(j).getName());
+						fout.println("Prize money: "+LevelOne.get(i).awardsRecieved.get(j).getPrizeMoney());
+						fout.println("Date: "+LevelOne.get(i).awardsRecieved.get(j).getDate());
+						fout.println("------------------------------------------");
+					}
+				}			
 			}
-			/*
-			 * Do we need to print allowances for each person?
-			 */
+		} catch (FileNotFoundException e) {
 			
+			System.out.println("File not found error");
 		}
-		fout = new PrintWriter("Files\\LevelThree.txt");
-		fout.println(LevelThree.size());
-		fout.println("------------------------------------------");
-		for(i=0;i<LevelThree.size();i++)
-		{
-			fout.println("Name: "+LevelThree.get(i).getName());
-			fout.println("ID: "+LevelThree.get(i).getID());
-			fout.println("Bank account number: "+LevelThree.get(i).bankaccount.getAccountNumber());
-			fout.println("Bank balance: "+LevelThree.get(i).getBalance());
-			fout.println("Level: "+LevelThree.get(i).getLevel());
-			fout.println("Wing: "+LevelThree.get(i).getWing());
-			fout.println("Base salary: "+LevelThree.get(i).getBaseSalary());
-			fout.println("Awards: ");
-			fout.println(LevelThree.get(i).awardsRecieved.size());
-			for(int j=0;j<LevelThree.get(i).awardsRecieved.size();j++)
-			{
-				if(j!=LevelThree.get(i).awardsRecieved.size()-1)
-				{
-					fout.println("Name: "+LevelThree.get(i).awardsRecieved.get(j).getName());
-					fout.println("Prize money: "+LevelThree.get(i).awardsRecieved.get(j).getPrizeMoney());
-					fout.println("Date: "+LevelThree.get(i).awardsRecieved.get(j).getDate());
-				}
-				else
-				{
-					fout.println("Name: "+LevelThree.get(i).awardsRecieved.get(j).getName());
-					fout.println("Prize money: "+LevelThree.get(i).awardsRecieved.get(j).getPrizeMoney());
-					fout.println("Date: "+LevelThree.get(i).awardsRecieved.get(j).getDate());
-					fout.println("------------------------------------------");
-				}
-			}
-			/*
-			 * Do we need to print allowances for each person?
-			 */
-			
-		}
-		fout = new PrintWriter("Files\\LevelFour.txt");
-		fout.println(LevelFour.size());
-		fout.println("------------------------------------------");
-		for(i=0;i<LevelFour.size();i++)
-		{
-			fout.println("Name: "+LevelFour.get(i).getName());
-			fout.println("ID: "+LevelFour.get(i).getID());
-			fout.println("Bank account number: "+LevelFour.get(i).bankaccount.getAccountNumber());
-			fout.println("Bank balance: "+LevelFour.get(i).getBalance());
-			fout.println("Level: "+LevelFour.get(i).getLevel());
-			fout.println("Wing: "+LevelFour.get(i).getWing());
-			fout.println("Base salary: "+LevelFour.get(i).getBaseSalary());
-			fout.println("Awards: ");
-			fout.println(LevelFour.get(i).awardsRecieved.size());
-			for(int j=0;j<LevelFour.get(i).awardsRecieved.size();j++)
-			{
-				if(j!=LevelFour.get(i).awardsRecieved.size()-1)
-				{
-					fout.println("Name: "+LevelFour.get(i).awardsRecieved.get(j).getName());
-					fout.println("Prize money: "+LevelFour.get(i).awardsRecieved.get(j).getPrizeMoney());
-					fout.println("Date: "+LevelFour.get(i).awardsRecieved.get(j).getDate());
-				}
-				else
-				{
-					fout.println("Name: "+LevelFour.get(i).awardsRecieved.get(j).getName());
-					fout.println("Prize money: "+LevelFour.get(i).awardsRecieved.get(j).getPrizeMoney());
-					fout.println("Date: "+LevelFour.get(i).awardsRecieved.get(j).getDate());
-					fout.println("------------------------------------------");
-				}
-			}
-			/*
-			 * Do we need to print allowances for each person?
-			 */
-			
-		}
-		fout = new PrintWriter("Files\\AwardRecord.txt");
-		fout.println(awardRecord.size());
-		fout.println("------------------------------------------");
-		for(i=0;i<awardRecord.size();i++)
-		{
-			fout.println("Officer ID: "+awardRecord.get(i).getOfficerID());
-			fout.println("Date: "+awardRecord.get(i).getDate());
-			fout.println("Award name: "+awardRecord.get(i).getAwardName());
-			fout.println("Prize money: "+awardRecord.get(i).getPrizeMoney());
-			fout.println("------------------------------------------");
-		}
-		
-		fout = new PrintWriter("Files\\PromotionRecord.txt");
-		fout.println(promotionRecord.size());
-		fout.println("------------------------------------------");
-		for(i=0;i<promotionRecord.size();i++)
-		{
-			fout.println("Officer ID: "+promotionRecord.get(i).getOfficerID());
-			fout.println("Date: "+promotionRecord.get(i).getDate());
-			fout.println("Next level: "+promotionRecord.get(i).getNextLevel());
-			fout.println("------------------------------------------");
-		}
-		fout = new PrintWriter("Files\\RetirementRecord.txt");
-		fout.println(retirementRecord.size());
-		fout.println("------------------------------------------");
-		for(i=0;i<retirementRecord.size();i++)
-		{
-			fout.println("Officer ID: "+retirementRecord.get(i).getOfficerID());
-			fout.println("Date: "+retirementRecord.get(i).getDate());
-			fout.println("Level during retirement: "+retirementRecord.get(i).getRankDuringRetirement());
-			fout.println("------------------------------------------");
-		}
-		fout = new PrintWriter("Files\\TransactionRecord.txt");
-		fout.println(transactionRecord.size());
-		fout.println("------------------------------------------");
-		for(i=0;i<transactionRecord.size();i++)
-		{
-			fout.println("Officer ID: "+transactionRecord.get(i).getOfficerID());
-			fout.println("Date: "+transactionRecord.get(i).getDate());
-			fout.println("Bank account number: "+transactionRecord.get(i).getBankAccountNumber());
-			fout.println("Amount: "+transactionRecord.get(i).getAmount());
-			fout.println("Type: "+transactionRecord.get(i).getType());
-			fout.println("------------------------------------------");
-		}
-		
-	}
 
+		try {
+			fout = new PrintWriter("Files\\LevelTwo.txt");
+			fout.println(LevelTwo.size());
+			fout.println("------------------------------------------");
+			for(i=0;i<LevelTwo.size();i++)
+			{
+				fout.println("Name: "+LevelTwo.get(i).getName());
+				fout.println("ID: "+LevelTwo.get(i).getID());
+				fout.println("Bank account number: "+LevelTwo.get(i).bankaccount.getAccountNumber());
+				fout.println("Bank balance: "+LevelTwo.get(i).getBalance());
+				fout.println("Level: "+LevelTwo.get(i).getLevel());
+				fout.println("Wing: "+LevelTwo.get(i).getWing());
+				fout.println("Base salary: "+LevelTwo.get(i).getBaseSalary());
+				fout.println("Awards: ");
+				fout.println(LevelTwo.get(i).awardsRecieved.size());
+				for(int j=0;j<LevelTwo.get(i).awardsRecieved.size();j++)
+				{
+					if(j!=LevelTwo.get(i).awardsRecieved.size()-1)
+					{
+						fout.println("Name: "+LevelTwo.get(i).awardsRecieved.get(j).getName());
+						fout.println("Prize money: "+LevelTwo.get(i).awardsRecieved.get(j).getPrizeMoney());
+						fout.println("Date: "+LevelTwo.get(i).awardsRecieved.get(j).getDate());
+					}
+					else
+					{
+						fout.println("Name: "+LevelTwo.get(i).awardsRecieved.get(j).getName());
+						fout.println("Prize money: "+LevelTwo.get(i).awardsRecieved.get(j).getPrizeMoney());
+						fout.println("Date: "+LevelTwo.get(i).awardsRecieved.get(j).getDate());
+						fout.println("------------------------------------------");
+					}
+				}
+				/*
+				 * Do we need to print allowances for each person?
+				 */
+				
+			}
+		} catch (FileNotFoundException e) {
+			System.out.println("File not found error");
+		}
+		
+		try {
+			fout = new PrintWriter("Files\\LevelThree.txt");
+			fout.println(LevelThree.size());
+			fout.println("------------------------------------------");
+			for(i=0;i<LevelThree.size();i++)
+			{
+				fout.println("Name: "+LevelThree.get(i).getName());
+				fout.println("ID: "+LevelThree.get(i).getID());
+				fout.println("Bank account number: "+LevelThree.get(i).bankaccount.getAccountNumber());
+				fout.println("Bank balance: "+LevelThree.get(i).getBalance());
+				fout.println("Level: "+LevelThree.get(i).getLevel());
+				fout.println("Wing: "+LevelThree.get(i).getWing());
+				fout.println("Base salary: "+LevelThree.get(i).getBaseSalary());
+				fout.println("Awards: ");
+				fout.println(LevelThree.get(i).awardsRecieved.size());
+				for(int j=0;j<LevelThree.get(i).awardsRecieved.size();j++)
+				{
+					if(j!=LevelThree.get(i).awardsRecieved.size()-1)
+					{
+						fout.println("Name: "+LevelThree.get(i).awardsRecieved.get(j).getName());
+						fout.println("Prize money: "+LevelThree.get(i).awardsRecieved.get(j).getPrizeMoney());
+						fout.println("Date: "+LevelThree.get(i).awardsRecieved.get(j).getDate());
+					}
+					else
+					{
+						fout.println("Name: "+LevelThree.get(i).awardsRecieved.get(j).getName());
+						fout.println("Prize money: "+LevelThree.get(i).awardsRecieved.get(j).getPrizeMoney());
+						fout.println("Date: "+LevelThree.get(i).awardsRecieved.get(j).getDate());
+						fout.println("------------------------------------------");
+					}
+				}
+				/*
+				 * Do we need to print allowances for each person?
+				 */
+				
+			}
+		} catch (FileNotFoundException e) {
+			System.out.println("File not found error");
+			
+		}
+
+		try {
+			fout = new PrintWriter("Files\\LevelFour.txt");
+			fout.println(LevelFour.size());
+			fout.println("------------------------------------------");
+			for(i=0;i<LevelFour.size();i++)
+			{
+				fout.println("Name: "+LevelFour.get(i).getName());
+				fout.println("ID: "+LevelFour.get(i).getID());
+				fout.println("Bank account number: "+LevelFour.get(i).bankaccount.getAccountNumber());
+				fout.println("Bank balance: "+LevelFour.get(i).getBalance());
+				fout.println("Level: "+LevelFour.get(i).getLevel());
+				fout.println("Wing: "+LevelFour.get(i).getWing());
+				fout.println("Base salary: "+LevelFour.get(i).getBaseSalary());
+				fout.println("Awards: ");
+				fout.println(LevelFour.get(i).awardsRecieved.size());
+				for(int j=0;j<LevelFour.get(i).awardsRecieved.size();j++)
+				{
+					if(j!=LevelFour.get(i).awardsRecieved.size()-1)
+					{
+						fout.println("Name: "+LevelFour.get(i).awardsRecieved.get(j).getName());
+						fout.println("Prize money: "+LevelFour.get(i).awardsRecieved.get(j).getPrizeMoney());
+						fout.println("Date: "+LevelFour.get(i).awardsRecieved.get(j).getDate());
+					}
+					else
+					{
+						fout.println("Name: "+LevelFour.get(i).awardsRecieved.get(j).getName());
+						fout.println("Prize money: "+LevelFour.get(i).awardsRecieved.get(j).getPrizeMoney());
+						fout.println("Date: "+LevelFour.get(i).awardsRecieved.get(j).getDate());
+						fout.println("------------------------------------------");
+					}
+				}
+				/*
+				 * Do we need to print allowances for each person?
+				 */
+				
+			}
+		} catch (FileNotFoundException e) {
+			System.out.println("File not found error");
+		}
+		
+		try {
+			fout = new PrintWriter("Files\\AwardRecord.txt");
+			fout.println(awardRecord.size());
+			fout.println("------------------------------------------");
+			for(i=0;i<awardRecord.size();i++)
+			{
+				fout.println("Officer ID: "+awardRecord.get(i).getOfficerID());
+				fout.println("Date: "+awardRecord.get(i).getDate());
+				fout.println("Award name: "+awardRecord.get(i).getAwardName());
+				fout.println("Prize money: "+awardRecord.get(i).getPrizeMoney());
+				fout.println("------------------------------------------");
+			}
+		} catch (FileNotFoundException e) {
+			System.out.println("File not found error");
+		}
+		
+		
+		try {
+			fout = new PrintWriter("Files\\PromotionRecord.txt");
+			fout.println(promotionRecord.size());
+			fout.println("------------------------------------------");
+			for(i=0;i<promotionRecord.size();i++)
+			{
+				fout.println("Officer ID: "+promotionRecord.get(i).getOfficerID());
+				fout.println("Date: "+promotionRecord.get(i).getDate());
+				fout.println("Next level: "+promotionRecord.get(i).getNextLevel());
+				fout.println("------------------------------------------");
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println("File not found error");
+		}
+		
+		try {
+			fout = new PrintWriter("Files\\RetirementRecord.txt");
+			fout.println(retirementRecord.size());
+			fout.println("------------------------------------------");
+			for(i=0;i<retirementRecord.size();i++)
+			{
+				fout.println("Officer ID: "+retirementRecord.get(i).getOfficerID());
+				fout.println("Date: "+retirementRecord.get(i).getDate());
+				fout.println("Level during retirement: "+retirementRecord.get(i).getRankDuringRetirement());
+				fout.println("------------------------------------------");
+			}
+		} catch (FileNotFoundException e) {
+			System.out.println("File not found error");
+		}
+		
+		try {
+			fout = new PrintWriter("Files\\TransactionRecord.txt");
+			fout.println(transactionRecord.size());
+			fout.println("------------------------------------------");
+			for(i=0;i<transactionRecord.size();i++)
+			{
+				fout.println("Officer ID: "+transactionRecord.get(i).getOfficerID());
+				fout.println("Date: "+transactionRecord.get(i).getDate());
+				fout.println("Bank account number: "+transactionRecord.get(i).getBankAccountNumber());
+				fout.println("Amount: "+transactionRecord.get(i).getAmount());
+				fout.println("Type: "+transactionRecord.get(i).getType());
+				fout.println("------------------------------------------");
+			}
+		} catch (FileNotFoundException e) {
+			System.out.println("File not found error");
+		}		
+	}  
 }
