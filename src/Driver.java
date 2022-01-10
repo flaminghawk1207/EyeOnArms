@@ -562,7 +562,7 @@ public class Driver {
 							{
 								LevelFour.getAward(LevelOne.get(i), awardRecord, transactionRecord); 
 								/*								 * 
-								 * LevelOne.get(i) is part of arrayList levelOne..Any changes in the LevelOne.get(i)
+								 * TODO: LevelOne.get(i) is part of arrayList levelOne..Any changes in the LevelOne.get(i)
 								 * will(should?) be reflected in the array list
 								 */
 							}
@@ -689,15 +689,53 @@ public class Driver {
 		/*
 		 * Read from files and put it into arrayLists
 		 */
-		
-		FileReader rdr = new FileReader("input.txt"); 
-		Scanner fin = new Scanner(rdr); 
+		Integer totalCount=0, awardCount=0, id, bankAccountNumber, level;
+		String wing, location,temp, name, awardName;
+		Double baseSalary, balance;
 
 		/*
 		 * TODO: how to accommodate constant number counts into files
 		 */
 		
-		
+		FileReader fileRead = new FileReader("Files\\LevelOne.txt");
+		Scanner fin = new Scanner(fileRead);
+		totalCount=fin.nextInt();
+		while(totalCount>0)
+		{
+			temp=fin.nextLine();
+			temp=fin.next();		
+			name=fin.next();
+			
+			//temp=fin.next();
+			id=fin.nextInt();
+			
+			//temp=fin.next();
+			//temp=fin.next();
+			//temp=fin.next();
+			bankAccountNumber=fin.nextInt();
+			
+			//temp=fin.next();
+			//temp=fin.next();
+			balance=fin.nextDouble();
+			
+			//temp=fin.next();
+			level=fin.nextInt();
+			
+			temp=fin.next();
+			wing=fin.next();
+
+			baseSalary=fin.nextDouble();
+			
+			awardCount = fin.nextInt();
+			while(awardCount>0)
+			{
+				temp=fin
+				awardCount--;
+			}
+			
+			totalCount--;
+		}
+
 		
 		
 		
@@ -835,8 +873,6 @@ public class Driver {
 		fout.println(LevelOne.size());
 		fout.println("------------------------------------------");
 		int i=0;
-		fout.println(LevelOne.size());
-		fout.println("------------------------------------------");
 		for(i=0;i<LevelOne.size();i++)
 		{
 			fout.println("Name: "+LevelOne.get(i).getName());
@@ -847,16 +883,20 @@ public class Driver {
 			fout.println("Wing: "+LevelOne.get(i).getWing());
 			fout.println("Base salary: "+LevelOne.get(i).getBaseSalary());
 			fout.println("Awards: ");
+			fout.println(LevelOne.get(i).awardsRecieved.size());
 			for(int j=0;j<LevelOne.get(i).awardsRecieved.size();j++)
-			{
+			{ //print awards received number
 				if(j!=LevelOne.get(i).awardsRecieved.size()-1)
 				{
-					fout.print(LevelOne.get(i).awardsRecieved.get(j).getName()+", ");		
-					fout.println("------------------------------------------");
+					fout.println("Name: "+LevelOne.get(i).awardsRecieved.get(j).getName());
+					fout.println("Prize money: "+LevelOne.get(i).awardsRecieved.get(j).getPrizeMoney());
+					fout.println("Date: "+LevelOne.get(i).awardsRecieved.get(j).getDate());
 				}
 				else
 				{
-					fout.print(LevelOne.get(i).awardsRecieved.get(j).getName());
+					fout.println("Name: "+LevelOne.get(i).awardsRecieved.get(j).getName());
+					fout.println("Prize money: "+LevelOne.get(i).awardsRecieved.get(j).getPrizeMoney());
+					fout.println("Date: "+LevelOne.get(i).awardsRecieved.get(j).getDate());
 					fout.println("------------------------------------------");
 				}
 			}			
@@ -874,16 +914,20 @@ public class Driver {
 			fout.println("Wing: "+LevelTwo.get(i).getWing());
 			fout.println("Base salary: "+LevelTwo.get(i).getBaseSalary());
 			fout.println("Awards: ");
+			fout.println(LevelTwo.get(i).awardsRecieved.size());
 			for(int j=0;j<LevelTwo.get(i).awardsRecieved.size();j++)
 			{
 				if(j!=LevelTwo.get(i).awardsRecieved.size()-1)
 				{
-					fout.print(LevelTwo.get(i).awardsRecieved.get(j).getName()+", ");	
-					fout.println("------------------------------------------");
+					fout.println("Name: "+LevelTwo.get(i).awardsRecieved.get(j).getName());
+					fout.println("Prize money: "+LevelTwo.get(i).awardsRecieved.get(j).getPrizeMoney());
+					fout.println("Date: "+LevelTwo.get(i).awardsRecieved.get(j).getDate());
 				}
 				else
 				{
-					fout.print(LevelTwo.get(i).awardsRecieved.get(j).getName());
+					fout.println("Name: "+LevelTwo.get(i).awardsRecieved.get(j).getName());
+					fout.println("Prize money: "+LevelTwo.get(i).awardsRecieved.get(j).getPrizeMoney());
+					fout.println("Date: "+LevelTwo.get(i).awardsRecieved.get(j).getDate());
 					fout.println("------------------------------------------");
 				}
 			}
@@ -905,16 +949,20 @@ public class Driver {
 			fout.println("Wing: "+LevelThree.get(i).getWing());
 			fout.println("Base salary: "+LevelThree.get(i).getBaseSalary());
 			fout.println("Awards: ");
+			fout.println(LevelThree.get(i).awardsRecieved.size());
 			for(int j=0;j<LevelThree.get(i).awardsRecieved.size();j++)
 			{
 				if(j!=LevelThree.get(i).awardsRecieved.size()-1)
 				{
-					fout.print(LevelThree.get(i).awardsRecieved.get(j).getName()+", ");
-					fout.println("------------------------------------------");
+					fout.println("Name: "+LevelThree.get(i).awardsRecieved.get(j).getName());
+					fout.println("Prize money: "+LevelThree.get(i).awardsRecieved.get(j).getPrizeMoney());
+					fout.println("Date: "+LevelThree.get(i).awardsRecieved.get(j).getDate());
 				}
 				else
 				{
-					fout.print(LevelThree.get(i).awardsRecieved.get(j).getName());
+					fout.println("Name: "+LevelThree.get(i).awardsRecieved.get(j).getName());
+					fout.println("Prize money: "+LevelThree.get(i).awardsRecieved.get(j).getPrizeMoney());
+					fout.println("Date: "+LevelThree.get(i).awardsRecieved.get(j).getDate());
 					fout.println("------------------------------------------");
 				}
 			}
@@ -936,16 +984,20 @@ public class Driver {
 			fout.println("Wing: "+LevelFour.get(i).getWing());
 			fout.println("Base salary: "+LevelFour.get(i).getBaseSalary());
 			fout.println("Awards: ");
+			fout.println(LevelFour.get(i).awardsRecieved.size());
 			for(int j=0;j<LevelFour.get(i).awardsRecieved.size();j++)
 			{
 				if(j!=LevelFour.get(i).awardsRecieved.size()-1)
 				{
-					fout.print(LevelFour.get(i).awardsRecieved.get(j).getName()+", ");	
-					fout.println("------------------------------------------");
+					fout.println("Name: "+LevelFour.get(i).awardsRecieved.get(j).getName());
+					fout.println("Prize money: "+LevelFour.get(i).awardsRecieved.get(j).getPrizeMoney());
+					fout.println("Date: "+LevelFour.get(i).awardsRecieved.get(j).getDate());
 				}
 				else
 				{
-					fout.print(LevelFour.get(i).awardsRecieved.get(j).getName());
+					fout.println("Name: "+LevelFour.get(i).awardsRecieved.get(j).getName());
+					fout.println("Prize money: "+LevelFour.get(i).awardsRecieved.get(j).getPrizeMoney());
+					fout.println("Date: "+LevelFour.get(i).awardsRecieved.get(j).getDate());
 					fout.println("------------------------------------------");
 				}
 			}
