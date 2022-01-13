@@ -1,6 +1,9 @@
 import java.util.Scanner;
+import java.util.Map.Entry;
 
+import Utility.Allowance;
 import Utility.AwardRecord;
+import Utility.Pair;
 import Utility.PromotionRecord;
 import Utility.RetirementRecord;
 import Utility.TransactionRecord;
@@ -13,6 +16,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 import personnel.Manager;
 import personnel.Personnel;
@@ -27,6 +31,7 @@ public class Driver {
 	public static void LoginMenu() {
 		System.out.println("Choose your designation \n1.Manager \n2.Level-3, Level-4 \n3.Exit");		
 	}
+	
 	
 	public static void ManagerView(Manager manager, ArrayList <levelOne> LevelOne, ArrayList <levelTwo> LevelTwo, 
 			ArrayList <levelThree> LevelThree, ArrayList <levelFour> LevelFour, ArrayList<Veteran> veteran,
@@ -231,9 +236,6 @@ public class Driver {
 						{
 							if(LevelFour.get(i).getID() == id)
 							{
-								/*
-								 * TODO: check if statements where comparison of id is done
-								 */
 								flag=true;
 								break;
 							}
@@ -244,7 +246,7 @@ public class Driver {
 						}
 						else
 						{
-							System.out.println("Invalid details..Try again"); //later
+							System.out.println("Invalid details..Try again"); //TODO: later
 						}
 					} 			
 					
@@ -253,37 +255,24 @@ public class Driver {
 				case 3:
 				{
 					Date date = new Date();
-					Integer day=date.getDay();
 					Integer month = date.getMonth();
-					if(day==1 && month != manager.getMonth())
+					if(month != Manager.getMonth())
 					{
-						/*
-						 * Discuss logic
-						 */
 						manager.initiatePayroll(LevelOne, LevelTwo, LevelThree, LevelFour, veteran, transactionRecord);
 					}
 					else
 					{
-						if(day!=1)
-						{
-							System.out.println("Cannot initiate payment. Its not pay day");
-						}
-						else
-						{
-							System.out.println("Paid already for this month");
-						}
-						
-					}
-					
+						System.out.println("Salary paid already for this month");  							
+					}					
 				}
 				break;
 				case 4:
 				{
 					int level=0,id=0,i=0;
 					boolean flag=false;
-					System.out.println("Enter the ranking level of the officer requesting retirement: ");
+					System.out.println("Enter the ranking level of the officer requesting allowance: ");
 					level=sc.nextInt();
-					while(level<1 || level >=5)
+					while(level<=1 || level >=5)
 					{
 						System.out.println("Enter valid level: ");
 						level=sc.nextInt();

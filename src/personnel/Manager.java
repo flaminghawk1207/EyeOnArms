@@ -13,18 +13,18 @@ public class Manager implements Login{
 
 	private Integer ID;
 	private static Integer managerCount=0;
-	private Integer month=-1;
+	private static Integer month=-1;
 
 	Manager (String name, int ID){
 		this.name=name;
 		ID= managerCount++;
 	}
 	
-	public Integer getMonth() {
+	public static Integer getMonth() {
 		return month;
 	}
-	public void setMonth(Integer month) {
-		this.month = month;
+	public static void setMonth(Integer month) {
+		Manager.month = month;
 	}
 	
 	public void initiateRetirement(levelOne officer,ArrayList<levelOne> LevelOne, ArrayList<Veteran> veteran, 
@@ -196,21 +196,18 @@ public class Manager implements Login{
 	}
 	public boolean validate(String username,String password)
 	{
-		/*
-		 * TODO: check validate function and integrate
-		 */
-		
 		return (this.username.equals(username) && this.password.equals(password));
 	}
 	public void initiatePayroll(ArrayList<levelOne> LevelOne, ArrayList <levelTwo> LevelTwo, ArrayList<levelThree> LevelThree,
 			ArrayList<levelFour> LevelFour, ArrayList<Veteran> veteran, ArrayList<TransactionRecord> transactionRecord) {
-		/*
-		 * TODO: who will pay the managers?
-		 */
+		
 		Date date = new Date();
 		int i=0;
 		for(i=0;i<LevelOne.size();i++)
 		{
+			Date tempDate = new Date();
+			Integer month = tempDate.getMonth();
+			Manager.month = month;
 			LevelOne.get(i).bankaccount.setBalance(LevelOne.get(i).getBalance()+LevelOne.get(i).getBaseSalary());
 			System.out.println("salary paid for: "+LevelOne.get(i).getID()+" "+LevelOne.get(i).getName()+" "
 					+LevelOne.get(i).getLevel());
@@ -264,10 +261,4 @@ public class Manager implements Login{
 		this.password = password;
 	}	
 
-	public boolean validateUsername(String password) {
-		/*
-		 * TODO: what is the use of this function?
-		 */
-		return true;
-	}
 } 
