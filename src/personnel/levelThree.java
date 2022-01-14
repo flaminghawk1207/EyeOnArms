@@ -3,6 +3,7 @@ package personnel;
 import java.util.ArrayList;
 import java.util.Date;
 
+import Utility.Award;
 import Utility.Login;
 import Utility.PromotionRecord;
 
@@ -11,9 +12,9 @@ public class levelThree extends levelTwo implements Login {
 	/*
 	 * TODO: should user name and password be private or protected?
 	 */
-	levelThree(String username, String password, String name,String wing,String location,
-			Double BaseSalary, Double balance){
-		super(name,wing,location,BaseSalary,balance);
+	public levelThree(String username, String password, String name,String wing,String location,
+			Double BaseSalary, Double balance, ArrayList<Award> award){
+		super(name,wing,location,BaseSalary,balance,award);
 		this.username = username;
 		this.password = password;
 		this.level=3;
@@ -25,16 +26,19 @@ public class levelThree extends levelTwo implements Login {
 		String l;
 		System.out.println("enter the location");
 		l=sc.next();
-		levelOne officer=new levelOne(candidate.name,w,l,20000.0,candidate.getBalance());
+		/*
+		 * TODO: Check logic here
+		 */
+		levelOne officer=new levelOne(candidate.name,w,l,20000.0,candidate.getBalance(), null);
 		LevelOne.add(officer);
-		Date date = new Date();
-		PromotionRecord prObject = new PromotionRecord(officer.getID(), date, 1); 
-		promotionRecord.add(prObject);
+//		Date date = new Date();
+//		PromotionRecord prObject = new PromotionRecord(officer.getID(), date, 1); 
+//		promotionRecord.add(prObject);
 	}
 	public void promote(levelOne off, ArrayList<levelOne> LevelOne, ArrayList<levelTwo> LevelTwo, 
 			ArrayList<PromotionRecord> promotionRecord) {
 
-		levelTwo officer=new levelTwo(off.name,off.wing,off.location,25000.0,1000000.0);
+		levelTwo officer=new levelTwo(off.name,off.wing,off.location,25000.0,1000000.0,off.awardsRecieved);
 		LevelTwo.add(officer);
 		Date date = new Date();
 		PromotionRecord prObject = new PromotionRecord(officer.getID(), date, 2); 

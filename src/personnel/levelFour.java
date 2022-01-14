@@ -1,7 +1,6 @@
 package personnel;
 
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,8 +12,9 @@ import Utility.RetirementRecord;
 import Utility.TransactionRecord;
 
 public class levelFour extends levelThree {
-	levelFour(String username, String password, String name,String wing,String location,Double BaseSalary,Double balance){
-		super(username, password, name,wing,location,BaseSalary,balance);
+	public levelFour(String username, String password, String name,String wing,String location,Double BaseSalary,Double balance, 
+			ArrayList<Award> award){
+		super(username, password, name,wing,location,BaseSalary,balance,award);
 		this.level=4;
 	}
 	public void promote(levelTwo off, ArrayList <levelTwo> LevelTwo, ArrayList<levelThree> LevelThree,
@@ -22,7 +22,7 @@ public class levelFour extends levelThree {
 		/*
 		 * For now - when creation of a new level 3 officer - User name will be name and password will be id
 		 */
-		levelThree officer=new levelThree(off.name, off.id.toString() ,off.name,off.wing,off.location,25000.0,100000.0 );
+		levelThree officer=new levelThree(off.name, off.id.toString() ,off.name,off.wing,off.location,25000.0,100000.0,off.awardsRecieved);
 		LevelThree.add(officer);
 		Date date = new Date();
 		PromotionRecord prObject = new PromotionRecord(officer.getID(), date, 3); 
@@ -111,7 +111,7 @@ public class levelFour extends levelThree {
 			for(i=0;i<awardRecordReport.size();i++)
 			{
 				System.out.println("Officer ID: "+awardRecord.get(i).getOfficerID());
-				System.out.println("Date: "+awardRecord.get(i).getDate());
+				System.out.println("Date: "+awardRecord.get(i).getStringDate());
 				System.out.println("Award name: "+awardRecord.get(i).getAwardName());
 				System.out.println("Prize money: "+awardRecord.get(i).getPrizeMoney());
 				System.out.println("------------------------------------------");
@@ -128,7 +128,7 @@ public class levelFour extends levelThree {
 				for(i=0;i<awardRecordReport.size();i++)
 				{
 					fout.println("Officer ID: "+awardRecordReport.get(i).getOfficerID());
-					fout.println("Date: "+awardRecordReport.get(i).getDate());
+					fout.println("Date: "+awardRecordReport.get(i).getStringDate());
 					fout.println("Award name: "+awardRecordReport.get(i).getAwardName());
 					fout.println("Prize money: "+awardRecordReport.get(i).getPrizeMoney());
 					fout.println("------------------------------------------");
@@ -156,7 +156,7 @@ public class levelFour extends levelThree {
 			for(i=0;i<transactionRecordReport.size();i++)
 			{
 				System.out.println("Officer ID: "+transactionRecordReport.get(i).getOfficerID());
-				System.out.println("Date: "+transactionRecordReport.get(i).getDate());
+				System.out.println("Date: "+transactionRecordReport.get(i).getStringDate());
 				System.out.println("Bank account number: "+transactionRecordReport.get(i).getBankAccountNumber());
 				System.out.println("Amount: "+transactionRecordReport.get(i).getAmount());
 				System.out.println("Type: "+transactionRecordReport.get(i).getType());
@@ -174,7 +174,7 @@ public class levelFour extends levelThree {
 				for(i=0;i<transactionRecordReport.size();i++)
 				{
 					fout.println("Officer ID: "+transactionRecordReport.get(i).getOfficerID());
-					fout.println("Date: "+transactionRecordReport.get(i).getDate());
+					fout.println("Date: "+transactionRecordReport.get(i).getStringDate());
 					fout.println("Bank account number: "+transactionRecordReport.get(i).getBankAccountNumber());
 					fout.println("Amount: "+transactionRecordReport.get(i).getAmount());
 					fout.println("Type: "+transactionRecordReport.get(i).getType());
@@ -202,7 +202,7 @@ public class levelFour extends levelThree {
 			for(i=0;i<retirementRecordReport.size();i++)
 			{
 				System.out.println("Officer ID: "+retirementRecordReport.get(i).getOfficerID());
-				System.out.println("Date: "+retirementRecordReport.get(i).getDate());
+				System.out.println("Date: "+retirementRecordReport.get(i).getStringDate());
 				System.out.println("Level during retirement: "+retirementRecordReport.get(i).getRankDuringRetirement());
 				System.out.println("------------------------------------------");
 			}
@@ -218,7 +218,7 @@ public class levelFour extends levelThree {
 				for(i=0;i<retirementRecordReport.size();i++)
 				{
 					fout.println("Officer ID: "+retirementRecordReport.get(i).getOfficerID());
-					fout.println("Date: "+retirementRecordReport.get(i).getDate());
+					fout.println("Date: "+retirementRecordReport.get(i).getStringDate());
 					fout.println("Level during retirement: "+retirementRecordReport.get(i).getRankDuringRetirement());
 					fout.println("------------------------------------------");
 				}
@@ -244,7 +244,7 @@ public class levelFour extends levelThree {
 			for(i=0;i<promotionRecordReport.size();i++)
 			{
 				System.out.println("Officer ID: "+promotionRecordReport.get(i).getOfficerID());
-				System.out.println("Date: "+promotionRecordReport.get(i).getDate());
+				System.out.println("Date: "+promotionRecordReport.get(i).getStringDate());
 				System.out.println("Next level: "+promotionRecordReport.get(i).getNextLevel());
 				System.out.println("------------------------------------------");
 			}
@@ -256,7 +256,7 @@ public class levelFour extends levelThree {
 				for(i=0;i<promotionRecordReport.size();i++)
 				{
 					fout.println("Officer ID: "+promotionRecordReport.get(i).getOfficerID());
-					fout.println("Date: "+promotionRecordReport.get(i).getDate());
+					fout.println("Date: "+promotionRecordReport.get(i).getStringDate());
 					fout.println("Next level: "+promotionRecordReport.get(i).getNextLevel());
 					fout.println("------------------------------------------");
 				}
