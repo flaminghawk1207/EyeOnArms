@@ -2,15 +2,14 @@ package personnel;
 
 import java.util.ArrayList;
 import Utility.Allowance;
+import Utility.Award;
 import Utility.TransactionRecord;
 
 public class levelTwo extends levelOne {
-	private Integer month;
 	public ArrayList<Allowance>allowance = new ArrayList<Allowance>();
-	levelTwo(String name,String wing,String location,Double BaseSalary, Double balance){
-		super(name,wing,location,BaseSalary,balance);
+	public levelTwo(String name,String wing,String location,Double BaseSalary, Double balance, ArrayList<Award> award){
+		super(name,wing,location,BaseSalary,balance, award);
 		this.level=2;
-		this.month=-1;
 	}
 	public void requestAllowance(String allowancename, ArrayList<TransactionRecord> transactionRecord) {
 		/*

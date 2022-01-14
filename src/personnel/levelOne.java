@@ -15,13 +15,14 @@ public class levelOne extends Personnel {
 	public static Integer GetOfficerCount() {
 		return OfficerCount;
 	}
-	levelOne(String name,String wing,String location,Double BaseSalary, Double balance){
+	public levelOne(String name,String wing,String location,Double BaseSalary, Double balance, ArrayList<Award> awards){
 		super(name, balance);
 		this.level=1; 
 		this.wing=wing;
 		this.location=location;
 		this.BaseSalary=BaseSalary;
 		 OfficerCount= OfficerCount+1;
+		 this.awardsRecieved=awards;
 	}
 
 	public Award AddAward() throws Exception{

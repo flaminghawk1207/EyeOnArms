@@ -2,6 +2,7 @@ import java.util.Scanner;
 import java.util.Map.Entry;
 
 import Utility.Allowance;
+import Utility.Award;
 import Utility.AwardRecord;
 import Utility.Pair;
 import Utility.PromotionRecord;
@@ -709,15 +710,17 @@ public class Driver {
 		ArrayList<AwardRecord> awardRecord = new ArrayList<AwardRecord>();
 		ArrayList<RetirementRecord> retirementRecord = new ArrayList<RetirementRecord>();
 		ArrayList<TransactionRecord> transactionRecord = new ArrayList<TransactionRecord>();
+		
+		
 		Scanner sc = new Scanner(System.in);
 		
 		/*
 		 * Read from files and put it into arrayLists
 		 */
 		Integer totalCount=0, awardCount=0, id, bankAccountNumber, level;
-		String wing, location,temp, name, awardName;
-		Double baseSalary, balance;
-
+		String wing, location,temp, name, awardName,da;
+		Double baseSalary, balance, prizeMoney;
+		Date date = new Date();
 		/*
 		 * TODO: how to accommodate constant number counts into files
 		 */
@@ -729,37 +732,49 @@ public class Driver {
 			totalCount=fin.nextInt();
 			while(totalCount>0)
 			{
+				ArrayList<Award> award = new ArrayList<Award>();
 				temp=fin.nextLine();
 				temp=fin.next();		
-				name=fin.next();
-				
+				name=fin.next();				
 				//temp=fin.next();
-				id=fin.nextInt();
-				
+				id=fin.nextInt();				
 				//temp=fin.next();
 				//temp=fin.next();
 				//temp=fin.next();
-				bankAccountNumber=fin.nextInt();
-				
+				bankAccountNumber=fin.nextInt();				
 				//temp=fin.next();
 				//temp=fin.next();
-				balance=fin.nextDouble();
-				
+				balance=fin.nextDouble();				
 				//temp=fin.next();
-				level=fin.nextInt();
-				
+				level=fin.nextInt();				
 				temp=fin.next();
 				wing=fin.next();
-
-				baseSalary=fin.nextDouble();
-				
+				temp=fin.next();
+				location=fin.next();
+				baseSalary=fin.nextDouble();				
 				awardCount = fin.nextInt();
 				while(awardCount>0)
 				{
 					temp=fin.next();
+					awardName=fin.next();
+					prizeMoney = fin.nextDouble();
+					temp=fin.next();
+					da=fin.next();
+					try
+					{
+						date=new SimpleDateFormat("dd-MM-yyyy").parse(da);
+					}
+					catch (ParseException e) 
+					{
+						System.out.println("Date not in format as expected");
+					}
+					Award a = new Award(awardName, prizeMoney, date);
+					award.add(a);
 					awardCount--;
 				}
 				
+				levelOne officer = new levelOne(name, wing, location, baseSalary, balance, award);
+				LevelOne.add(officer);
 				totalCount--;
 			}
 		} catch (FileNotFoundException e) {
@@ -917,13 +932,13 @@ public class Driver {
 					{
 						fout.println("Name: "+LevelOne.get(i).awardsRecieved.get(j).getName());
 						fout.println("Prize money: "+LevelOne.get(i).awardsRecieved.get(j).getPrizeMoney());
-						fout.println("Date: "+LevelOne.get(i).awardsRecieved.get(j).getDate());
+						fout.println("Date: "+LevelOne.get(i).awardsRecieved.get(j).getStringDate());
 					}
 					else
 					{
 						fout.println("Name: "+LevelOne.get(i).awardsRecieved.get(j).getName());
 						fout.println("Prize money: "+LevelOne.get(i).awardsRecieved.get(j).getPrizeMoney());
-						fout.println("Date: "+LevelOne.get(i).awardsRecieved.get(j).getDate());
+						fout.println("Date: "+LevelOne.get(i).awardsRecieved.get(j).getStringDate());
 						fout.println("------------------------------------------");
 					}
 				}			
@@ -954,13 +969,13 @@ public class Driver {
 					{
 						fout.println("Name: "+LevelTwo.get(i).awardsRecieved.get(j).getName());
 						fout.println("Prize money: "+LevelTwo.get(i).awardsRecieved.get(j).getPrizeMoney());
-						fout.println("Date: "+LevelTwo.get(i).awardsRecieved.get(j).getDate());
+						fout.println("Date: "+LevelTwo.get(i).awardsRecieved.get(j).getStringDate());
 					}
 					else
 					{
 						fout.println("Name: "+LevelTwo.get(i).awardsRecieved.get(j).getName());
 						fout.println("Prize money: "+LevelTwo.get(i).awardsRecieved.get(j).getPrizeMoney());
-						fout.println("Date: "+LevelTwo.get(i).awardsRecieved.get(j).getDate());
+						fout.println("Date: "+LevelTwo.get(i).awardsRecieved.get(j).getStringDate());
 						fout.println("------------------------------------------");
 					}
 				}
@@ -994,13 +1009,13 @@ public class Driver {
 					{
 						fout.println("Name: "+LevelThree.get(i).awardsRecieved.get(j).getName());
 						fout.println("Prize money: "+LevelThree.get(i).awardsRecieved.get(j).getPrizeMoney());
-						fout.println("Date: "+LevelThree.get(i).awardsRecieved.get(j).getDate());
+						fout.println("Date: "+LevelThree.get(i).awardsRecieved.get(j).getStringDate());
 					}
 					else
 					{
 						fout.println("Name: "+LevelThree.get(i).awardsRecieved.get(j).getName());
 						fout.println("Prize money: "+LevelThree.get(i).awardsRecieved.get(j).getPrizeMoney());
-						fout.println("Date: "+LevelThree.get(i).awardsRecieved.get(j).getDate());
+						fout.println("Date: "+LevelThree.get(i).awardsRecieved.get(j).getStringDate());
 						fout.println("------------------------------------------");
 					}
 				}
@@ -1035,18 +1050,18 @@ public class Driver {
 					{
 						fout.println("Name: "+LevelFour.get(i).awardsRecieved.get(j).getName());
 						fout.println("Prize money: "+LevelFour.get(i).awardsRecieved.get(j).getPrizeMoney());
-						fout.println("Date: "+LevelFour.get(i).awardsRecieved.get(j).getDate());
+						fout.println("Date: "+LevelFour.get(i).awardsRecieved.get(j).getStringDate());
 					}
 					else
 					{
 						fout.println("Name: "+LevelFour.get(i).awardsRecieved.get(j).getName());
 						fout.println("Prize money: "+LevelFour.get(i).awardsRecieved.get(j).getPrizeMoney());
-						fout.println("Date: "+LevelFour.get(i).awardsRecieved.get(j).getDate());
+						fout.println("Date: "+LevelFour.get(i).awardsRecieved.get(j).getStringDate());
 						fout.println("------------------------------------------");
 					}
 				}
 				/*
-				 * Do we need to print allowances for each person?
+				 *TODO: Do we need to print allowances for each person?
 				 */
 				
 			}
@@ -1061,7 +1076,7 @@ public class Driver {
 			for(i=0;i<awardRecord.size();i++)
 			{
 				fout.println("Officer ID: "+awardRecord.get(i).getOfficerID());
-				fout.println("Date: "+awardRecord.get(i).getDate());
+				fout.println("Date: "+awardRecord.get(i).getStringDate());
 				fout.println("Award name: "+awardRecord.get(i).getAwardName());
 				fout.println("Prize money: "+awardRecord.get(i).getPrizeMoney());
 				fout.println("------------------------------------------");
@@ -1078,7 +1093,7 @@ public class Driver {
 			for(i=0;i<promotionRecord.size();i++)
 			{
 				fout.println("Officer ID: "+promotionRecord.get(i).getOfficerID());
-				fout.println("Date: "+promotionRecord.get(i).getDate());
+				fout.println("Date: "+promotionRecord.get(i).getStringDate());
 				fout.println("Next level: "+promotionRecord.get(i).getNextLevel());
 				fout.println("------------------------------------------");
 			}
@@ -1094,7 +1109,7 @@ public class Driver {
 			for(i=0;i<retirementRecord.size();i++)
 			{
 				fout.println("Officer ID: "+retirementRecord.get(i).getOfficerID());
-				fout.println("Date: "+retirementRecord.get(i).getDate());
+				fout.println("Date: "+retirementRecord.get(i).getStringDate());
 				fout.println("Level during retirement: "+retirementRecord.get(i).getRankDuringRetirement());
 				fout.println("------------------------------------------");
 			}
@@ -1109,7 +1124,7 @@ public class Driver {
 			for(i=0;i<transactionRecord.size();i++)
 			{
 				fout.println("Officer ID: "+transactionRecord.get(i).getOfficerID());
-				fout.println("Date: "+transactionRecord.get(i).getDate());
+				fout.println("Date: "+transactionRecord.get(i).getStringDate());
 				fout.println("Bank account number: "+transactionRecord.get(i).getBankAccountNumber());
 				fout.println("Amount: "+transactionRecord.get(i).getAmount());
 				fout.println("Type: "+transactionRecord.get(i).getType());

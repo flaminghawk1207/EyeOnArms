@@ -1,5 +1,6 @@
 package Utility;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Award {
@@ -37,6 +38,14 @@ public class Award {
 
 	public Date getDate() {
 		return date;
+	}
+	
+	public String getStringDate()
+	{
+		String pattern = "dd-MM-yyyy";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		String Sdate = simpleDateFormat.format(this.date);
+		return Sdate;
 	}
 
 	public void setDate(Date date) {
