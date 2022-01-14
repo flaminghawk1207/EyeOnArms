@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import Utility.Award;
+import Utility.BankAccount;
 
 public class levelOne extends Personnel {
 	public Integer level;
@@ -15,25 +16,25 @@ public class levelOne extends Personnel {
 	public static Integer GetOfficerCount() {
 		return OfficerCount;
 	}
-	public levelOne(String name,String wing,String location,Double BaseSalary, Double balance, ArrayList<Award> awards){
-		super(name, balance);
+	public levelOne(Integer id, String name,String wing,String location,Double BaseSalary, BankAccount bankaccount){ //For recruiting
+		super(id, name,bankaccount);
 		this.level=1; 
 		this.wing=wing;
 		this.location=location;
 		this.BaseSalary=BaseSalary;
-		 OfficerCount= OfficerCount+1;
-		 this.awardsRecieved=awards;
+		this.awardsRecieved=new ArrayList<Award>();
+		OfficerCount++;
 	}
-	
-	public levelOne(String name,String wing,String location,Double BaseSalary, Double balance){
-		super(name, balance);
+	public levelOne(Integer id, String name,String wing,String location,Double BaseSalary, Integer bid, Double balance, ArrayList<Award> awards){//from files
+		super(id,name,bid,balance);
 		this.level=1; 
 		this.wing=wing;
 		this.location=location;
 		this.BaseSalary=BaseSalary;
-		 OfficerCount= OfficerCount+1;
-		 ArrayList<Award>awardsRecieved = new ArrayList<Award>();
+		this.awardsRecieved=awards;
+		OfficerCount++;
 	}
+
 
 	public Award AddAward() throws Exception{
 		String aname;

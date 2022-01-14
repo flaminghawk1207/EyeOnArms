@@ -12,9 +12,9 @@ import Utility.RetirementRecord;
 import Utility.TransactionRecord;
 
 public class levelFour extends levelThree {
-	public levelFour(String username, String password, String name,String wing,String location,Double BaseSalary,Double balance, 
-			ArrayList<Award> award){
-		super(username, password, name,wing,location,BaseSalary,balance,award);
+	public levelFour(Integer id,String username, String password, String name,String wing,String location,Double BaseSalary,Integer bid,Double balance, 
+			ArrayList<Award> award){ //from files
+		super(id,username, password, name,wing,location,BaseSalary,bid,balance,award);
 		this.level=4;
 	}
 	public void promote(levelTwo off, ArrayList <levelTwo> LevelTwo, ArrayList<levelThree> LevelThree,
@@ -22,7 +22,7 @@ public class levelFour extends levelThree {
 		/*
 		 * For now - when creation of a new level 3 officer - User name will be name and password will be id
 		 */
-		levelThree officer=new levelThree(off.name, off.id.toString() ,off.name,off.wing,off.location,25000.00,off.getBalance(),off.awardsRecieved);
+		levelThree officer=new levelThree(off.id, off.name, off.id.toString() ,off.name,off.wing,off.location,25000.00,off.bankaccount,off.awardsRecieved);
 		LevelThree.add(officer);
 		Date date = new Date();
 		PromotionRecord prObject = new PromotionRecord(officer.getID(), date, 3); 

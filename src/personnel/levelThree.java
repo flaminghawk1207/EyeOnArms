@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 import Utility.Award;
+import Utility.BankAccount;
 import Utility.Login;
 import Utility.PromotionRecord;
 
@@ -13,9 +14,16 @@ public class levelThree extends levelTwo implements Login {
 	/*
 	 * TODO: should user name and password be private or protected?
 	 */
-	public levelThree(String username, String password, String name,String wing,String location,
-			Double BaseSalary, Double balance, ArrayList<Award> award){
-		super(name,wing,location,BaseSalary,balance,award);
+	public levelThree(Integer id, String username, String password, String name,String wing,String location,
+			Double BaseSalary, BankAccount bankAccount, ArrayList<Award> award){ //for promotion
+		super(id,name,wing,location,BaseSalary,bankAccount,award);
+		this.username = username;
+		this.password = password;
+		this.level=3;
+	}
+	public levelThree(Integer id, String username, String password, String name,String wing,String location,
+			Double BaseSalary, Integer bid, Double balance, ArrayList<Award> award){ //for promotion
+		super(id,name,wing,location,BaseSalary,bid,balance,award);
 		this.username = username;
 		this.password = password;
 		this.level=3;
@@ -30,7 +38,7 @@ public class levelThree extends levelTwo implements Login {
 		/*
 		 * TODO: Check logic here
 		 */
-		levelOne officer=new levelOne(candidate.name,w,l,20000.0,candidate.getBalance());
+		levelOne officer=new levelOne(candidate.id,candidate.name,w,l,20000.0,candidate.bankaccount);
 		LevelOne.add(officer);
 //		Date date = new Date();
 //		PromotionRecord prObject = new PromotionRecord(officer.getID(), date, 1); 
@@ -39,7 +47,7 @@ public class levelThree extends levelTwo implements Login {
 	public void promote(levelOne off, ArrayList<levelOne> LevelOne, ArrayList<levelTwo> LevelTwo, 
 			ArrayList<PromotionRecord> promotionRecord) {
 
-		levelTwo officer=new levelTwo(off.name,off.wing,off.location,25000.0,1000000.0,off.awardsRecieved);
+		levelTwo officer=new levelTwo(off.id,off.name,off.wing,off.location,25000.0,off.bankaccount,off.awardsRecieved);
 		LevelTwo.add(officer);
 		Date date = new Date();
 		PromotionRecord prObject = new PromotionRecord(officer.getID(), date, 2); 
