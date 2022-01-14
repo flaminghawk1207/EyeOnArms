@@ -1,0 +1,20 @@
+1
+------------------------------------------
+Name: Kishore
+ID: 1
+Bank account number: 1
+Bank balance: 21579.00
+Level: 1
+Wing: dhsgkf
+Location: dfjs
+Base salary: 20000.00
+Awards:
+2
+Name: hello
+Prize money: 2173123.00
+Date: 13-01-2022
+Name: World
+Prize Money: 1234.00
+Date: 15-01-2022
+------------------------------------------
+

@@ -22,7 +22,7 @@ public class levelFour extends levelThree {
 		/*
 		 * For now - when creation of a new level 3 officer - User name will be name and password will be id
 		 */
-		levelThree officer=new levelThree(off.name, off.id.toString() ,off.name,off.wing,off.location,25000.0,100000.0,off.awardsRecieved);
+		levelThree officer=new levelThree(off.name, off.id.toString() ,off.name,off.wing,off.location,25000.00,off.getBalance(),off.awardsRecieved);
 		LevelThree.add(officer);
 		Date date = new Date();
 		PromotionRecord prObject = new PromotionRecord(officer.getID(), date, 3); 

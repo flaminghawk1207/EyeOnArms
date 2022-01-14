@@ -24,6 +24,16 @@ public class levelOne extends Personnel {
 		 OfficerCount= OfficerCount+1;
 		 this.awardsRecieved=awards;
 	}
+	
+	public levelOne(String name,String wing,String location,Double BaseSalary, Double balance){
+		super(name, balance);
+		this.level=1; 
+		this.wing=wing;
+		this.location=location;
+		this.BaseSalary=BaseSalary;
+		 OfficerCount= OfficerCount+1;
+		 ArrayList<Award>awardsRecieved = new ArrayList<Award>();
+	}
 
 	public Award AddAward() throws Exception{
 		String aname;

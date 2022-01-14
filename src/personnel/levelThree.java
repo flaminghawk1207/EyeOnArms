@@ -2,6 +2,7 @@ package personnel;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
 
 import Utility.Award;
 import Utility.Login;
@@ -29,7 +30,7 @@ public class levelThree extends levelTwo implements Login {
 		/*
 		 * TODO: Check logic here
 		 */
-		levelOne officer=new levelOne(candidate.name,w,l,20000.0,candidate.getBalance(), null);
+		levelOne officer=new levelOne(candidate.name,w,l,20000.0,candidate.getBalance());
 		LevelOne.add(officer);
 //		Date date = new Date();
 //		PromotionRecord prObject = new PromotionRecord(officer.getID(), date, 1); 
@@ -80,6 +81,16 @@ public class levelThree extends levelTwo implements Login {
 		 */
 		
 		return (this.username.equals(username) && this.password.equals(password));
+	}
+	
+	public void changeCredentials()
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the new username: ");
+		this.username=sc.next();
+		System.out.println("Enter the new password: ");
+		this.password=sc.next();
+		sc.close();
 	}
 	
 

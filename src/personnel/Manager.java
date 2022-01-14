@@ -15,9 +15,11 @@ public class Manager implements Login{
 	private static Integer managerCount=0;
 	private static Integer month=-1;
 
-	Manager (String name, int ID){
+	public Manager (String name, int ID, String username, String password){
 		this.name=name;
 		ID= managerCount++;
+		this.username=username;
+		this.password=password;
 	}
 	
 	public static Integer getMonth() {

@@ -396,12 +396,13 @@ public class Driver {
 		do 
 		{
 			System.out.println("Menu");
-			System.out.println("1.Recruit candidate");
-			System.out.println("2.Promote candidate");
-			System.out.println("3.Exit");
+			System.out.println("1.Change username and password");
+			System.out.println("2.Recruit candidate");
+			System.out.println("3.Promote candidate");			
+			System.out.println("4.Exit");
 			System.out.println("Enter a valid choice");
 			choice = sc.nextInt();
-			while(choice<1 || choice>3)
+			while(choice<1 || choice>4)
 			{
 				System.out.println("Enter a valid choice: ");
 				choice = sc.nextInt();
@@ -410,6 +411,11 @@ public class Driver {
 			{
 				case 1:
 				{
+					LevelThree.changeCredentials();					
+				}
+				break;			
+				case 2:
+				{
 					String name;
 					System.out.println("Enter the candinate's name");
 					name=sc.next();
@@ -417,7 +423,7 @@ public class Driver {
 					LevelThree.recruit(personnel, LevelOne, promotionRecord);			
 				}
 				break;
-				case 2:
+				case 3:
 				{
 					char c='N';
 					do 
@@ -453,7 +459,7 @@ public class Driver {
 						
 				}
 				break;
-				case 3:
+				case 4:
 					break;
 				default:
 					break;
@@ -462,7 +468,7 @@ public class Driver {
 			ch=sc.next().charAt(0);
 			
 		}while(ch=='Y');
-		
+		sc.close();
 	}
 	
 	public static void Level4View(levelFour LevelFour, ArrayList<levelOne> LevelOne, ArrayList<levelTwo> LevelTwo,
@@ -718,73 +724,562 @@ public class Driver {
 		 * Read from files and put it into arrayLists
 		 */
 		Integer totalCount=0, awardCount=0, id, bankAccountNumber, level;
-		String wing, location,temp, name, awardName,da;
-		Double baseSalary, balance, prizeMoney;
+		String wing, location,temp, name, awardName,da,username,password, type;
+		Double baseSalary, balance, prizeMoney, amount, pensionAmount;
 		Date date = new Date();
 		/*
 		 * TODO: how to accommodate constant number counts into files
 		 */
 		
 		FileReader fileRead;
-		try {
-			fileRead = new FileReader("Files\\LevelOne.txt");
-			Scanner fin = new Scanner(fileRead);
-			totalCount=fin.nextInt();
-			while(totalCount>0)
-			{
-				ArrayList<Award> award = new ArrayList<Award>();
-				temp=fin.nextLine();
-				temp=fin.next();		
-				name=fin.next();				
-				//temp=fin.next();
-				id=fin.nextInt();				
-				//temp=fin.next();
-				//temp=fin.next();
-				//temp=fin.next();
-				bankAccountNumber=fin.nextInt();				
-				//temp=fin.next();
-				//temp=fin.next();
-				balance=fin.nextDouble();				
-				//temp=fin.next();
-				level=fin.nextInt();				
-				temp=fin.next();
-				wing=fin.next();
-				temp=fin.next();
-				location=fin.next();
-				baseSalary=fin.nextDouble();				
-				awardCount = fin.nextInt();
-				while(awardCount>0)
-				{
-					temp=fin.next();
-					awardName=fin.next();
-					prizeMoney = fin.nextDouble();
-					temp=fin.next();
-					da=fin.next();
-					try
-					{
-						date=new SimpleDateFormat("dd-MM-yyyy").parse(da);
-					}
-					catch (ParseException e) 
-					{
-						System.out.println("Date not in format as expected");
-					}
-					Award a = new Award(awardName, prizeMoney, date);
-					award.add(a);
-					awardCount--;
-				}
-				
-				levelOne officer = new levelOne(name, wing, location, baseSalary, balance, award);
-				LevelOne.add(officer);
-				totalCount--;
-			}
-		} catch (FileNotFoundException e) {
-			System.out.println("File not found error");
-		}
-
+		//levelOne
+        try
+        {
+            File directory = new File("");
+            System.out.println(directory.getAbsolutePath()+ "/src/Files/LevelOne.txt"); 
+            fileRead = new FileReader(directory.getAbsolutePath()+ "/src/Files/LevelOne.txt");
+            Scanner fin = new Scanner(fileRead);
+            totalCount=fin.nextInt();
+            while(totalCount>0)
+            {
+                ArrayList<Award> award = new ArrayList<Award>();
+                temp=fin.next();
+                temp=fin.next();   
+                name=fin.next(); 
+                //System.out.println(name);
+                temp=fin.next();
+                id=fin.nextInt();    
+                //System.out.println(id);
+                temp=fin.next();
+                temp=fin.next();
+                temp=fin.next();
+                bankAccountNumber=fin.nextInt();
+                //System.out.println(bankAccountNumber);
+                temp=fin.next();
+                temp=fin.next();
+                balance=fin.nextDouble(); 
+                //System.out.println(balance);
+                temp=fin.next();
+                level=fin.nextInt();       
+                temp=fin.next();
+                wing=fin.next();
+                temp=fin.next();
+                location=fin.next();
+                temp=fin.next();
+                temp=fin.next();
+                baseSalary=fin.nextDouble();   
+                temp=fin.next();
+                awardCount = fin.nextInt();
+                while(awardCount>0)
+                {
+                    temp=fin.next();
+                    awardName=fin.next();
+                    temp=fin.next();
+                    temp=fin.next();
+                    prizeMoney = fin.nextDouble();
+                    temp=fin.next();
+                    da=fin.next();
+                    try
+                    {
+                        date=new SimpleDateFormat("dd-MM-yyyy").parse(da);
+                    }
+                    catch (ParseException e)
+                    {
+                        System.out.println("Date not in format as expected");
+                    }  
+                    Award a = new Award(awardName, prizeMoney, date);
+                    award.add(a);
+                    awardCount--;
+                }                
+                levelOne officer = new levelOne(name, wing, location, baseSalary, balance, award);
+                LevelOne.add(officer);
+                totalCount--;
+            }
+            fin.close();
+        }
+        catch (FileNotFoundException e)
+        {
+            System.out.println("File not found error");
+        }
+		
+		//levelTwo
+        try
+        {
+            File directory = new File("");
+            System.out.println(directory.getAbsolutePath()+ "/src/Files/LevelTwo.txt"); 
+            fileRead = new FileReader(directory.getAbsolutePath()+ "/src/Files/LevelTwo.txt");
+            Scanner fin = new Scanner(fileRead);
+            totalCount=fin.nextInt();
+            while(totalCount>0)
+            {
+                ArrayList<Award> award = new ArrayList<Award>();
+                temp=fin.next();
+                temp=fin.next();   
+                name=fin.next(); 
+                //System.out.println(name);
+                temp=fin.next();
+                id=fin.nextInt();    
+                //System.out.println(id);
+                temp=fin.next();
+                temp=fin.next();
+                temp=fin.next();
+                bankAccountNumber=fin.nextInt();
+                //System.out.println(bankAccountNumber);
+                temp=fin.next();
+                temp=fin.next();
+                balance=fin.nextDouble(); 
+                //System.out.println(balance);
+                temp=fin.next();
+                level=fin.nextInt();       
+                temp=fin.next();
+                wing=fin.next();
+                temp=fin.next();
+                location=fin.next();
+                temp=fin.next();
+                temp=fin.next();
+                baseSalary=fin.nextDouble();   
+                temp=fin.next();
+                awardCount = fin.nextInt();
+                
+                while(awardCount>0)
+                {
+                    temp=fin.next();
+                    awardName=fin.next();
+                    temp=fin.next();
+                    temp=fin.next();
+                    prizeMoney = fin.nextDouble();
+                    temp=fin.next();
+                    da=fin.next();
+                    try
+                    {
+                        date=new SimpleDateFormat("dd-MM-yyyy").parse(da);
+                    }
+                    catch (ParseException e)
+                    {
+                        System.out.println("Date not in format as expected");
+                    }  
+                    Award a = new Award(awardName, prizeMoney, date);
+                    award.add(a);
+                    awardCount--;
+                }                
+                levelTwo officer = new levelTwo(name, wing, location, baseSalary, balance, award);
+                LevelTwo.add(officer);
+                totalCount--;
+            }
+            fin.close();
+        }
+        catch (FileNotFoundException e)
+        {
+            System.out.println("File not found error");
+        }
+        
+		//levelThree
+        try
+        {
+            File directory = new File("");
+            System.out.println(directory.getAbsolutePath()+ "/src/Files/LevelThree.txt"); 
+            fileRead = new FileReader(directory.getAbsolutePath()+ "/src/Files/LevelThree.txt");
+            Scanner fin = new Scanner(fileRead);
+            totalCount=fin.nextInt();
+            while(totalCount>0)
+            {
+                ArrayList<Award> award = new ArrayList<Award>();
+                temp=fin.next();
+                temp=fin.next();   
+                name=fin.next(); 
+                //System.out.println(name);
+                temp=fin.next();
+                id=fin.nextInt();    
+                //System.out.println(id);
+                temp=fin.next();
+                username=fin.next();
+              //System.out.println(username);
+                temp=fin.next();
+                password=fin.next();
+              //System.out.println(password);
+                temp=fin.next();
+                temp=fin.next();
+                temp=fin.next();
+                bankAccountNumber=fin.nextInt();
+                //System.out.println(bankAccountNumber);
+                temp=fin.next();
+                temp=fin.next();
+                balance=fin.nextDouble(); 
+                //System.out.println(balance);
+                temp=fin.next();
+                level=fin.nextInt();       
+                temp=fin.next();
+                wing=fin.next();
+                temp=fin.next();
+                location=fin.next();
+                temp=fin.next();
+                temp=fin.next();
+                baseSalary=fin.nextDouble();   
+                temp=fin.next();
+                awardCount = fin.nextInt();
+                
+                while(awardCount>0)
+                {
+                    temp=fin.next();
+                    awardName=fin.next();
+                    temp=fin.next();
+                    temp=fin.next();
+                    prizeMoney = fin.nextDouble();
+                    temp=fin.next();
+                    da=fin.next();
+                    try
+                    {
+                        date=new SimpleDateFormat("dd-MM-yyyy").parse(da);
+                    }
+                    catch (ParseException e)
+                    {
+                        System.out.println("Date not in format as expected");
+                    }  
+                    Award a = new Award(awardName, prizeMoney, date);
+                    award.add(a);
+                    awardCount--;
+                }                
+                levelThree officer = new levelThree(username, password, name, wing, location, baseSalary, balance, award);
+                LevelThree.add(officer);
+                totalCount--;
+            }
+            fin.close();
+        }
+        catch (FileNotFoundException e)
+        {
+            System.out.println("File not found error");
+        }
+		
+		
+		//levelFour
+        try
+        {
+            File directory = new File("");
+            System.out.println(directory.getAbsolutePath()+ "/src/Files/LevelFour.txt"); 
+            fileRead = new FileReader(directory.getAbsolutePath()+ "/src/Files/LevelFour.txt");
+            Scanner fin = new Scanner(fileRead);
+            totalCount=fin.nextInt();
+            while(totalCount>0)
+            {
+                ArrayList<Award> award = new ArrayList<Award>();
+                temp=fin.next();
+                temp=fin.next();   
+                name=fin.next(); 
+                //System.out.println(name);
+                temp=fin.next();
+                id=fin.nextInt();    
+                //System.out.println(id);
+                temp=fin.next();
+                username=fin.next();
+              //System.out.println(username);
+                temp=fin.next();
+                password=fin.next();
+              //System.out.println(password);
+                temp=fin.next();
+                temp=fin.next();
+                temp=fin.next();
+                bankAccountNumber=fin.nextInt();
+                //System.out.println(bankAccountNumber);
+                temp=fin.next();
+                temp=fin.next();
+                balance=fin.nextDouble(); 
+                //System.out.println(balance);
+                temp=fin.next();
+                level=fin.nextInt();       
+                temp=fin.next();
+                wing=fin.next();
+                temp=fin.next();
+                location=fin.next();
+                temp=fin.next();
+                temp=fin.next();
+                baseSalary=fin.nextDouble();   
+                temp=fin.next();
+                awardCount = fin.nextInt();
+                
+                while(awardCount>0)
+                {
+                    temp=fin.next();
+                    awardName=fin.next();
+                    temp=fin.next();
+                    temp=fin.next();
+                    prizeMoney = fin.nextDouble();
+                    temp=fin.next();
+                    da=fin.next();
+                    try
+                    {
+                        date=new SimpleDateFormat("dd-MM-yyyy").parse(da);
+                    }
+                    catch (ParseException e)
+                    {
+                        System.out.println("Date not in format as expected");
+                    }  
+                    Award a = new Award(awardName, prizeMoney, date);
+                    award.add(a);
+                    awardCount--;
+                }                
+                levelFour officer = new levelFour(username, password, name, wing, location, baseSalary, balance, award);
+                LevelFour.add(officer);
+                totalCount--;
+            }
+            fin.close();
+        }
+        catch (FileNotFoundException e)
+        {
+            System.out.println("File not found error");
+        }
+		
+        //Transaction Record
+        try
+        {
+            File directory = new File("");
+            System.out.println(directory.getAbsolutePath()+ "\\src\\Files\\TransactionRecord.txt"); 
+            fileRead = new FileReader(directory.getAbsolutePath()+ "\\src\\Files\\TransactionRecord.txt");
+            Scanner fin = new Scanner(fileRead);
+            totalCount=fin.nextInt();
+            while(totalCount>0)
+            {
+                temp=fin.next();
+                temp=fin.next();
+                temp=fin.next();
+                id=fin.nextInt();
+                //System.out.println(id);
+                temp=fin.next();
+                da=fin.next();
+                try
+                {
+                    date=new SimpleDateFormat("dd-MM-yyyy").parse(da);
+                }
+                catch (ParseException e)
+                {
+                    System.out.println("Date not in format as expected");
+                } 
+                //System.out.println(date);
+                temp=fin.next();
+                temp=fin.next();
+                temp=fin.next();
+                bankAccountNumber = fin.nextInt();
+                //System.out.println(bankAccountNumber);
+                temp=fin.next();
+                amount=fin.nextDouble();
+                //System.out.println(amount);
+                temp=fin.next();
+                type=fin.next();
+                //System.out.println(type); 
+                TransactionRecord tr = new TransactionRecord(id,date,bankAccountNumber,amount,type);
+                transactionRecord.add(tr);
+            }
+            fin.close();
+        }
+        catch (FileNotFoundException e)
+        {
+            System.out.println("File not found error");
+        }
+		
+        
+        //Promotion Record
+        
+        try
+        {
+            File directory = new File("");
+            System.out.println(directory.getAbsolutePath()+ "\\src\\Files\\PromotionRecord.txt"); 
+            fileRead = new FileReader(directory.getAbsolutePath()+ "\\src\\Files\\PromotionRecord.txt");
+            Scanner fin = new Scanner(fileRead);
+            totalCount=fin.nextInt();
+            while(totalCount>0)
+            {
+                temp=fin.next();
+                temp=fin.next();
+                temp=fin.next();
+                id=fin.nextInt();
+                //System.out.println(id);
+                temp=fin.next();
+                da=fin.next();
+                try
+                {
+                    date=new SimpleDateFormat("dd-MM-yyyy").parse(da);
+                }
+                catch (ParseException e)
+                {
+                    System.out.println("Date not in format as expected");
+                } 
+                //System.out.println(date);
+                temp=fin.next();
+                temp=fin.next();
+                level=fin.nextInt();
+                //System.out.println(level);
+                PromotionRecord pr = new PromotionRecord(id,date,level);
+                promotionRecord.add(pr);
+            }
+            fin.close();
+        }
+        catch (FileNotFoundException e)
+        {
+            System.out.println("File not found error");
+        }
+        
+        //Retirement Record
+        
+        try
+        {
+            File directory = new File("");
+            System.out.println(directory.getAbsolutePath()+ "\\src\\Files\\RetirementRecord.txt"); 
+            fileRead = new FileReader(directory.getAbsolutePath()+ "\\src\\Files\\RetirementRecord.txt");
+            Scanner fin = new Scanner(fileRead);
+            totalCount=fin.nextInt();
+            while(totalCount>0)
+            {
+                temp=fin.next();
+                temp=fin.next();
+                temp=fin.next();
+                id=fin.nextInt();
+                //System.out.println(id);
+                temp=fin.next();
+                da=fin.next();
+                try
+                {
+                    date=new SimpleDateFormat("dd-MM-yyyy").parse(da);
+                }
+                catch (ParseException e)
+                {
+                    System.out.println("Date not in format as expected");
+                } 
+                //System.out.println(date);
+                temp=fin.next();
+                temp=fin.next();
+                temp=fin.next();
+                level=fin.nextInt();
+                //System.out.println(level);   
+                RetirementRecord rr = new RetirementRecord(id,date,level);
+                retirementRecord.add(rr);
+            }
+            fin.close();
+        }
+        catch (FileNotFoundException e)
+        {
+            System.out.println("File not found error");
+        }
+        
+        //Awards Record
+        try
+        {
+            File directory = new File("");
+            System.out.println(directory.getAbsolutePath()+ "\\src\\Files\\AwardRecord.txt"); 
+            fileRead = new FileReader(directory.getAbsolutePath()+ "\\src\\Files\\AwardRecord.txt");
+            Scanner fin = new Scanner(fileRead);
+            totalCount=fin.nextInt();
+            while(totalCount>0)
+            {
+                temp=fin.next();
+                temp=fin.next();
+                temp=fin.next();
+                id=fin.nextInt();
+                //System.out.println(id);
+                temp=fin.next();
+                da=fin.next();
+                try
+                {
+                    date=new SimpleDateFormat("dd-MM-yyyy").parse(da);
+                }
+                catch (ParseException e)
+                {
+                    System.out.println("Date not in format as expected");
+                } 
+                //System.out.println(date);
+                temp=fin.next();
+                temp=fin.next();
+                awardName=fin.next();
+                //System.out.println(awardName);
+                temp=fin.next();
+                temp=fin.next();
+                prizeMoney=fin.nextDouble();
+                //System.out.println(prizeMoney);   
+                AwardRecord ar = new AwardRecord(id,date,awardName, prizeMoney);
+                awardRecord.add(ar);
+            }
+            fin.close();
+        }
+        catch (FileNotFoundException e)
+        {
+            System.out.println("File not found error");
+        }
+		
+        //Manager
+        
+        try
+        {
+            File directory = new File("");
+            System.out.println(directory.getAbsolutePath()+ "\\src\\Files\\Manager.txt"); 
+            fileRead = new FileReader(directory.getAbsolutePath()+ "\\src\\Files\\Manager.txt");
+            Scanner fin = new Scanner(fileRead);
+            totalCount=fin.nextInt();
+            while(totalCount>0)
+            {
+                temp=fin.next();
+                name=fin.next();
+                //System.out.println(name);
+                temp=fin.next();
+                id=fin.nextInt();
+                //System.out.println(id);
+                temp=fin.next();
+                username=fin.next();
+                //System.out.println(username);
+                temp=fin.next();
+                password=fin.next();
+                //System.out.println(password);
+                
+                Manager m = new Manager(name, id, username, password);
+                manager.add(m);
+            }
+            fin.close();
+        }
+        catch (FileNotFoundException e)
+        {
+            System.out.println("File not found error");
+        }      
+        
+        
+        //Veteran
+        
+        try
+        {
+            File directory = new File("");
+            System.out.println(directory.getAbsolutePath()+ "\\src\\Files\\Veteran.txt"); 
+            fileRead = new FileReader(directory.getAbsolutePath()+ "\\src\\Files\\Veteran.txt");
+            Scanner fin = new Scanner(fileRead);
+            totalCount=fin.nextInt();
+            while(totalCount>0)
+            {
+                temp=fin.next();
+                name=fin.next();
+                //System.out.println(name);
+                temp=fin.next();
+                id=fin.nextInt();
+                //System.out.println(id);
+                temp=fin.next();
+                temp=fin.next();
+                temp=fin.next();
+                bankAccountNumber=fin.nextInt();
+                //System.out.println(bankAccountNumber);
+                temp=fin.next();
+                temp=fin.next();
+                balance=fin.nextDouble();
+                //System.out.println(balance);    
+                temp=fin.next();
+                temp=fin.next();
+                pensionAmount=fin.nextDouble();
+                //System.out.println(balance);
+                Veteran v = new Veteran(name, id, bankAccountNumber,balance, pensionAmount);
+                veteran.add(v);
+            }
+            fin.close();
+        }
+        catch (FileNotFoundException e)
+        {
+            System.out.println("File not found error");
+        }      	
 		
 		int choice=-1;
 		char ch='N', c='N';
-		String username,password;
 		do
 		{
 			Driver.LoginMenu();
