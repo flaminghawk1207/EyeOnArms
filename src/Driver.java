@@ -38,8 +38,10 @@ public class Driver {
 			ArrayList<RetirementRecord> retirementRecord, ArrayList<TransactionRecord> transactionRecord) {
 		// Menu
 		int choice=0;
+		char c='N',ch='N';
 		Scanner sc = new Scanner (System.in);
 		do {
+			ch='N';
 			System.out.println("Menu");
 			System.out.println("1.Initiate retirement");
 			System.out.println("2.Initiate discharge");
@@ -57,198 +59,214 @@ public class Driver {
 			{
 				case 1:
 				{
-					int level=0,id=0,i=0;
-					boolean flag=false;
-					System.out.println("Enter the ranking level of the officer requesting retirement: ");
-					level=sc.nextInt();
-					while(level<=0 || level >=5)
-					{
-						System.out.println("Enter valid level: ");
+					do {
+						c='N';
+						int level=0,id=0,i=0;
+						boolean flag=false;
+						System.out.println("Enter the ranking level of the officer requesting retirement: ");
 						level=sc.nextInt();
-					}
-					System.out.println("Enter the ID of the officer: ");
-					id=sc.nextInt();
-					if(level == 1)
-					{
-						for(i=0;i<LevelOne.size();i++)
+						while(level<=0 || level >=5)
 						{
-							if(LevelOne.get(i).getID()== id)
+							System.out.println("Enter valid level: ");
+							level=sc.nextInt();
+						}
+						System.out.println("Enter the ID of the officer: ");
+						id=sc.nextInt();
+						if(level == 1)
+						{
+							for(i=0;i<LevelOne.size();i++)
 							{
-								flag=true;
-								break;
+								if(LevelOne.get(i).getID()== id)
+								{
+									flag=true;
+									break;
+								}
+							}
+							if(flag)
+							{
+								manager.initiateRetirement(LevelOne.get(i), LevelOne, veteran, retirementRecord);
+							}
+							else
+							{
+								System.out.println("Invalid details. Do you want to try again(Y/N)");
+								c=sc.next().charAt(0);
 							}
 						}
-						if(flag)
-						{
-							manager.initiateRetirement(LevelOne.get(i), LevelOne, veteran, retirementRecord);
-						}
-						else
-						{
-							System.out.println("Invalid details..Try again"); //later
-						}
-					}
-					
-					else if(level == 2)
-					{
-						flag=false;
-						for(i=0;i<LevelTwo.size();i++)
-						{
-							if(LevelTwo.get(i).getID() == id)
-							{
-								flag=true;
-								break;
-							}
-						}
-						if(flag)
-						{
-							manager.initiateRetirement(LevelTwo.get(i), LevelTwo, veteran, retirementRecord);
-						}
-						else
-						{
-							System.out.println("Invalid details..Try again"); //later
-						}
-					}
-					
-					else if(level == 3)
-					{
-						flag=false;
-						for(i=0;i<LevelThree.size();i++)
-						{
-							if(LevelThree.get(i).getID() == id)
-							{
-								flag=true;
-								break;
-							}
-						}
-						if(flag)
-						{
-							manager.initiateRetirement(LevelThree.get(i), LevelThree, veteran, retirementRecord);
-						}
-						else
-						{
-							System.out.println("Invalid details..Try again"); //later
-						}
-					}
-					
-					else
-					{
-						flag=false;
-						for(i=0;i<LevelFour.size();i++)
-						{
-							if(LevelFour.get(i).getID() == id)
-							{
-								flag=true;
-								break;
-							}
-						}
-						if(flag)
-						{
-							manager.initiateRetirement(LevelFour.get(i), LevelFour, veteran, retirementRecord);
-						}
-						else
-						{
-							System.out.println("Invalid details..Try again"); //later
-						}
-					}
 						
+						else if(level == 2)
+						{
+							flag=false;
+							for(i=0;i<LevelTwo.size();i++)
+							{
+								if(LevelTwo.get(i).getID() == id)
+								{
+									flag=true;
+									break;
+								}
+							}
+							if(flag)
+							{
+								manager.initiateRetirement(LevelTwo.get(i), LevelTwo, veteran, retirementRecord);
+							}
+							else
+							{
+								System.out.println("Invalid details. Do you want to try again(Y/N)");
+								c=sc.next().charAt(0);
+							}
+						}
+						
+						else if(level == 3)
+						{
+							flag=false;
+							for(i=0;i<LevelThree.size();i++)
+							{
+								if(LevelThree.get(i).getID() == id)
+								{
+									flag=true;
+									break;
+								}
+							}
+							if(flag)
+							{
+								manager.initiateRetirement(LevelThree.get(i), LevelThree, veteran, retirementRecord);
+							}
+							else
+							{
+								System.out.println("Invalid details. Do you want to try again(Y/N)");
+								c=sc.next().charAt(0);
+							}
+						}
+						
+						else
+						{
+							flag=false;
+							for(i=0;i<LevelFour.size();i++)
+							{
+								if(LevelFour.get(i).getID() == id)
+								{
+									flag=true;
+									break;
+								}
+							}
+							if(flag)
+							{
+								manager.initiateRetirement(LevelFour.get(i), LevelFour, veteran, retirementRecord);
+							}
+							else
+							{
+								System.out.println("Invalid details. Do you want to try again(Y/N)");
+								c=sc.next().charAt(0);
+							}
+						}						
+					}while(c=='Y');  				
 				
 				}
 				break;
 				case 2:
 				{
-					int level=0,id=0,i=0;
-					boolean flag=false;
-					System.out.println("Enter the ranking level of the officer to be discharged: ");
-					level=sc.nextInt();
-					while(level<=0 || level >=5)
+					do
 					{
-						System.out.println("Enter valid level: ");
+						c='N';
+						int level=0,id=0,i=0;
+						boolean flag=false;
+						System.out.println("Enter the ranking level of the officer to be discharged: ");
 						level=sc.nextInt();
-					}
-					System.out.println("Enter the ID of the officer: ");
-					id=sc.nextInt();
-					if(level == 1)
-					{
-						for(i=0;i<LevelOne.size();i++)
+						while(level<=0 || level >=5)
 						{
-							if(LevelOne.get(i).getID() == id)
+							System.out.println("Enter valid level: ");
+							level=sc.nextInt();
+						}
+						System.out.println("Enter the ID of the officer: ");
+						id=sc.nextInt();
+						if(level == 1)
+						{
+							for(i=0;i<LevelOne.size();i++)
 							{
-								flag=true;
-								break;
+								if(LevelOne.get(i).getID() == id)
+								{
+									flag=true;
+									break;
+								}
+							}
+							if(flag)
+							{
+								manager.initiateDischarge(LevelOne.get(i), LevelOne, veteran, retirementRecord);
+							}
+							else
+							{
+								System.out.println("Invalid details. Do you want to try again(Y/N)");
+								c=sc.next().charAt(0);
 							}
 						}
-						if(flag)
+						
+						else if(level == 2)
 						{
-							manager.initiateDischarge(LevelOne.get(i), LevelOne, veteran, retirementRecord);
-						}
-						else
-						{
-							System.out.println("Invalid details..Try again"); //later
-						}
-					}
-					
-					else if(level == 2)
-					{
-						flag=false;
-						for(i=0;i<LevelTwo.size();i++)
-						{
-							if(LevelTwo.get(i).getID() == id)
+							flag=false;
+							for(i=0;i<LevelTwo.size();i++)
 							{
-								flag=true;
-								break;
+								if(LevelTwo.get(i).getID() == id)
+								{
+									flag=true;
+									break;
+								}
+							}
+							if(flag)
+							{
+								manager.initiateDischarge(LevelTwo.get(i), LevelTwo, veteran, retirementRecord);
+							}
+							else
+							{
+								System.out.println("Invalid details. Do you want to try again(Y/N)");
+								c=sc.next().charAt(0);
 							}
 						}
-						if(flag)
+						
+						else if(level == 3)
 						{
-							manager.initiateDischarge(LevelTwo.get(i), LevelTwo, veteran, retirementRecord);
-						}
-						else
-						{
-							System.out.println("Invalid details..Try again"); //later
-						}
-					}
-					
-					else if(level == 3)
-					{
-						flag=false;
-						for(i=0;i<LevelThree.size();i++)
-						{
-							if(LevelThree.get(i).getID() == id)
+							flag=false;
+							for(i=0;i<LevelThree.size();i++)
 							{
-								flag=true;
-								break;
+								if(LevelThree.get(i).getID() == id)
+								{
+									flag=true;
+									break;
+								}
+							}
+							if(flag)
+							{
+								manager.initiateDischarge(LevelThree.get(i), LevelThree, veteran, retirementRecord);
+							}
+							else
+							{
+								System.out.println("Invalid details. Do you want to try again(Y/N)");
+								c=sc.next().charAt(0);
 							}
 						}
-						if(flag)
-						{
-							manager.initiateDischarge(LevelThree.get(i), LevelThree, veteran, retirementRecord);
-						}
+						
 						else
 						{
-							System.out.println("Invalid details..Try again"); //later
-						}
-					}
-					
-					else
-					{
-						flag=false;
-						for(i=0;i<LevelFour.size();i++)
-						{
-							if(LevelFour.get(i).getID() == id)
+							flag=false;
+							for(i=0;i<LevelFour.size();i++)
 							{
-								flag=true;
-								break;
+								if(LevelFour.get(i).getID() == id)
+								{
+									flag=true;
+									break;
+								}
 							}
-						}
-						if(flag)
-						{
-							manager.initiateDischarge(LevelFour.get(i), LevelFour, veteran, retirementRecord);
-						}
-						else
-						{
-							System.out.println("Invalid details..Try again"); //TODO: later
-						}
-					} 			
+							if(flag)
+							{
+								manager.initiateDischarge(LevelFour.get(i), LevelFour, veteran, retirementRecord);
+							}
+							else
+							{
+								System.out.println("Invalid details. Do you want to try again(Y/N)");
+								c=sc.next().charAt(0);
+							}
+						} 	
+						
+					}while(c=='Y');
+		
 					
 				}
 				break;
@@ -268,93 +286,104 @@ public class Driver {
 				break;
 				case 4:
 				{
-					int level=0,id=0,i=0;
-					boolean flag=false;
-					System.out.println("Enter the ranking level of the officer requesting allowance: ");
-					level=sc.nextInt();
-					while(level<=1 || level >=5)
+					do
 					{
-						System.out.println("Enter valid level: ");
+						c='N';
+						int level=0,id=0,i=0;
+						boolean flag=false;
+						System.out.println("Enter the ranking level of the officer requesting allowance: ");
 						level=sc.nextInt();
-					}
-					System.out.println("Enter the ID of the officer: ");
-					id=sc.nextInt();
+						while(level<=1 || level >=5)
+						{
+							System.out.println("Enter valid level: ");
+							level=sc.nextInt();
+						}
+						System.out.println("Enter the ID of the officer: ");
+						id=sc.nextInt();
 
-					if(level == 2)
-					{
-						flag=false;
-						for(i=0;i<LevelTwo.size();i++)
+						if(level == 2)
 						{
-							if(LevelTwo.get(i).getID()== id ) 
+							flag=false;
+							for(i=0;i<LevelTwo.size();i++)
 							{
-								flag=true;
-								break;
+								if(LevelTwo.get(i).getID()== id ) 
+								{
+									flag=true;
+									break;
+								}
+							}
+							if(flag)
+							{
+								String allowanceName;
+								System.out.println("Enter the allowance name to claim: ");
+								allowanceName=sc.next();
+								LevelTwo.get(i).requestAllowance(allowanceName, transactionRecord);
+							}
+							else
+							{
+								System.out.println("Invalid details. Do you want to try again(Y/N)");
+								c=sc.next().charAt(0);
 							}
 						}
-						if(flag)
+						
+						else if(level == 3)
 						{
-							String allowanceName;
-							System.out.println("Enter the allowance name to claim: ");
-							allowanceName=sc.next();
-							LevelTwo.get(i).requestAllowance(allowanceName, transactionRecord);
-						}
-						else
-						{
-							System.out.println("Invalid details..Try again"); //later
-						}
-					}
-					
-					else if(level == 3)
-					{
-						flag=false;
-						for(i=0;i<LevelThree.size();i++)
-						{
-							if(LevelThree.get(i).getID() == id)
+							flag=false;
+							for(i=0;i<LevelThree.size();i++)
 							{
-								flag=true;
-								break;
+								if(LevelThree.get(i).getID() == id)
+								{
+									flag=true;
+									break;
+								}
 							}
-						}
-						if(flag)
-						{
+							if(flag)
+							{
 
-							String allowanceName;
-							System.out.println("Enter the allowance name to claim: ");
-							allowanceName=sc.next();
-							LevelThree.get(i).requestAllowance(allowanceName, transactionRecord);
-						}
-						else
-						{
-							System.out.println("Invalid details..Try again"); //later
-						}
-					}
-					
-					else
-					{
-						flag=false;
-						for(i=0;i<LevelFour.size();i++)
-						{
-							if(LevelFour.get(i).getID() == id)
+								String allowanceName;
+								System.out.println("Enter the allowance name to claim: ");
+								allowanceName=sc.next();
+								LevelThree.get(i).requestAllowance(allowanceName, transactionRecord);
+							}
+							else
 							{
-								flag=true;
-								break;
+								System.out.println("Invalid details. Do you want to try again(Y/N)");
+								c=sc.next().charAt(0);
 							}
 						}
-						if(flag)
-						{
-							String allowanceName;
-							System.out.println("Enter the allowance name to claim: ");
-							allowanceName=sc.next();
-							LevelFour.get(i).requestAllowance(allowanceName, transactionRecord);
-						}
+						
 						else
 						{
-							System.out.println("Invalid details..Try again"); //later
+							flag=false;
+							for(i=0;i<LevelFour.size();i++)
+							{
+								if(LevelFour.get(i).getID() == id)
+								{
+									flag=true;
+									break;
+								}
+							}
+							if(flag)
+							{
+								String allowanceName;
+								System.out.println("Enter the allowance name to claim: ");
+								allowanceName=sc.next();
+								LevelFour.get(i).requestAllowance(allowanceName, transactionRecord);
+							}
+							else
+							{
+								System.out.println("Invalid details. Do you want to try again(Y/N)");
+								c=sc.next().charAt(0);
+							}
 						}
-					}
+						
+					}while(c=='Y');
+
 				}
-			}			
-		}while(true);		
+			}
+			System.out.println("Do you want to continue(Y/N)?");
+			ch=sc.next().charAt(0);
+		}while(ch=='Y');		
 	}
 	
 	public static void Level3View(levelThree LevelThree, ArrayList <levelOne> LevelOne,  ArrayList <levelTwo> LevelTwo, 
