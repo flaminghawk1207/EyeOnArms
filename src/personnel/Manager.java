@@ -17,9 +17,10 @@ public class Manager implements Login{
 
 	public Manager (String name, int ID, String username, String password){
 		this.name=name;
-		ID= managerCount++;
+		this.ID= ID;
 		this.username=username;
 		this.password=password;
+		managerCount++;
 	}
 	
 	public static Integer getMonth() {
@@ -31,7 +32,7 @@ public class Manager implements Login{
 	
 	public void initiateRetirement(levelOne officer,ArrayList<levelOne> LevelOne, ArrayList<Veteran> veteran, 
 			ArrayList<RetirementRecord> retirementRecord) {
-		 Veteran vt = new Veteran(officer, 8000.00, 0.00);
+		 Veteran vt = new Veteran(officer, 8000.00);
 		 Date date = new Date();
 		 RetirementRecord rt = new RetirementRecord(officer.getID(),date, officer.getLevel());
 		 retirementRecord.add(rt);
@@ -52,7 +53,7 @@ public class Manager implements Login{
 	}
 	public void initiateDischarge(levelOne officer,ArrayList<levelOne> LevelOne, ArrayList<Veteran> veteran, 
 			ArrayList<RetirementRecord> retirementRecord) {
-		 Veteran vt = new Veteran(officer, 8000.00, 0.00);
+		 Veteran vt = new Veteran(officer, 8000.00);
 		 Date date = new Date();
 		 RetirementRecord rt = new RetirementRecord(officer.getID(),date, officer.getLevel());
 		 retirementRecord.add(rt);
@@ -76,7 +77,7 @@ public class Manager implements Login{
 
 	public void initiateRetirement(levelTwo officer,ArrayList<levelTwo> LevelTwo, ArrayList<Veteran> veteran, 
 			ArrayList<RetirementRecord> retirementRecord) {
-		Veteran vt = new Veteran(officer, 10000.00, 0.00);
+		Veteran vt = new Veteran(officer, 10000.00);
 		Date date = new Date();
 		RetirementRecord rt = new RetirementRecord(officer.getID(),date, officer.getLevel());
 		retirementRecord.add(rt);
@@ -96,7 +97,7 @@ public class Manager implements Login{
 	}
 	public void initiateDischarge(levelTwo officer,ArrayList<levelTwo> LevelTwo, ArrayList<Veteran> veteran, 
 			ArrayList<RetirementRecord> retirementRecord) {
-		Veteran vt = new Veteran(officer, 10000.00, 0.00);
+		Veteran vt = new Veteran(officer, 10000.00);
 		Date date = new Date();
 		RetirementRecord rt = new RetirementRecord(officer.getID(),date, officer.getLevel());
 		retirementRecord.add(rt);
@@ -117,7 +118,7 @@ public class Manager implements Login{
 
 	public void initiateRetirement(levelThree officer,ArrayList<levelThree> LevelThree, ArrayList<Veteran> veteran, 
 			ArrayList<RetirementRecord> retirementRecord) {
-		Veteran vt = new Veteran(officer, 12000.00, 0.00);
+		Veteran vt = new Veteran(officer, 12000.00);
 		Date date = new Date();
 		RetirementRecord rt = new RetirementRecord(officer.getID(),date, officer.getLevel());
 		retirementRecord.add(rt);
@@ -137,7 +138,7 @@ public class Manager implements Login{
 	}
 	public void initiateDischarge(levelThree officer,ArrayList<levelThree> LevelThree, ArrayList<Veteran> veteran, 
 			ArrayList<RetirementRecord> retirementRecord) {
-		Veteran vt = new Veteran(officer, 12000.00, 0.00);
+		Veteran vt = new Veteran(officer, 12000.00);
 		Date date = new Date();
 		RetirementRecord rt = new RetirementRecord(officer.getID(),date, officer.getLevel());
 		retirementRecord.add(rt);
@@ -158,7 +159,7 @@ public class Manager implements Login{
 
 	public void initiateRetirement(levelFour officer,ArrayList<levelFour> LevelFour, ArrayList<Veteran> veteran, 
 			ArrayList<RetirementRecord> retirementRecord) {
-		Veteran vt = new Veteran(officer, 12000.00, 0.00);
+		Veteran vt = new Veteran(officer, 14000.00);
 		Date date = new Date();
 		RetirementRecord rt = new RetirementRecord(officer.getID(),date, officer.getLevel());
 		retirementRecord.add(rt);
@@ -178,7 +179,7 @@ public class Manager implements Login{
 	}
 	public void initiateDischarge(levelFour officer,ArrayList<levelFour> LevelFour, ArrayList<Veteran> veteran, 
 			ArrayList<RetirementRecord> retirementRecord) {
-		Veteran vt = new Veteran(officer, 12000.00, 0.00);
+		Veteran vt = new Veteran(officer, 14000.00);
 		Date date = new Date();
 		RetirementRecord rt = new RetirementRecord(officer.getID(),date, officer.getLevel());
 		retirementRecord.add(rt);
@@ -261,6 +262,24 @@ public class Manager implements Login{
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Integer getID() {
+		return ID;
+	}
+
+	public void setID(Integer iD) {
+		ID = iD;
 	}	
+	
+	
 
 } 

@@ -723,7 +723,7 @@ public class Driver {
 		/*
 		 * Read from files and put it into arrayLists
 		 */
-		Integer totalCount=0, awardCount=0, id, bankAccountNumber, level;
+		Integer totalCount=0, awardCount=0, id, bankAccountNumber, level,month;
 		String wing, location,temp, name, awardName,da,username,password, type;
 		Double baseSalary, balance, prizeMoney, amount, pensionAmount;
 		Date date = new Date();
@@ -765,9 +765,11 @@ public class Driver {
                 wing=fin.next();
                 temp=fin.next();
                 location=fin.next();
+                //System.out.println(location);
                 temp=fin.next();
                 temp=fin.next();
                 baseSalary=fin.nextDouble();   
+                //System.out.println(baseSalary);
                 temp=fin.next();
                 awardCount = fin.nextInt();
                 while(awardCount>0)
@@ -1236,6 +1238,9 @@ public class Driver {
                 manager.add(m);
                 totalCount--;
             }
+            temp=fin.next();
+            month=fin.nextInt();
+            Manager.setMonth(month);
             fin.close();
         }
         catch (FileNotFoundException e)
@@ -1426,6 +1431,7 @@ public class Driver {
 				fout.println("Bank balance: "+LevelOne.get(i).getBalance());
 				fout.println("Level: "+LevelOne.get(i).getLevel());
 				fout.println("Wing: "+LevelOne.get(i).getWing());
+				fout.println("Location: "+LevelOne.get(i).getLocation());
 				fout.println("Base salary: "+LevelOne.get(i).getBaseSalary());
 				fout.println("Awards: ");
 				fout.println(LevelOne.get(i).awardsRecieved.size());
@@ -1446,6 +1452,7 @@ public class Driver {
 					}
 				}			
 			}
+			fout.close();
 		} catch (FileNotFoundException e) {
 			
 			System.out.println("File not found error");
@@ -1464,6 +1471,7 @@ public class Driver {
 				fout.println("Bank balance: "+LevelTwo.get(i).getBalance());
 				fout.println("Level: "+LevelTwo.get(i).getLevel());
 				fout.println("Wing: "+LevelTwo.get(i).getWing());
+				fout.println("Location: "+LevelTwo.get(i).getLocation());
 				fout.println("Base salary: "+LevelTwo.get(i).getBaseSalary());
 				fout.println("Awards: ");
 				fout.println(LevelTwo.get(i).awardsRecieved.size());
@@ -1505,6 +1513,7 @@ public class Driver {
 				fout.println("Bank balance: "+LevelThree.get(i).getBalance());
 				fout.println("Level: "+LevelThree.get(i).getLevel());
 				fout.println("Wing: "+LevelThree.get(i).getWing());
+				fout.println("Location: "+LevelThree.get(i).getLocation());
 				fout.println("Base salary: "+LevelThree.get(i).getBaseSalary());
 				fout.println("Awards: ");
 				fout.println(LevelThree.get(i).awardsRecieved.size());
@@ -1529,6 +1538,7 @@ public class Driver {
 				 */
 				
 			}
+			fout.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("File not found error");
 			
@@ -1547,6 +1557,7 @@ public class Driver {
 				fout.println("Bank balance: "+LevelFour.get(i).getBalance());
 				fout.println("Level: "+LevelFour.get(i).getLevel());
 				fout.println("Wing: "+LevelFour.get(i).getWing());
+				fout.println("Location: "+LevelFour.get(i).getLocation());
 				fout.println("Base salary: "+LevelFour.get(i).getBaseSalary());
 				fout.println("Awards: ");
 				fout.println(LevelFour.get(i).awardsRecieved.size());
@@ -1571,6 +1582,7 @@ public class Driver {
 				 */
 				
 			}
+			fout.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("File not found error");
 		}
@@ -1588,6 +1600,7 @@ public class Driver {
 				fout.println("Prize money: "+awardRecord.get(i).getPrizeMoney());
 				fout.println("------------------------------------------");
 			}
+			fout.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("File not found error");
 		}
@@ -1605,8 +1618,8 @@ public class Driver {
 				fout.println("Next level: "+promotionRecord.get(i).getNextLevel());
 				fout.println("------------------------------------------");
 			}
+			fout.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			System.out.println("File not found error");
 		}
 		
@@ -1622,6 +1635,7 @@ public class Driver {
 				fout.println("Level during retirement: "+retirementRecord.get(i).getRankDuringRetirement());
 				fout.println("------------------------------------------");
 			}
+			fout.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("File not found error");
 		}
@@ -1640,8 +1654,59 @@ public class Driver {
 				fout.println("Type: "+transactionRecord.get(i).getType());
 				fout.println("------------------------------------------");
 			}
+			fout.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("File not found error");
-		}		
+		}	
+		
+		//Manager
+		
+		try {
+			File directory = new File("");
+			fout = new PrintWriter(directory.getAbsolutePath()+"\\Files\\Manager.txt");
+			fout.println(manager.size());
+			fout.println("------------------------------------------");
+			for(i=0;i<manager.size();i++)
+			{
+				fout.println("Name: "+manager.get(i).getName());
+				fout.println("ID: "+manager.get(i).getID());
+				fout.println("Username: "+manager.get(i).getUsername());
+				fout.println("Password: "+manager.get(i).getPassword());
+				fout.println("------------------------------------------");
+			}
+			fout.println(Manager.getMonth());
+			fout.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("File not found error");
+		}	
+		
+		
+		//Veteran
+		try {
+			File directory = new File("");
+			fout = new PrintWriter(directory.getAbsolutePath()+"\\Files\\Veteran.txt");
+			fout.println(veteran.size());
+			fout.println("------------------------------------------");
+			for(i=0;i<veteran.size();i++)
+			{
+				fout.println("Name: "+veteran.get(i).getName());
+				fout.println("ID: "+veteran.get(i).getID());
+				fout.println("Bank account number: "+veteran.get(i).bankaccount.getAccountNumber());
+				fout.println("Bank balance: "+veteran.get(i).getBalance());
+				fout.println("Pension amount: "+veteran.get(i).getPensionAmount());
+				fout.println("------------------------------------------");
+			}
+			fout.println(Manager.getMonth());
+			fout.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("File not found error");
+		}	
+		
+		
+		
+		
+		
+		
+		
 	}  
 }

@@ -2,21 +2,18 @@
 ------------------------------------------
 Name: Kishore
 ID: 1
-Username: qwerty
-Password: poiuy
 Bank account number: 1
-Bank balance: 21579.00
-Level: 1
+Bank balance: 21579.0
+Level: 4
 Wing: dhsgkf
 Location: dfjs
-Base salary: 20000.00
-Awards:
+Base salary: 20000.0
+Awards: 
 2
 Name: hello
-Prize money: 2173123.00
+Prize money: 2173123.0
 Date: 13-01-2022
 Name: World
-Prize Money: 1234.00
+Prize money: 1234.0
 Date: 15-01-2022
 ------------------------------------------
-

@@ -106,37 +106,43 @@ public class levelFour extends levelThree {
 					awardRecordReport.add(awardRecord.get(i));
 				}
 			}
-			System.out.println(awardRecordReport.size());
-			System.out.println("------------------------------------------");
-			for(i=0;i<awardRecordReport.size();i++)
+			if(awardRecordReport.isEmpty())
 			{
-				System.out.println("Officer ID: "+awardRecord.get(i).getOfficerID());
-				System.out.println("Date: "+awardRecord.get(i).getStringDate());
-				System.out.println("Award name: "+awardRecord.get(i).getAwardName());
-				System.out.println("Prize money: "+awardRecord.get(i).getPrizeMoney());
-				System.out.println("------------------------------------------");
-				
+				System.out.println("No record available between the given dates");
 			}
-			PrintWriter fout;
-			try {
-				/*
-				 * TODO check path to file locations
-				 */
-				fout = new PrintWriter("\\Files\\AwardRecord.txt");
-				fout.println(awardRecordReport.size());
-				fout.println("------------------------------------------");
+			else
+			{
+				System.out.println(awardRecordReport.size());
+				System.out.println("------------------------------------------");
 				for(i=0;i<awardRecordReport.size();i++)
 				{
-					fout.println("Officer ID: "+awardRecordReport.get(i).getOfficerID());
-					fout.println("Date: "+awardRecordReport.get(i).getStringDate());
-					fout.println("Award name: "+awardRecordReport.get(i).getAwardName());
-					fout.println("Prize money: "+awardRecordReport.get(i).getPrizeMoney());
-					fout.println("------------------------------------------");
+					System.out.println("Officer ID: "+awardRecord.get(i).getOfficerID());
+					System.out.println("Date: "+awardRecord.get(i).getStringDate());
+					System.out.println("Award name: "+awardRecord.get(i).getAwardName());
+					System.out.println("Prize money: "+awardRecord.get(i).getPrizeMoney());
+					System.out.println("------------------------------------------");
+					
 				}
-			} catch (FileNotFoundException e) {
-				System.out.println("File not found");
+				PrintWriter fout;
+				try {
+					/*
+					 * TODO check path to file locations
+					 */
+					fout = new PrintWriter("\\Files\\AwardRecord.txt");
+					fout.println(awardRecordReport.size());
+					fout.println("------------------------------------------");
+					for(i=0;i<awardRecordReport.size();i++)
+					{
+						fout.println("Officer ID: "+awardRecordReport.get(i).getOfficerID());
+						fout.println("Date: "+awardRecordReport.get(i).getStringDate());
+						fout.println("Award name: "+awardRecordReport.get(i).getAwardName());
+						fout.println("Prize money: "+awardRecordReport.get(i).getPrizeMoney());
+						fout.println("------------------------------------------");
+					}
+				} catch (FileNotFoundException e) {
+					System.out.println("File not found");
+				}				
 			}
-
 		}
 		else if(searchCategory ==  2)
 		{
@@ -151,38 +157,47 @@ public class levelFour extends levelThree {
 					transactionRecordReport.add(transactionRecord.get(i));
 				}
 			}
-			System.out.println(transactionRecordReport.size());
-			System.out.println("------------------------------------------");
-			for(i=0;i<transactionRecordReport.size();i++)
+			if(transactionRecordReport.isEmpty())
 			{
-				System.out.println("Officer ID: "+transactionRecordReport.get(i).getOfficerID());
-				System.out.println("Date: "+transactionRecordReport.get(i).getStringDate());
-				System.out.println("Bank account number: "+transactionRecordReport.get(i).getBankAccountNumber());
-				System.out.println("Amount: "+transactionRecordReport.get(i).getAmount());
-				System.out.println("Type: "+transactionRecordReport.get(i).getType());
-				System.out.println("------------------------------------------");
+				System.out.println("No record available between the given dates");
 			}
-		
-			PrintWriter fout;
-			try {
-				fout = new PrintWriter("\\Files\\TransactionRecord.txt");
-				/*
-				 * Check file path
-				 */
-				fout.println(transactionRecordReport.size());
-				fout.println("------------------------------------------");
+			else
+			{
+				
+				System.out.println(transactionRecordReport.size());
+				System.out.println("------------------------------------------");
 				for(i=0;i<transactionRecordReport.size();i++)
 				{
-					fout.println("Officer ID: "+transactionRecordReport.get(i).getOfficerID());
-					fout.println("Date: "+transactionRecordReport.get(i).getStringDate());
-					fout.println("Bank account number: "+transactionRecordReport.get(i).getBankAccountNumber());
-					fout.println("Amount: "+transactionRecordReport.get(i).getAmount());
-					fout.println("Type: "+transactionRecordReport.get(i).getType());
-					fout.println("------------------------------------------");
+					System.out.println("Officer ID: "+transactionRecordReport.get(i).getOfficerID());
+					System.out.println("Date: "+transactionRecordReport.get(i).getStringDate());
+					System.out.println("Bank account number: "+transactionRecordReport.get(i).getBankAccountNumber());
+					System.out.println("Amount: "+transactionRecordReport.get(i).getAmount());
+					System.out.println("Type: "+transactionRecordReport.get(i).getType());
+					System.out.println("------------------------------------------");
 				}
-			} catch (FileNotFoundException e) {
-				System.out.println("File not found");
-			}  			
+			
+				PrintWriter fout;
+				try {
+					fout = new PrintWriter("\\Files\\TransactionRecord.txt");
+					/*
+					 * Check file path
+					 */
+					fout.println(transactionRecordReport.size());
+					fout.println("------------------------------------------");
+					for(i=0;i<transactionRecordReport.size();i++)
+					{
+						fout.println("Officer ID: "+transactionRecordReport.get(i).getOfficerID());
+						fout.println("Date: "+transactionRecordReport.get(i).getStringDate());
+						fout.println("Bank account number: "+transactionRecordReport.get(i).getBankAccountNumber());
+						fout.println("Amount: "+transactionRecordReport.get(i).getAmount());
+						fout.println("Type: "+transactionRecordReport.get(i).getType());
+						fout.println("------------------------------------------");
+					}
+				} catch (FileNotFoundException e) {
+					System.out.println("File not found");
+				}  			
+			}
+			
 		}
 		else if(searchCategory == 3)
 		{
@@ -197,34 +212,42 @@ public class levelFour extends levelThree {
 					retirementRecordReport.add(retirementRecord.get(i));
 				}
 			}
-			System.out.println(retirementRecordReport.size());
-			System.out.println("------------------------------------------");
-			for(i=0;i<retirementRecordReport.size();i++)
+			if(retirementRecordReport.isEmpty())
 			{
-				System.out.println("Officer ID: "+retirementRecordReport.get(i).getOfficerID());
-				System.out.println("Date: "+retirementRecordReport.get(i).getStringDate());
-				System.out.println("Level during retirement: "+retirementRecordReport.get(i).getRankDuringRetirement());
-				System.out.println("------------------------------------------");
+				System.out.println("No record available between the given dates");
 			}
-			
-			PrintWriter fout;
-			try {
-				/*
-				 * TODO check file path
-				 */
-				fout = new PrintWriter("Files\\RetirementRecord.txt");
-				fout.println(retirementRecordReport.size());
-				fout.println("------------------------------------------");
+			else
+			{
+				System.out.println(retirementRecordReport.size());
+				System.out.println("------------------------------------------");
 				for(i=0;i<retirementRecordReport.size();i++)
 				{
-					fout.println("Officer ID: "+retirementRecordReport.get(i).getOfficerID());
-					fout.println("Date: "+retirementRecordReport.get(i).getStringDate());
-					fout.println("Level during retirement: "+retirementRecordReport.get(i).getRankDuringRetirement());
-					fout.println("------------------------------------------");
+					System.out.println("Officer ID: "+retirementRecordReport.get(i).getOfficerID());
+					System.out.println("Date: "+retirementRecordReport.get(i).getStringDate());
+					System.out.println("Level during retirement: "+retirementRecordReport.get(i).getRankDuringRetirement());
+					System.out.println("------------------------------------------");
 				}
-			} catch (FileNotFoundException e) {
-					System.out.println("File not found");
-			}			
+				
+				PrintWriter fout;
+				try {
+					/*
+					 * TODO check file path
+					 */
+					fout = new PrintWriter("Files\\RetirementRecord.txt");
+					fout.println(retirementRecordReport.size());
+					fout.println("------------------------------------------");
+					for(i=0;i<retirementRecordReport.size();i++)
+					{
+						fout.println("Officer ID: "+retirementRecordReport.get(i).getOfficerID());
+						fout.println("Date: "+retirementRecordReport.get(i).getStringDate());
+						fout.println("Level during retirement: "+retirementRecordReport.get(i).getRankDuringRetirement());
+						fout.println("------------------------------------------");
+					}
+				} catch (FileNotFoundException e) {
+						System.out.println("File not found");
+				}			
+			}
+			
 		}
 		else
 		{
@@ -239,30 +262,41 @@ public class levelFour extends levelThree {
 					promotionRecordReport.add(promotionRecord.get(i));
 				}
 			}
-			System.out.println(promotionRecordReport.size());
-			System.out.println("------------------------------------------");
-			for(i=0;i<promotionRecordReport.size();i++)
+			if(promotionRecordReport.isEmpty())
 			{
-				System.out.println("Officer ID: "+promotionRecordReport.get(i).getOfficerID());
-				System.out.println("Date: "+promotionRecordReport.get(i).getStringDate());
-				System.out.println("Next level: "+promotionRecordReport.get(i).getNextLevel());
-				System.out.println("------------------------------------------");
+				System.out.println("No record available between the given dates");
 			}
-			PrintWriter fout;
-			try {
-				fout = new PrintWriter("\\Files\\PromotionRecord.txt");
-				fout.println(promotionRecordReport.size());
-				fout.println("------------------------------------------");
+			else
+			{
+				System.out.println(promotionRecordReport.size());
+				System.out.println("------------------------------------------");
 				for(i=0;i<promotionRecordReport.size();i++)
 				{
-					fout.println("Officer ID: "+promotionRecordReport.get(i).getOfficerID());
-					fout.println("Date: "+promotionRecordReport.get(i).getStringDate());
-					fout.println("Next level: "+promotionRecordReport.get(i).getNextLevel());
-					fout.println("------------------------------------------");
+					System.out.println("Officer ID: "+promotionRecordReport.get(i).getOfficerID());
+					System.out.println("Date: "+promotionRecordReport.get(i).getStringDate());
+					System.out.println("Next level: "+promotionRecordReport.get(i).getNextLevel());
+					System.out.println("------------------------------------------");
 				}
-			} catch (FileNotFoundException e) {
-				System.out.println("File not found");
-			}			
+				PrintWriter fout;
+				try {
+					fout = new PrintWriter("\\Files\\PromotionRecord.txt");
+					fout.println(promotionRecordReport.size());
+					fout.println("------------------------------------------");
+					for(i=0;i<promotionRecordReport.size();i++)
+					{
+						fout.println("Officer ID: "+promotionRecordReport.get(i).getOfficerID());
+						fout.println("Date: "+promotionRecordReport.get(i).getStringDate());
+						fout.println("Next level: "+promotionRecordReport.get(i).getNextLevel());
+						fout.println("------------------------------------------");
+					}
+				} catch (FileNotFoundException e) {
+					System.out.println("File not found");
+				}	
+				/*
+				 * TODO: file handling
+				 */
+			}
+			
 		}			
 	}
 }
