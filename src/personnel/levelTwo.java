@@ -2,6 +2,7 @@ package personnel;
 
 import java.util.ArrayList;
 import Utility.Allowance;
+import Utility.TransactionRecord;
 
 public class levelTwo extends levelOne {
 	private Integer month;
@@ -11,11 +12,11 @@ public class levelTwo extends levelOne {
 		this.level=2;
 		this.month=-1;
 	}
-	public void requestAllowance(String allowancename) {
+	public void requestAllowance(String allowancename, ArrayList<TransactionRecord> transactionRecord) {
 		/*
 		 * TODO: check request allowance function
 		 */
-		boolean flag=Allowance.eligibleforAllowance(allowancename, this);
+		boolean flag=Allowance.eligibleforAllowance(allowancename, this, transactionRecord);
 		if(flag)
 		{
 			System.out.println("Allowance claimed");

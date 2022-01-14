@@ -296,7 +296,7 @@ public class Driver {
 							String allowanceName;
 							System.out.println("Enter the allowance name to claim: ");
 							allowanceName=sc.next();
-							LevelTwo.get(i).requestAllowance(allowanceName);
+							LevelTwo.get(i).requestAllowance(allowanceName, transactionRecord);
 						}
 						else
 						{
@@ -321,7 +321,7 @@ public class Driver {
 							String allowanceName;
 							System.out.println("Enter the allowance name to claim: ");
 							allowanceName=sc.next();
-							LevelTwo.get(i).requestAllowance(allowanceName);
+							LevelThree.get(i).requestAllowance(allowanceName, transactionRecord);
 						}
 						else
 						{
@@ -345,7 +345,7 @@ public class Driver {
 							String allowanceName;
 							System.out.println("Enter the allowance name to claim: ");
 							allowanceName=sc.next();
-							LevelTwo.get(i).requestAllowance(allowanceName);
+							LevelFour.get(i).requestAllowance(allowanceName, transactionRecord);
 						}
 						else
 						{
