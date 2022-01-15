@@ -3,7 +3,7 @@ package Utility;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-
+import java.util.Map;
 
 import personnel.levelFour;
 import personnel.levelThree;
@@ -38,7 +38,7 @@ public class Allowance {
 		//Navy
 		map.put("Diving-Allowance", new Allowance("Diving-Allowance", new Pair("Fixed", 1800.00), 2, "Navy"));
 		map.put("Dip-Allowance", new Allowance("Dip-Allowance", new Pair("Fixed", 3500.00), 2, "Navy"));
-		map.put("Diving attendant-Allowance", new Allowance("Diving-attendant-Allowance", new Pair("Fixed", 700.00), 2, "Navy"));
+		map.put("Diving-attendant-Allowance", new Allowance("Diving-attendant-Allowance", new Pair("Fixed", 700.00), 2, "Navy"));
 		
 		map.put("ISD-Allowance", new Allowance("ISD-Allowance", new Pair("Variable", 16.00), 3, "Navy"));
 		map.put("Sea-going-Allowance", new Allowance("Sea-going-Allowance", new Pair("Fixed", 10500.00), 3, "Navy"));
@@ -48,7 +48,7 @@ public class Allowance {
 		
 		//Air force
 		map.put("Air-worthiness-Allowance", new Allowance("Air-worthiness-Allowance", new Pair("Fixed", 338.00), 2, "Air-Force"));
-		map.put("High-altitude Allowance", new Allowance("High-altitude-Allowance", new Pair("Fixed", 5300.00), 2, "Air-Force"));		
+		map.put("High-altitude-Allowance", new Allowance("High-altitude-Allowance", new Pair("Fixed", 5300.00), 2, "Air-Force"));		
 		map.put("Flying-Allowance", new Allowance("Flying-Allowance", new Pair("Fixed", 17300.00), 2, "Air-Force"));
 		
 		map.put("CPM-Allowance", new Allowance("CPM-Allowance", new Pair("Fixed", 1700.00), 3, "Air-Force"));		
@@ -61,7 +61,7 @@ public class Allowance {
 	 * TODO: functions to check eligibility (after officer classes)
 	 */
 	public static boolean eligibleforAllowance(String allowanceName, levelTwo officer, ArrayList<TransactionRecord> transactionRecord)
-	{		
+	{	
 		if(Allowance.map.containsKey(allowanceName))
 		{
 			Allowance temp = map.get(allowanceName);

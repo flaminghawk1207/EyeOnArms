@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+import Utility.Allowance;
 import Utility.Award;
 import Utility.AwardRecord;
 import Utility.PromotionRecord;
@@ -674,7 +675,7 @@ public class Driver {
 						System.out.println("Parse Exception encountered");
 					}
 					
-					System.out.println("Enter the search category\1. Award report\n2. Transaction report\n3. Retirement report"
+					System.out.println("Enter the search category\n1. Award report\n2. Transaction report\n3. Retirement report"
 							+ "\n4.Promotion report\nEnter a valid choice: ");
 					searchCategory = sc.nextInt();
 					while(searchCategory<=0 || searchCategory>=5)
@@ -698,7 +699,7 @@ public class Driver {
 	}
 	
 	public static void main(String[] args) {
-
+		Allowance.intializeAllowanceMap();
 		ArrayList<Manager> manager = new ArrayList<Manager>();
 		ArrayList<levelThree> LevelThree = new ArrayList<levelThree>();
 		ArrayList<levelFour> LevelFour = new ArrayList<levelFour>();
