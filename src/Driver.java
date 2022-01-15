@@ -1,10 +1,7 @@
 import java.util.Scanner;
-import java.util.Map.Entry;
 
-import Utility.Allowance;
 import Utility.Award;
 import Utility.AwardRecord;
-import Utility.Pair;
 import Utility.PromotionRecord;
 import Utility.RetirementRecord;
 import Utility.TransactionRecord;
@@ -17,7 +14,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 
 import personnel.Manager;
 import personnel.Personnel;
@@ -266,13 +262,13 @@ public class Driver {
 							}
 						} 	
 						
-					}while(c=='Y');
-		
+					}while(c=='Y');		
 					
 				}
 				break;
 				case 3:
 				{
+					//Not checking if its first of the month..can pay only once per month
 					Date date = new Date();
 					Integer month = date.getMonth();
 					if(month != Manager.getMonth())
@@ -281,7 +277,7 @@ public class Driver {
 					}
 					else
 					{
-						System.out.println("Salary paid already for this month");  							
+						System.out.println("Salary/Pension paid already for this month");  							
 					}					
 				}
 				break;
@@ -381,10 +377,16 @@ public class Driver {
 					}while(c=='Y');
 
 				}
+				break;
+				case 5:
+					break;
+				default:
+					 break;
 			}
 			System.out.println("Do you want to continue(Y/N)?");
 			ch=sc.next().charAt(0);
-		}while(ch=='Y');		
+		}while(ch=='Y');	
+		sc.close();
 	}
 	
 	public static void Level3View(levelThree LevelThree, ArrayList <levelOne> LevelOne,  ArrayList <levelTwo> LevelTwo, 
@@ -449,14 +451,8 @@ public class Driver {
 						{
 							System.out.println("Invalid details. \n Do you want to try again (Y/N)"); 
 							c=sc.next().charAt(0);
-							/*
-							 * TODO: Implement try again later in multiple parts in the driver code
-							 */
-						}
-						
-					}while(c=='Y');
-					
-						
+						}						
+					}while(c=='Y'); 					
 				}
 				break;
 				case 4:
@@ -539,7 +535,7 @@ public class Driver {
 						{
 							System.out.println("enter the officer Id to promote: ");
 							id=sc.nextInt();
-							for(i=0;i<LevelOne.size();i++)
+							for(i=0;i<LevelTwo.size();i++)
 							{
 								if(LevelTwo.get(i).getID() == id)
 								{
@@ -612,7 +608,7 @@ public class Driver {
 						{
 							System.out.println("enter the officer Id to promote: ");
 							id=sc.nextInt();
-							for(i=0;i<LevelOne.size();i++)
+							for(i=0;i<LevelTwo.size();i++)
 							{
 								if(LevelTwo.get(i).getID() == id)
 								{
@@ -634,7 +630,7 @@ public class Driver {
 						{
 							System.out.println("enter the officer Id to promote: ");
 							id=sc.nextInt();
-							for(i=0;i<LevelOne.size();i++)
+							for(i=0;i<LevelThree.size();i++)
 							{
 								if(LevelThree.get(i).getID() == id)
 								{
@@ -665,17 +661,17 @@ public class Driver {
 					sd=sc.next();
 					Date startDate = new Date();
 					try {
-						startDate = new SimpleDateFormat("dd/MM/yyyy").parse(sd);
+						startDate = new SimpleDateFormat("dd-MM-yyyy").parse(sd);
 					} catch (ParseException e) {
 						System.out.println("Parse Exception encountered");
 					}
 					
 					System.out.println("Enter the date till which the report should be generated: ");
 					String ed;
-					sd=sc.next();
+					ed=sc.next();
 					Date endDate = new Date();
 					try {
-						endDate = new SimpleDateFormat("dd/MM/yyyy").parse(sd);
+						endDate = new SimpleDateFormat("dd-MM-yyyy").parse(ed);
 					} catch (ParseException e) {
 						System.out.println("Parse Exception encountered");
 					}
@@ -701,7 +697,7 @@ public class Driver {
 			System.out.println("Do you want to continue(Y/N)");
 			
 		}while(ch=='Y');
-
+		sc.close();
 	}
 	
 	public static void main(String[] args) {
@@ -1701,12 +1697,6 @@ public class Driver {
 		} catch (FileNotFoundException e) {
 			System.out.println("File not found error");
 		}	
-		
-		
-		
-		
-		
-		
-		
+		sc.close();		
 	}  
 }

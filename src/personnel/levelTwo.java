@@ -26,7 +26,7 @@ public class levelTwo extends levelOne {
 		boolean flag=Allowance.eligibleforAllowance(allowancename, this, transactionRecord);
 		if(flag)
 		{
-			System.out.println("Allowance claimed");
+			System.out.println("Allowance claimed");			
 		}
 		else
 		{

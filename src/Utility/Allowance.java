@@ -3,7 +3,6 @@ package Utility;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Map.Entry;
 
 
 import personnel.levelFour;
@@ -68,19 +67,23 @@ public class Allowance {
 			Allowance temp = map.get(allowanceName);
 			if(officer.getLevel()>=temp.minLevel && officer.getWing().equals(temp.wing))
 			{
-				if( temp.amount.getKey().equals("Fixed"))
+				if(temp.amount.getKey().equals("Fixed"))
 				{
 					officer.bankaccount.setBalance(officer.getBalance()+temp.amount.getValue());  
 					Date date = new Date();
 					TransactionRecord tr = new TransactionRecord(officer.getID(), date, officer.bankaccount.getAccountNumber(),
 							temp.amount.getValue(), "Allowance");
 					transactionRecord.add(tr);
+					System.out.println("Officer: "+officer.getID()+" "+officer.getName()+" is eligible for this allowance");
+					System.out.println(temp.name+": "+temp.amount.getValue());
 					return true;
 				}
 				else
 				{
 					Double allowMoney = (officer.getBaseSalary()*temp.amount.getValue())/100; 
 					officer.bankaccount.setBalance(officer.getBalance()+allowMoney); 
+					System.out.println("Officer: "+officer.getID()+" "+officer.getName()+" is eligible for this allowance");
+					System.out.println(temp.name+": "+allowMoney);
 					return true;					
 				}				
 			}
@@ -109,12 +112,16 @@ public class Allowance {
 					TransactionRecord tr = new TransactionRecord(officer.getID(), date, officer.bankaccount.getAccountNumber(),
 							temp.amount.getValue(), "Allowance");
 					transactionRecord.add(tr);
+					System.out.println("Officer: "+officer.getID()+" "+officer.getName()+" is eligible for this allowance");
+					System.out.println(temp.name+": "+temp.amount.getValue());
 					return true;
 				}
 				else
 				{
 					Double allowMoney = (officer.getBaseSalary()*temp.amount.getValue())/100; 
 					officer.bankaccount.setBalance(officer.getBalance()+allowMoney); 
+					System.out.println("Officer: "+officer.getID()+" "+officer.getName()+" is eligible for this allowance");
+					System.out.println(temp.name+": "+allowMoney);
 					return true;					
 				}				
 			}
@@ -142,12 +149,16 @@ public class Allowance {
 					TransactionRecord tr = new TransactionRecord(officer.getID(), date, officer.bankaccount.getAccountNumber(),
 							temp.amount.getValue(), "Allowance");
 					transactionRecord.add(tr);
+					System.out.println("Officer: "+officer.getID()+" "+officer.getName()+" is eligible for this allowance");
+					System.out.println(temp.name+": "+temp.amount.getValue());
 					return true;
 				}
 				else
 				{
 					Double allowMoney = (officer.getBaseSalary()*temp.amount.getValue())/100; 
 					officer.bankaccount.setBalance(officer.getBalance()+allowMoney); 
+					System.out.println("Officer: "+officer.getID()+" "+officer.getName()+" is eligible for this allowance");
+					System.out.println(temp.name+": "+allowMoney);
 					return true;					
 				}				
 			}

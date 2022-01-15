@@ -1,6 +1,5 @@
 package personnel;
 
-import Utility.BankAccount;
 
 public class Veteran extends Personnel {
 	public double pensionAmount;

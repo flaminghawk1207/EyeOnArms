@@ -37,6 +37,8 @@ public class Manager implements Login{
 		 RetirementRecord rt = new RetirementRecord(officer.getID(),date, officer.getLevel());
 		 retirementRecord.add(rt);
 		 veteran.add(vt);
+		 System.out.println("Officer: "+officer.getName()+" with Officer ID: "+officer.getID()+" has been moved to veteran's list");
+		 System.out.println("Their pension amount is: 8000.00");
 		 int i=0;
 		 for(i=0;i<LevelOne.size();i++)
 		 {
@@ -58,6 +60,8 @@ public class Manager implements Login{
 		 RetirementRecord rt = new RetirementRecord(officer.getID(),date, officer.getLevel());
 		 retirementRecord.add(rt);
 		 veteran.add(vt);
+		 System.out.println("Officer: "+officer.getName()+" with Officer ID: "+officer.getID()+" has been moved to veteran's list");
+		 System.out.println("Their pension amount is: 8000.00");
 		 int i=0;
 		 for(i=0;i<LevelOne.size();i++)
 		 {
@@ -82,6 +86,8 @@ public class Manager implements Login{
 		RetirementRecord rt = new RetirementRecord(officer.getID(),date, officer.getLevel());
 		retirementRecord.add(rt);
 		veteran.add(vt);
+		 System.out.println("Officer: "+officer.getName()+" with Officer ID: "+officer.getID()+" has been moved to veteran's list");
+		 System.out.println("Their pension amount is: 10000.00");
 		int i=0;
 		for(i=0;i<LevelTwo.size();i++)
 		{
@@ -102,6 +108,8 @@ public class Manager implements Login{
 		RetirementRecord rt = new RetirementRecord(officer.getID(),date, officer.getLevel());
 		retirementRecord.add(rt);
 		veteran.add(vt);
+		System.out.println("Officer: "+officer.getName()+" with Officer ID: "+officer.getID()+" has been moved to veteran's list");
+		System.out.println("Their pension amount is: 10000.00");
 		int i=0;
 		for(i=0;i<LevelTwo.size();i++)
 		{
@@ -123,6 +131,8 @@ public class Manager implements Login{
 		RetirementRecord rt = new RetirementRecord(officer.getID(),date, officer.getLevel());
 		retirementRecord.add(rt);
 		veteran.add(vt);
+		System.out.println("Officer: "+officer.getName()+" with Officer ID: "+officer.getID()+" has been moved to veteran's list");
+		 System.out.println("Their pension amount is: 12000.00");
 		int i=0;
 		for(i=0;i<LevelThree.size();i++)
 		{
@@ -143,6 +153,8 @@ public class Manager implements Login{
 		RetirementRecord rt = new RetirementRecord(officer.getID(),date, officer.getLevel());
 		retirementRecord.add(rt);
 		veteran.add(vt);
+		System.out.println("Officer: "+officer.getName()+" with Officer ID: "+officer.getID()+" has been moved to veteran's list");
+		System.out.println("Their pension amount is: 12000.00");
 		int i=0;
 		for(i=0;i<LevelThree.size();i++)
 		{
@@ -164,6 +176,8 @@ public class Manager implements Login{
 		RetirementRecord rt = new RetirementRecord(officer.getID(),date, officer.getLevel());
 		retirementRecord.add(rt);
 		veteran.add(vt);
+		System.out.println("Officer: "+officer.getName()+" with Officer ID: "+officer.getID()+" has been moved to veteran's list");
+		 System.out.println("Their pension amount is: 14000.00");
 		int i=0;
 		for(i=0;i<LevelFour.size();i++)
 		{
@@ -184,6 +198,8 @@ public class Manager implements Login{
 		RetirementRecord rt = new RetirementRecord(officer.getID(),date, officer.getLevel());
 		retirementRecord.add(rt);
 		veteran.add(vt);
+		System.out.println("Officer: "+officer.getName()+" with Officer ID: "+officer.getID()+" has been moved to veteran's list");
+		System.out.println("Their pension amount is: 14000.00");
 		int i=0;
 		for(i=0;i<LevelFour.size();i++)
 		{
@@ -212,7 +228,7 @@ public class Manager implements Login{
 			Integer month = tempDate.getMonth();
 			Manager.month = month;
 			LevelOne.get(i).bankaccount.setBalance(LevelOne.get(i).getBalance()+LevelOne.get(i).getBaseSalary());
-			System.out.println("salary paid for: "+LevelOne.get(i).getID()+" "+LevelOne.get(i).getName()+" "
+			System.out.println("Salary paid for: "+LevelOne.get(i).getID()+" "+LevelOne.get(i).getName()+" "
 					+LevelOne.get(i).getLevel());
 			TransactionRecord tr = new TransactionRecord(LevelOne.get(i).getID(), date, 
 					LevelOne.get(i).bankaccount.getAccountNumber(), LevelOne.get(i).getBaseSalary(), "Salary");
@@ -222,7 +238,7 @@ public class Manager implements Login{
 		for(i=0;i<LevelTwo.size();i++)
 		{
 			LevelTwo.get(i).bankaccount.setBalance(LevelTwo.get(i).getBalance()+LevelTwo.get(i).getBaseSalary());
-			System.out.println("salary paid for: "+LevelTwo.get(i).getID()+" "+LevelTwo.get(i).getName()+" "
+			System.out.println("Salary paid for: "+LevelTwo.get(i).getID()+" "+LevelTwo.get(i).getName()+" "
 					+LevelTwo.get(i).getLevel());
 			TransactionRecord tr = new TransactionRecord(LevelTwo.get(i).getID(), date, 
 					LevelTwo.get(i).bankaccount.getAccountNumber(), LevelTwo.get(i).getBaseSalary(), "Salary");
@@ -232,7 +248,7 @@ public class Manager implements Login{
 		for(i=0;i<LevelThree.size();i++)
 		{
 			LevelThree.get(i).bankaccount.setBalance(LevelThree.get(i).getBalance()+LevelThree.get(i).getBaseSalary());
-			System.out.println("salary paid for: "+LevelThree.get(i).getID()+" "+LevelThree.get(i).getName()+" "
+			System.out.println("Salary paid for: "+LevelThree.get(i).getID()+" "+LevelThree.get(i).getName()+" "
 					+LevelThree.get(i).getLevel());
 			TransactionRecord tr = new TransactionRecord(LevelThree.get(i).getID(), date, 
 					LevelThree.get(i).bankaccount.getAccountNumber(), LevelThree.get(i).getBaseSalary(), "Salary");
@@ -242,13 +258,20 @@ public class Manager implements Login{
 		for(i=0;i<LevelFour.size();i++)
 		{
 			LevelFour.get(i).bankaccount.setBalance(LevelFour.get(i).getBalance()+LevelFour.get(i).getBaseSalary());
-			System.out.println("salary paid for: "+LevelFour.get(i).getID()+" "+LevelFour.get(i).getName()+" "
+			System.out.println("Salary paid for: "+LevelFour.get(i).getID()+" "+LevelFour.get(i).getName()+" "
 					+LevelFour.get(i).getLevel());
 			TransactionRecord tr = new TransactionRecord(LevelFour.get(i).getID(), date, 
 					LevelFour.get(i).bankaccount.getAccountNumber(), LevelFour.get(i).getBaseSalary(), "Salary");
 			transactionRecord.add(tr);
 		}
-		
+		for(i=0;i<veteran.size();i++)
+		{
+			veteran.get(i).bankaccount.setBalance(veteran.get(i).getBalance()+veteran.get(i).getPensionAmount());
+			System.out.println("Pension paid for: "+veteran.get(i).getID()+" "+veteran.get(i).getName());
+			TransactionRecord tr = new TransactionRecord(veteran.get(i).getID(), date, 
+					veteran.get(i).bankaccount.getAccountNumber(), veteran.get(i).getPensionAmount() , "Pension");
+			transactionRecord.add(tr);
+		}		
 	}
 	
 	public String getUsername() {

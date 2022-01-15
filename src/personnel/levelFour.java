@@ -1,5 +1,6 @@
 package personnel;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -22,11 +23,12 @@ public class levelFour extends levelThree {
 		/*
 		 * For now - when creation of a new level 3 officer - User name will be name and password will be id
 		 */
-		levelThree officer=new levelThree(off.id, off.name, off.id.toString() ,off.name,off.wing,off.location,25000.00,off.bankaccount,off.awardsRecieved);
+		levelThree officer=new levelThree(off.id, off.name, off.id.toString() ,off.name,off.wing,off.location,60000.00,off.bankaccount,off.awardsRecieved);
 		LevelThree.add(officer);
 		Date date = new Date();
 		PromotionRecord prObject = new PromotionRecord(officer.getID(), date, 3); 
 		promotionRecord.add(prObject);
+		System.out.println("Officer: "+officer.getID()+" "+officer.getName()+" has been promoted to level three"+" "+officer.getWing()+" wing");
 		int i=0;
 		for(i=0;i<LevelTwo.size();i++)
 		{
@@ -54,6 +56,8 @@ public class levelFour extends levelThree {
 			awardRecord.add(ar);
 			TransactionRecord tr = new TransactionRecord(officer.getID(), award.getDate(), officer.bankaccount.getAccountNumber(),
 					award.getPrizeMoney(), "Award");
+			System.out.println("Officer: "+officer.getID()+" "+officer.getName()+" has been awarded"+" "+award.getName());
+			System.out.println("They have received "+award.getPrizeMoney());
 			transactionRecord.add(tr);
 		}
 		catch (Exception e) {
@@ -69,6 +73,8 @@ public class levelFour extends levelThree {
 			awardRecord.add(ar);
 			TransactionRecord tr = new TransactionRecord(officer.getID(), award.getDate(), officer.bankaccount.getAccountNumber(),
 					award.getPrizeMoney(), "Award");
+			System.out.println("Officer: "+officer.getID()+" "+officer.getName()+" has been awarded"+" "+award.getName());
+			System.out.println("They have received "+award.getPrizeMoney());
 			transactionRecord.add(tr);
 		}
 		catch (Exception e) {
@@ -83,6 +89,8 @@ public class levelFour extends levelThree {
 			awardRecord.add(ar);
 			TransactionRecord tr = new TransactionRecord(officer.getID(), award.getDate(), officer.bankaccount.getAccountNumber(),
 					award.getPrizeMoney(), "Award");
+			System.out.println("Officer: "+officer.getID()+" "+officer.getName()+" has been awarded"+" "+award.getName());
+			System.out.println("They have received "+award.getPrizeMoney());
 			transactionRecord.add(tr);
 		}
 		catch (Exception e) {
@@ -108,7 +116,7 @@ public class levelFour extends levelThree {
 			}
 			if(awardRecordReport.isEmpty())
 			{
-				System.out.println("No record available between the given dates");
+				System.out.println("No records are available between the given dates");
 			}
 			else
 			{
@@ -128,7 +136,8 @@ public class levelFour extends levelThree {
 					/*
 					 * TODO check path to file locations
 					 */
-					fout = new PrintWriter("\\Files\\AwardRecord.txt");
+					File directory = new File("");
+					fout = new PrintWriter(directory.getAbsolutePath()+"\\Files\\AwardRecordReport.txt");
 					fout.println(awardRecordReport.size());
 					fout.println("------------------------------------------");
 					for(i=0;i<awardRecordReport.size();i++)
@@ -159,7 +168,7 @@ public class levelFour extends levelThree {
 			}
 			if(transactionRecordReport.isEmpty())
 			{
-				System.out.println("No record available between the given dates");
+				System.out.println("No records are available between the given dates");
 			}
 			else
 			{
@@ -178,7 +187,8 @@ public class levelFour extends levelThree {
 			
 				PrintWriter fout;
 				try {
-					fout = new PrintWriter("\\Files\\TransactionRecord.txt");
+					File directory = new File("");
+					fout = new PrintWriter(directory.getAbsolutePath()+"\\Files\\TransactionRecordReport.txt");
 					/*
 					 * Check file path
 					 */
@@ -214,7 +224,7 @@ public class levelFour extends levelThree {
 			}
 			if(retirementRecordReport.isEmpty())
 			{
-				System.out.println("No record available between the given dates");
+				System.out.println("No records are available between the given dates");
 			}
 			else
 			{
@@ -233,7 +243,8 @@ public class levelFour extends levelThree {
 					/*
 					 * TODO check file path
 					 */
-					fout = new PrintWriter("Files\\RetirementRecord.txt");
+					File directory = new File("");
+					fout = new PrintWriter(directory.getAbsolutePath()+"\\Files\\RetirementRecordReport.txt");
 					fout.println(retirementRecordReport.size());
 					fout.println("------------------------------------------");
 					for(i=0;i<retirementRecordReport.size();i++)
@@ -264,7 +275,7 @@ public class levelFour extends levelThree {
 			}
 			if(promotionRecordReport.isEmpty())
 			{
-				System.out.println("No record available between the given dates");
+				System.out.println("No records are available between the given dates");
 			}
 			else
 			{
@@ -279,7 +290,8 @@ public class levelFour extends levelThree {
 				}
 				PrintWriter fout;
 				try {
-					fout = new PrintWriter("\\Files\\PromotionRecord.txt");
+					File directory = new File("");
+					fout = new PrintWriter(directory.getAbsolutePath()+"\\Files\\PromotionRecordReport.txt");
 					fout.println(promotionRecordReport.size());
 					fout.println("------------------------------------------");
 					for(i=0;i<promotionRecordReport.size();i++)
