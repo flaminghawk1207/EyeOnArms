@@ -26,7 +26,7 @@ public class Personnel {
 	public Personnel(String name, Double balance) // creating new officer
 	{
 		this.name=name;
-		this.id=PersonnelCount++;
+		this.id=++PersonnelCount;
 		this.bankaccount=new BankAccount(balance);
 	}
 	public static int GetPersonnelCount() {

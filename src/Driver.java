@@ -524,7 +524,7 @@ public class Driver {
 							}
 							else
 							{
-								System.out.println("Invalid details. Do you want to try again"); 
+								System.out.println("Invalid details. Do you want to try again(Y/N)"); 
 								c=sc.next().charAt(0);
 							}
 						}
@@ -546,14 +546,11 @@ public class Driver {
 							}
 							else
 							{
-								System.out.println("Invalid details. Do you want to try again"); 
+								System.out.println("Invalid details. Do you want to try again(Y/N)"); 
 								c=sc.next().charAt(0); 
 							}
-						}  		
-						
-					}while(c=='Y');
-
-						
+						}  								
+					}while(c=='Y');						
 				}
 				break;
 				case 2:
@@ -587,19 +584,11 @@ public class Driver {
 							{
 								LevelFour.getAward(LevelOne.get(i), awardRecord, transactionRecord); 
 								break;
-								/*								 * 
-								 * TODO: LevelOne.get(i) is part of arrayList levelOne..Any changes in the LevelOne.get(i)
-								 * will(should?) be reflected in the array list
-								 */
 							}
 							else
 							{
-								System.out.println("Invalid details. Do you want to try again"); 
+								System.out.println("Invalid details. Do you want to try again(Y/N)"); 
 								c=sc.next().charAt(0);
-
-								/*
-								 * TODO: check try again later in multiple parts in the driver code
-								 */
 							}
 						}
 						else if(level == 2)
@@ -621,7 +610,7 @@ public class Driver {
 							}
 							else
 							{
-								System.out.println("Invalid details. Do you want to try again"); 
+								System.out.println("Invalid details. Do you want to try again(Y/N)"); 
 								c=sc.next().charAt(0);
 							}
 						}
@@ -644,12 +633,11 @@ public class Driver {
 							}
 							else
 							{
-								System.out.println("Invalid details. Do you want to try again"); 
+								System.out.println("Invalid details. Do you want to try again(Y/N)"); 
 								c=sc.next().charAt(0);
 							}
-						}
-						
-					}while(c=='N');
+						}						
+					}while(c=='Y');
 				}
 				break;
 				case 3:

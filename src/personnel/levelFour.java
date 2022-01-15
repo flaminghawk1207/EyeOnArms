@@ -41,13 +41,7 @@ public class levelFour extends levelThree {
 		{
 			LevelTwo.remove(i);
 		}
-		/*
-		 * TODO: Check creation of new record and deletion of previous one
-		 */
 	}
-	/*
-	 * TODO: get report to be done later
-	 */
 	public void getAward(levelOne officer, ArrayList<AwardRecord> awardRecord, ArrayList<TransactionRecord> transactionRecord) {
 		try {
 			Award award = new Award();
