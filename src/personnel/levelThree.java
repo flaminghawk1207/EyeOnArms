@@ -38,20 +38,22 @@ public class levelThree extends levelTwo implements Login {
 		/*
 		 * TODO: Check logic here
 		 */
-		levelOne officer=new levelOne(candidate.id,candidate.name,w,l,20000.0,candidate.bankaccount);
+		levelOne officer=new levelOne(candidate.id,candidate.name,w,l,50000.00,candidate.bankaccount);
 		LevelOne.add(officer);
 //		Date date = new Date();
 //		PromotionRecord prObject = new PromotionRecord(officer.getID(), date, 1); 
 //		promotionRecord.add(prObject);
+		System.out.println("Officer: "+officer.getID()+" "+officer.getName()+" has been recruited to level one"+" "+officer.getWing()+" wing");
 	}
 	public void promote(levelOne off, ArrayList<levelOne> LevelOne, ArrayList<levelTwo> LevelTwo, 
 			ArrayList<PromotionRecord> promotionRecord) {
 
-		levelTwo officer=new levelTwo(off.id,off.name,off.wing,off.location,25000.0,off.bankaccount,off.awardsRecieved);
+		levelTwo officer=new levelTwo(off.id,off.name,off.wing,off.location,55000.00,off.bankaccount,off.awardsRecieved);
 		LevelTwo.add(officer);
 		Date date = new Date();
 		PromotionRecord prObject = new PromotionRecord(officer.getID(), date, 2); 
 		promotionRecord.add(prObject);
+		System.out.println("Officer: "+officer.getID()+" "+officer.getName()+" has been promoted to level two"+" "+officer.getWing()+" wing");
 		int i=0;
 		for(i=0;i<LevelOne.size();i++)
 		{
@@ -98,7 +100,7 @@ public class levelThree extends levelTwo implements Login {
 		this.username=sc.next();
 		System.out.println("Enter the new password: ");
 		this.password=sc.next();
-		sc.close();
+		System.out.println("Credentials changed successfully!");
 	}
 	
 

@@ -1,10 +1,8 @@
 import java.util.Scanner;
-import java.util.Map.Entry;
 
 import Utility.Allowance;
 import Utility.Award;
 import Utility.AwardRecord;
-import Utility.Pair;
 import Utility.PromotionRecord;
 import Utility.RetirementRecord;
 import Utility.TransactionRecord;
@@ -17,7 +15,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 
 import personnel.Manager;
 import personnel.Personnel;
@@ -30,7 +27,10 @@ import personnel.levelTwo;
 public class Driver {
 	
 	public static void LoginMenu() {
-		System.out.println("Choose your designation \n1.Manager \n2.Level-3, Level-4 \n3.Exit");		
+		System.out.println("************************************************");
+		System.out.println("\t\tLogin Menu\n");
+		System.out.println("Choose your designation \n1.Manager \n2.Level-3 or Level-4 \n3.Exit");
+		System.out.println("************************************************");
 	}
 	
 	
@@ -43,12 +43,14 @@ public class Driver {
 		Scanner sc = new Scanner (System.in);
 		do {
 			ch='N';
-			System.out.println("Menu");
+			System.out.println("*********************************************");
+			System.out.println("\t\tMenu\n");
 			System.out.println("1.Initiate retirement");
 			System.out.println("2.Initiate discharge");
 			System.out.println("3.Initiate payroll");
 			System.out.println("4.Initiate allowance");
 			System.out.println("5.Exit");
+			System.out.println("*********************************************");
 			System.out.println("Enter a valid choice");
 			choice = sc.nextInt();
 			while(choice<1 || choice>5)
@@ -266,13 +268,13 @@ public class Driver {
 							}
 						} 	
 						
-					}while(c=='Y');
-		
+					}while(c=='Y');		
 					
 				}
 				break;
 				case 3:
 				{
+					//Not checking if its first of the month..can pay only once per month
 					Date date = new Date();
 					Integer month = date.getMonth();
 					if(month != Manager.getMonth())
@@ -281,7 +283,7 @@ public class Driver {
 					}
 					else
 					{
-						System.out.println("Salary paid already for this month");  							
+						System.out.println("Salary/Pension paid already for this month");  							
 					}					
 				}
 				break;
@@ -381,10 +383,15 @@ public class Driver {
 					}while(c=='Y');
 
 				}
+				break;
+				case 5:
+					break;
+				default:
+					 break;
 			}
 			System.out.println("Do you want to continue(Y/N)?");
 			ch=sc.next().charAt(0);
-		}while(ch=='Y');		
+		}while(ch=='Y');	
 	}
 	
 	public static void Level3View(levelThree LevelThree, ArrayList <levelOne> LevelOne,  ArrayList <levelTwo> LevelTwo, 
@@ -395,11 +402,13 @@ public class Driver {
 		int choice=0;
 		do 
 		{
-			System.out.println("Menu");
+			System.out.println("*********************************************");
+			System.out.println("\t\tMenu\n");
 			System.out.println("1.Change username and password");
 			System.out.println("2.Recruit candidate");
 			System.out.println("3.Promote candidate");			
 			System.out.println("4.Exit");
+			System.out.println("*********************************************");
 			System.out.println("Enter a valid choice");
 			choice = sc.nextInt();
 			while(choice<1 || choice>4)
@@ -449,14 +458,8 @@ public class Driver {
 						{
 							System.out.println("Invalid details. \n Do you want to try again (Y/N)"); 
 							c=sc.next().charAt(0);
-							/*
-							 * TODO: Implement try again later in multiple parts in the driver code
-							 */
-						}
-						
-					}while(c=='Y');
-					
-						
+						}						
+					}while(c=='Y'); 					
 				}
 				break;
 				case 4:
@@ -468,7 +471,6 @@ public class Driver {
 			ch=sc.next().charAt(0);
 			
 		}while(ch=='Y');
-		sc.close();
 	}
 	
 	public static void Level4View(levelFour LevelFour, ArrayList<levelOne> LevelOne, ArrayList<levelTwo> LevelTwo,
@@ -479,20 +481,23 @@ public class Driver {
 		Scanner sc = new Scanner(System.in);
 		int choice=0;
 		char ch='N';
-		System.out.println("Menu");
-		System.out.println("1.Promote candidate");
-		System.out.println("2.Award candidate");
-		System.out.println("3.Generate reports");
-		System.out.println("4.Exit");
-		System.out.println("Enter a valid choice");
-		choice = sc.nextInt();
-		while(choice<1 || choice>4)
-		{
-			System.out.println("Enter a valid choice: ");
-			choice = sc.nextInt();
-		}
+		
 		do
 		{
+			System.out.println("*********************************************");
+			System.out.println("\t\tMenu\n");
+			System.out.println("1.Promote candidate");
+			System.out.println("2.Award candidate");
+			System.out.println("3.Generate reports");
+			System.out.println("4.Exit");
+			System.out.println("*********************************************");
+			System.out.println("Enter a valid choice");
+			choice = sc.nextInt();
+			while(choice<1 || choice>4)
+			{
+				System.out.println("Enter a valid choice: ");
+				choice = sc.nextInt();
+			}
 			switch(choice)
 			{
 				case 1:
@@ -528,18 +533,15 @@ public class Driver {
 							}
 							else
 							{
-								System.out.println("Invalid details. Do you want to try again"); 
+								System.out.println("Invalid details. Do you want to try again(Y/N)"); 
 								c=sc.next().charAt(0);
-								/*
-								 * TODO: Check try again later in multiple parts in the driver code
-								 */
 							}
 						}
 						else
 						{
 							System.out.println("enter the officer Id to promote: ");
 							id=sc.nextInt();
-							for(i=0;i<LevelOne.size();i++)
+							for(i=0;i<LevelTwo.size();i++)
 							{
 								if(LevelTwo.get(i).getID() == id)
 								{
@@ -553,14 +555,11 @@ public class Driver {
 							}
 							else
 							{
-								System.out.println("Invalid details. Do you want to try again"); 
+								System.out.println("Invalid details. Do you want to try again(Y/N)"); 
 								c=sc.next().charAt(0); 
 							}
-						}  		
-						
-					}while(c=='Y');
-
-						
+						}  								
+					}while(c=='Y');						
 				}
 				break;
 				case 2:
@@ -593,26 +592,19 @@ public class Driver {
 							if(flag)
 							{
 								LevelFour.getAward(LevelOne.get(i), awardRecord, transactionRecord); 
-								/*								 * 
-								 * TODO: LevelOne.get(i) is part of arrayList levelOne..Any changes in the LevelOne.get(i)
-								 * will(should?) be reflected in the array list
-								 */
+								break;
 							}
 							else
 							{
-								System.out.println("Invalid details. Do you want to try again"); 
+								System.out.println("Invalid details. Do you want to try again(Y/N)"); 
 								c=sc.next().charAt(0);
-
-								/*
-								 * TODO: check try again later in multiple parts in the driver code
-								 */
 							}
 						}
 						else if(level == 2)
 						{
-							System.out.println("enter the officer Id to promote: ");
+							System.out.println("enter the officer Id to award: ");
 							id=sc.nextInt();
-							for(i=0;i<LevelOne.size();i++)
+							for(i=0;i<LevelTwo.size();i++)
 							{
 								if(LevelTwo.get(i).getID() == id)
 								{
@@ -623,18 +615,19 @@ public class Driver {
 							if(flag)
 							{
 								LevelFour.getAward(LevelTwo.get(i), awardRecord, transactionRecord); 
+								break;
 							}
 							else
 							{
-								System.out.println("Invalid details. Do you want to try again"); 
+								System.out.println("Invalid details. Do you want to try again(Y/N)"); 
 								c=sc.next().charAt(0);
 							}
 						}
 						else
 						{
-							System.out.println("enter the officer Id to promote: ");
+							System.out.println("enter the officer Id to award: ");
 							id=sc.nextInt();
-							for(i=0;i<LevelOne.size();i++)
+							for(i=0;i<LevelThree.size();i++)
 							{
 								if(LevelThree.get(i).getID() == id)
 								{
@@ -645,16 +638,15 @@ public class Driver {
 							if(flag)
 							{
 								LevelFour.getAward(LevelThree.get(i),awardRecord, transactionRecord); 
+								break;
 							}
 							else
 							{
-								System.out.println("Invalid details. Do you want to try again"); 
+								System.out.println("Invalid details. Do you want to try again(Y/N)"); 
 								c=sc.next().charAt(0);
 							}
-						}
-						
-					}while(c=='N');
-
+						}						
+					}while(c=='Y');
 				}
 				break;
 				case 3:
@@ -665,22 +657,22 @@ public class Driver {
 					sd=sc.next();
 					Date startDate = new Date();
 					try {
-						startDate = new SimpleDateFormat("dd/MM/yyyy").parse(sd);
+						startDate = new SimpleDateFormat("dd-MM-yyyy").parse(sd);
 					} catch (ParseException e) {
 						System.out.println("Parse Exception encountered");
 					}
 					
 					System.out.println("Enter the date till which the report should be generated: ");
 					String ed;
-					sd=sc.next();
+					ed=sc.next();
 					Date endDate = new Date();
 					try {
-						endDate = new SimpleDateFormat("dd/MM/yyyy").parse(sd);
+						endDate = new SimpleDateFormat("dd-MM-yyyy").parse(ed);
 					} catch (ParseException e) {
 						System.out.println("Parse Exception encountered");
 					}
 					
-					System.out.println("Enter the search category\1. Award report\n2. Transaction report\n3. Retirement report"
+					System.out.println("Enter the search category\n1. Award report\n2. Transaction report\n3. Retirement report"
 							+ "\n4.Promotion report\nEnter a valid choice: ");
 					searchCategory = sc.nextInt();
 					while(searchCategory<=0 || searchCategory>=5)
@@ -699,13 +691,12 @@ public class Driver {
 					break;
 			}
 			System.out.println("Do you want to continue(Y/N)");
-			
+			ch=sc.next().charAt(0);			
 		}while(ch=='Y');
-
 	}
 	
 	public static void main(String[] args) {
-
+		Allowance.intializeAllowanceMap();
 		ArrayList<Manager> manager = new ArrayList<Manager>();
 		ArrayList<levelThree> LevelThree = new ArrayList<levelThree>();
 		ArrayList<levelFour> LevelFour = new ArrayList<levelFour>();
@@ -715,11 +706,8 @@ public class Driver {
 		ArrayList<PromotionRecord> promotionRecord = new ArrayList<PromotionRecord>();
 		ArrayList<AwardRecord> awardRecord = new ArrayList<AwardRecord>();
 		ArrayList<RetirementRecord> retirementRecord = new ArrayList<RetirementRecord>();
-		ArrayList<TransactionRecord> transactionRecord = new ArrayList<TransactionRecord>();
-		
-		
-		Scanner sc = new Scanner(System.in);
-		
+		ArrayList<TransactionRecord> transactionRecord = new ArrayList<TransactionRecord>();		
+		Scanner sc = new Scanner(System.in);		
 		/*
 		 * Read from files and put it into arrayLists
 		 */
@@ -729,14 +717,13 @@ public class Driver {
 		Date date = new Date();
 		/*
 		 * TODO: how to accommodate constant number counts into files
-		 */
-		
+		 */		
 		FileReader fileRead;
 		//levelOne
         try
         {
             File directory = new File("");
-            System.out.println(directory.getAbsolutePath()+ "\\Files\\LevelOne.txt"); 
+            //System.out.println(directory.getAbsolutePath()+ "\\Files\\LevelOne.txt"); 
             fileRead = new FileReader(directory.getAbsolutePath()+ "\\Files\\LevelOne.txt");
             Scanner fin = new Scanner(fileRead);
             totalCount=fin.nextInt();
@@ -808,7 +795,7 @@ public class Driver {
         try
         {
             File directory = new File("");
-            System.out.println(directory.getAbsolutePath()+ "\\Files\\LevelTwo.txt"); 
+            //System.out.println(directory.getAbsolutePath()+ "\\Files\\LevelTwo.txt"); 
             fileRead = new FileReader(directory.getAbsolutePath()+ "\\Files\\LevelTwo.txt");
             Scanner fin = new Scanner(fileRead);
             totalCount=fin.nextInt();
@@ -879,7 +866,7 @@ public class Driver {
         try
         {
             File directory = new File("");
-            System.out.println(directory.getAbsolutePath()+ "\\Files\\LevelThree.txt"); 
+            //System.out.println(directory.getAbsolutePath()+ "\\Files\\LevelThree.txt"); 
             fileRead = new FileReader(directory.getAbsolutePath()+ "\\Files\\LevelThree.txt");
             Scanner fin = new Scanner(fileRead);
             totalCount=fin.nextInt();
@@ -957,7 +944,7 @@ public class Driver {
         try
         {
             File directory = new File("");
-            System.out.println(directory.getAbsolutePath()+ "\\Files\\LevelFour.txt"); 
+            //System.out.println(directory.getAbsolutePath()+ "\\Files\\LevelFour.txt"); 
             fileRead = new FileReader(directory.getAbsolutePath()+ "\\Files\\LevelFour.txt");
             Scanner fin = new Scanner(fileRead);
             totalCount=fin.nextInt();
@@ -1034,7 +1021,7 @@ public class Driver {
         try
         {
             File directory = new File("");
-            System.out.println(directory.getAbsolutePath()+ "\\Files\\TransactionRecord.txt"); 
+            //System.out.println(directory.getAbsolutePath()+ "\\Files\\TransactionRecord.txt"); 
             fileRead = new FileReader(directory.getAbsolutePath()+ "\\Files\\TransactionRecord.txt");
             Scanner fin = new Scanner(fileRead);
             totalCount=fin.nextInt();            
@@ -1084,7 +1071,7 @@ public class Driver {
         try
         {
             File directory = new File("");
-            System.out.println(directory.getAbsolutePath()+ "\\Files\\PromotionRecord.txt"); 
+            //System.out.println(directory.getAbsolutePath()+ "\\Files\\PromotionRecord.txt"); 
             fileRead = new FileReader(directory.getAbsolutePath()+ "\\Files\\PromotionRecord.txt");
             Scanner fin = new Scanner(fileRead);
             totalCount=fin.nextInt();
@@ -1126,7 +1113,7 @@ public class Driver {
         try
         {
             File directory = new File("");
-            System.out.println(directory.getAbsolutePath()+ "\\Files\\RetirementRecord.txt"); 
+            //System.out.println(directory.getAbsolutePath()+ "\\Files\\RetirementRecord.txt"); 
             fileRead = new FileReader(directory.getAbsolutePath()+ "\\Files\\RetirementRecord.txt");
             Scanner fin = new Scanner(fileRead);
             totalCount=fin.nextInt();
@@ -1168,7 +1155,7 @@ public class Driver {
         try
         {
             File directory = new File("");
-            System.out.println(directory.getAbsolutePath()+ "\\Files\\AwardRecord.txt"); 
+            //System.out.println(directory.getAbsolutePath()+ "\\Files\\AwardRecord.txt"); 
             fileRead = new FileReader(directory.getAbsolutePath()+ "\\Files\\AwardRecord.txt");
             Scanner fin = new Scanner(fileRead);
             totalCount=fin.nextInt();
@@ -1214,7 +1201,7 @@ public class Driver {
         try
         {
             File directory = new File("");
-            System.out.println(directory.getAbsolutePath()+ "\\Files\\Manager.txt"); 
+            //System.out.println(directory.getAbsolutePath()+ "\\Files\\Manager.txt"); 
             fileRead = new FileReader(directory.getAbsolutePath()+ "\\Files\\Manager.txt");
             Scanner fin = new Scanner(fileRead);
             totalCount=fin.nextInt();
@@ -1253,7 +1240,7 @@ public class Driver {
         try
         {
             File directory = new File("");
-            System.out.println(directory.getAbsolutePath()+ "\\Files\\Veteran.txt"); 
+            //System.out.println(directory.getAbsolutePath()+ "\\Files\\Veteran.txt"); 
             fileRead = new FileReader(directory.getAbsolutePath()+ "\\Files\\Veteran.txt");
             Scanner fin = new Scanner(fileRead);
             totalCount=fin.nextInt();
@@ -1291,7 +1278,7 @@ public class Driver {
         }      	
 		
 		int choice=-1;
-		char ch='N', c='N';
+		char ch='N',c='N',check='N';
 		do
 		{
 			Driver.LoginMenu();
@@ -1322,15 +1309,14 @@ public class Driver {
 							}
 						}	
 						if(flag) {
-							System.out.println("logged in successfully!");
+							System.out.println("Logged in successfully!");
 							Driver.ManagerView(manager.get(i), LevelOne, LevelTwo, LevelThree, LevelFour, veteran,
 									retirementRecord, transactionRecord);
 							break;
 						}
 						else {
 							System.out.println("Invalid credentials\n Do you want to try again(Y/N)");
-							ch=sc.next().charAt(0); 	
-							
+							c=sc.next().charAt(0); 							
 						}
 					}while(c=='Y');
 
@@ -1360,13 +1346,13 @@ public class Driver {
 								}
 							}	
 							if(flag) {
-								System.out.println("logged in successfully!");
+								System.out.println("Logged in successfully!");
 								Driver.Level3View(LevelThree.get(i), LevelOne, LevelTwo, promotionRecord);
 								break;
 							}
 							else {
 								System.out.println("Invalid credentials\n Do you want to try again(Y/N)");
-								ch=sc.next().charAt(0); 								
+								c=sc.next().charAt(0); 								
 							}							
 						}
 						if(level==4)
@@ -1381,7 +1367,7 @@ public class Driver {
 								}
 							}	
 							if(flag) {
-								System.out.println("logged in successfully!");
+								System.out.println("Logged in successfully!");
 								Driver.Level4View(LevelFour.get(i), LevelOne, LevelTwo, LevelThree, promotionRecord, 
 										awardRecord, retirementRecord, transactionRecord);
 								break;
@@ -1389,7 +1375,7 @@ public class Driver {
 							}
 							else {
 								System.out.println("Invalid credentials\n Do you want to try again(Y/N)");
-								ch=sc.next().charAt(0); 			
+								c=sc.next().charAt(0); 			
 							}							
 						}
 						
@@ -1402,9 +1388,9 @@ public class Driver {
 				default:
 					break;
 			}  
-			System.out.println("Do you want to log in(Y/N)");
-			ch=sc.next().charAt(0);
-		}while(ch=='Y');  	
+			System.out.println("Do you want to log in(Y/N)");		
+			check=sc.next().charAt(0);
+		}while(check=='Y');  	
 		
 		/*
 		 * Write into the files
@@ -1491,11 +1477,8 @@ public class Driver {
 						fout.println("------------------------------------------");
 					}
 				}
-				/*
-				 * Do we need to print allowances for each person?
-				 */
-				
 			}
+			fout.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("File not found error");
 		}
@@ -1509,6 +1492,8 @@ public class Driver {
 			{
 				fout.println("Name: "+LevelThree.get(i).getName());
 				fout.println("ID: "+LevelThree.get(i).getID());
+				fout.println("Username: "+LevelThree.get(i).getUsername());
+				fout.println("Password: "+LevelThree.get(i).getPassword());
 				fout.println("Bank account number: "+LevelThree.get(i).bankaccount.getAccountNumber());
 				fout.println("Bank balance: "+LevelThree.get(i).getBalance());
 				fout.println("Level: "+LevelThree.get(i).getLevel());
@@ -1532,11 +1517,7 @@ public class Driver {
 						fout.println("Date: "+LevelThree.get(i).awardsRecieved.get(j).getStringDate());
 						fout.println("------------------------------------------");
 					}
-				}
-				/*
-				 * Do we need to print allowances for each person?
-				 */
-				
+				}				
 			}
 			fout.close();
 		} catch (FileNotFoundException e) {
@@ -1553,6 +1534,8 @@ public class Driver {
 			{
 				fout.println("Name: "+LevelFour.get(i).getName());
 				fout.println("ID: "+LevelFour.get(i).getID());
+				fout.println("Username: "+LevelFour.get(i).getUsername());
+				fout.println("Password: "+LevelFour.get(i).getPassword());
 				fout.println("Bank account number: "+LevelFour.get(i).bankaccount.getAccountNumber());
 				fout.println("Bank balance: "+LevelFour.get(i).getBalance());
 				fout.println("Level: "+LevelFour.get(i).getLevel());
@@ -1696,17 +1679,9 @@ public class Driver {
 				fout.println("Pension amount: "+veteran.get(i).getPensionAmount());
 				fout.println("------------------------------------------");
 			}
-			fout.println(Manager.getMonth());
 			fout.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("File not found error");
-		}	
-		
-		
-		
-		
-		
-		
-		
+		}		
 	}  
 }

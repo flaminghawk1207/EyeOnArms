@@ -23,10 +23,11 @@ public class levelTwo extends levelOne {
 		/*
 		 * TODO: check request allowance function
 		 */
-		boolean flag=Allowance.eligibleforAllowance(allowancename, this, transactionRecord);
+		boolean flag= false;
+		flag=Allowance.eligibleforAllowance(allowancename, this, transactionRecord);
 		if(flag)
 		{
-			System.out.println("Allowance claimed");
+			System.out.println("Allowance claimed");			
 		}
 		else
 		{
