@@ -228,8 +228,7 @@ public class Manager implements Login{
 			Integer month = tempDate.getMonth();
 			Manager.month = month;
 			LevelOne.get(i).bankaccount.setBalance(LevelOne.get(i).getBalance()+LevelOne.get(i).getBaseSalary());
-			System.out.println("Salary paid for: "+LevelOne.get(i).getID()+" "+LevelOne.get(i).getName()+" "
-					+LevelOne.get(i).getLevel());
+			System.out.println("Salary paid for: "+LevelOne.get(i).getID()+" "+LevelOne.get(i).getName());
 			TransactionRecord tr = new TransactionRecord(LevelOne.get(i).getID(), date, 
 					LevelOne.get(i).bankaccount.getAccountNumber(), LevelOne.get(i).getBaseSalary(), "Salary");
 			transactionRecord.add(tr);
@@ -238,8 +237,7 @@ public class Manager implements Login{
 		for(i=0;i<LevelTwo.size();i++)
 		{
 			LevelTwo.get(i).bankaccount.setBalance(LevelTwo.get(i).getBalance()+LevelTwo.get(i).getBaseSalary());
-			System.out.println("Salary paid for: "+LevelTwo.get(i).getID()+" "+LevelTwo.get(i).getName()+" "
-					+LevelTwo.get(i).getLevel());
+			System.out.println("Salary paid for: "+LevelTwo.get(i).getID()+" "+LevelTwo.get(i).getName());
 			TransactionRecord tr = new TransactionRecord(LevelTwo.get(i).getID(), date, 
 					LevelTwo.get(i).bankaccount.getAccountNumber(), LevelTwo.get(i).getBaseSalary(), "Salary");
 			transactionRecord.add(tr);
@@ -248,8 +246,7 @@ public class Manager implements Login{
 		for(i=0;i<LevelThree.size();i++)
 		{
 			LevelThree.get(i).bankaccount.setBalance(LevelThree.get(i).getBalance()+LevelThree.get(i).getBaseSalary());
-			System.out.println("Salary paid for: "+LevelThree.get(i).getID()+" "+LevelThree.get(i).getName()+" "
-					+LevelThree.get(i).getLevel());
+			System.out.println("Salary paid for: "+LevelThree.get(i).getID()+" "+LevelThree.get(i).getName());
 			TransactionRecord tr = new TransactionRecord(LevelThree.get(i).getID(), date, 
 					LevelThree.get(i).bankaccount.getAccountNumber(), LevelThree.get(i).getBaseSalary(), "Salary");
 			transactionRecord.add(tr);
@@ -258,8 +255,7 @@ public class Manager implements Login{
 		for(i=0;i<LevelFour.size();i++)
 		{
 			LevelFour.get(i).bankaccount.setBalance(LevelFour.get(i).getBalance()+LevelFour.get(i).getBaseSalary());
-			System.out.println("Salary paid for: "+LevelFour.get(i).getID()+" "+LevelFour.get(i).getName()+" "
-					+LevelFour.get(i).getLevel());
+			System.out.println("Salary paid for: "+LevelFour.get(i).getID()+" "+LevelFour.get(i).getName());
 			TransactionRecord tr = new TransactionRecord(LevelFour.get(i).getID(), date, 
 					LevelFour.get(i).bankaccount.getAccountNumber(), LevelFour.get(i).getBaseSalary(), "Salary");
 			transactionRecord.add(tr);

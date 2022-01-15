@@ -27,7 +27,10 @@ import personnel.levelTwo;
 public class Driver {
 	
 	public static void LoginMenu() {
-		System.out.println("Choose your designation \n1.Manager \n2.Level-3, Level-4 \n3.Exit");		
+		System.out.println("************************************************");
+		System.out.println("\t\tLogin Menu\n");
+		System.out.println("Choose your designation \n1.Manager \n2.Level-3 or Level-4 \n3.Exit");
+		System.out.println("************************************************");
 	}
 	
 	
@@ -40,12 +43,14 @@ public class Driver {
 		Scanner sc = new Scanner (System.in);
 		do {
 			ch='N';
-			System.out.println("Menu");
+			System.out.println("*********************************************");
+			System.out.println("\t\tMenu\n");
 			System.out.println("1.Initiate retirement");
 			System.out.println("2.Initiate discharge");
 			System.out.println("3.Initiate payroll");
 			System.out.println("4.Initiate allowance");
 			System.out.println("5.Exit");
+			System.out.println("*********************************************");
 			System.out.println("Enter a valid choice");
 			choice = sc.nextInt();
 			while(choice<1 || choice>5)
@@ -397,11 +402,13 @@ public class Driver {
 		int choice=0;
 		do 
 		{
-			System.out.println("Menu");
+			System.out.println("*********************************************");
+			System.out.println("\t\tMenu\n");
 			System.out.println("1.Change username and password");
 			System.out.println("2.Recruit candidate");
 			System.out.println("3.Promote candidate");			
 			System.out.println("4.Exit");
+			System.out.println("*********************************************");
 			System.out.println("Enter a valid choice");
 			choice = sc.nextInt();
 			while(choice<1 || choice>4)
@@ -477,11 +484,13 @@ public class Driver {
 		
 		do
 		{
-			System.out.println("Menu");
+			System.out.println("*********************************************");
+			System.out.println("\t\tMenu\n");
 			System.out.println("1.Promote candidate");
 			System.out.println("2.Award candidate");
 			System.out.println("3.Generate reports");
 			System.out.println("4.Exit");
+			System.out.println("*********************************************");
 			System.out.println("Enter a valid choice");
 			choice = sc.nextInt();
 			while(choice<1 || choice>4)
@@ -697,11 +706,8 @@ public class Driver {
 		ArrayList<PromotionRecord> promotionRecord = new ArrayList<PromotionRecord>();
 		ArrayList<AwardRecord> awardRecord = new ArrayList<AwardRecord>();
 		ArrayList<RetirementRecord> retirementRecord = new ArrayList<RetirementRecord>();
-		ArrayList<TransactionRecord> transactionRecord = new ArrayList<TransactionRecord>();
-		
-		
-		Scanner sc = new Scanner(System.in);
-		
+		ArrayList<TransactionRecord> transactionRecord = new ArrayList<TransactionRecord>();		
+		Scanner sc = new Scanner(System.in);		
 		/*
 		 * Read from files and put it into arrayLists
 		 */
@@ -711,8 +717,7 @@ public class Driver {
 		Date date = new Date();
 		/*
 		 * TODO: how to accommodate constant number counts into files
-		 */
-		
+		 */		
 		FileReader fileRead;
 		//levelOne
         try
@@ -1674,7 +1679,6 @@ public class Driver {
 				fout.println("Pension amount: "+veteran.get(i).getPensionAmount());
 				fout.println("------------------------------------------");
 			}
-			fout.println(Manager.getMonth());
 			fout.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("File not found error");
