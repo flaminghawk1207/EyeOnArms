@@ -32,6 +32,11 @@ public class BankAccount {
 		this.accountNumber = accountCount++;
 		this.balance = balance;
 	}
+	public BankAccount(Integer accountNumber, Double balance) {
+		this.accountNumber=accountNumber;
+		this.balance = balance;
+		accountCount++;
+	}
 	
 	/**
 	 * @param amount Amount to be transferred (should be positive)

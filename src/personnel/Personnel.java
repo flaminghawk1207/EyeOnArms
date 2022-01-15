@@ -10,9 +10,23 @@ public class Personnel {
 	public BankAccount bankaccount;
 	//give bank account belonging to the class bank account
 	public static int PersonnelCount=0;
-	public Personnel(String name, Double balance){
+	public Personnel(Integer id, String name, BankAccount bankaccount) //for promotion
+	{
+		this.id=id;
 		this.name=name;
-		this.id=PersonnelCount+1;
+		this.bankaccount=bankaccount;
+	}
+	public Personnel(Integer id, String name, Integer bid, Double balance) // from reading file
+	{
+		this.id=id;
+		this.name=name;
+		this.bankaccount=new BankAccount(id, balance);
+		PersonnelCount++;		
+	}
+	public Personnel(String name, Double balance) // creating new officer
+	{
+		this.name=name;
+		this.id=PersonnelCount++;
 		this.bankaccount=new BankAccount(balance);
 	}
 	public static int GetPersonnelCount() {

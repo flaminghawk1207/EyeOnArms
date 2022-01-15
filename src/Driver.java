@@ -723,7 +723,7 @@ public class Driver {
 		/*
 		 * Read from files and put it into arrayLists
 		 */
-		Integer totalCount=0, awardCount=0, id, bankAccountNumber, level;
+		Integer totalCount=0, awardCount=0, id, bankAccountNumber, level,month;
 		String wing, location,temp, name, awardName,da,username,password, type;
 		Double baseSalary, balance, prizeMoney, amount, pensionAmount;
 		Date date = new Date();
@@ -736,8 +736,8 @@ public class Driver {
         try
         {
             File directory = new File("");
-            System.out.println(directory.getAbsolutePath()+ "/src/Files/LevelOne.txt"); 
-            fileRead = new FileReader(directory.getAbsolutePath()+ "/src/Files/LevelOne.txt");
+            System.out.println(directory.getAbsolutePath()+ "\\Files\\LevelOne.txt"); 
+            fileRead = new FileReader(directory.getAbsolutePath()+ "\\Files\\LevelOne.txt");
             Scanner fin = new Scanner(fileRead);
             totalCount=fin.nextInt();
             while(totalCount>0)
@@ -765,9 +765,11 @@ public class Driver {
                 wing=fin.next();
                 temp=fin.next();
                 location=fin.next();
+                //System.out.println(location);
                 temp=fin.next();
                 temp=fin.next();
                 baseSalary=fin.nextDouble();   
+                //System.out.println(baseSalary);
                 temp=fin.next();
                 awardCount = fin.nextInt();
                 while(awardCount>0)
@@ -791,7 +793,7 @@ public class Driver {
                     award.add(a);
                     awardCount--;
                 }                
-                levelOne officer = new levelOne(name, wing, location, baseSalary, balance, award);
+                levelOne officer = new levelOne(id,name, wing, location, baseSalary, bankAccountNumber,balance, award);
                 LevelOne.add(officer);
                 totalCount--;
             }
@@ -806,8 +808,8 @@ public class Driver {
         try
         {
             File directory = new File("");
-            System.out.println(directory.getAbsolutePath()+ "/src/Files/LevelTwo.txt"); 
-            fileRead = new FileReader(directory.getAbsolutePath()+ "/src/Files/LevelTwo.txt");
+            System.out.println(directory.getAbsolutePath()+ "\\Files\\LevelTwo.txt"); 
+            fileRead = new FileReader(directory.getAbsolutePath()+ "\\Files\\LevelTwo.txt");
             Scanner fin = new Scanner(fileRead);
             totalCount=fin.nextInt();
             while(totalCount>0)
@@ -862,7 +864,7 @@ public class Driver {
                     award.add(a);
                     awardCount--;
                 }                
-                levelTwo officer = new levelTwo(name, wing, location, baseSalary, balance, award);
+                levelTwo officer = new levelTwo(id,name, wing, location, baseSalary, bankAccountNumber,balance, award);
                 LevelTwo.add(officer);
                 totalCount--;
             }
@@ -877,8 +879,8 @@ public class Driver {
         try
         {
             File directory = new File("");
-            System.out.println(directory.getAbsolutePath()+ "/src/Files/LevelThree.txt"); 
-            fileRead = new FileReader(directory.getAbsolutePath()+ "/src/Files/LevelThree.txt");
+            System.out.println(directory.getAbsolutePath()+ "\\Files\\LevelThree.txt"); 
+            fileRead = new FileReader(directory.getAbsolutePath()+ "\\Files\\LevelThree.txt");
             Scanner fin = new Scanner(fileRead);
             totalCount=fin.nextInt();
             while(totalCount>0)
@@ -939,7 +941,7 @@ public class Driver {
                     award.add(a);
                     awardCount--;
                 }                
-                levelThree officer = new levelThree(username, password, name, wing, location, baseSalary, balance, award);
+                levelThree officer = new levelThree(id,username, password, name, wing, location, baseSalary, bankAccountNumber, balance, award);
                 LevelThree.add(officer);
                 totalCount--;
             }
@@ -955,8 +957,8 @@ public class Driver {
         try
         {
             File directory = new File("");
-            System.out.println(directory.getAbsolutePath()+ "/src/Files/LevelFour.txt"); 
-            fileRead = new FileReader(directory.getAbsolutePath()+ "/src/Files/LevelFour.txt");
+            System.out.println(directory.getAbsolutePath()+ "\\Files\\LevelFour.txt"); 
+            fileRead = new FileReader(directory.getAbsolutePath()+ "\\Files\\LevelFour.txt");
             Scanner fin = new Scanner(fileRead);
             totalCount=fin.nextInt();
             while(totalCount>0)
@@ -1017,7 +1019,7 @@ public class Driver {
                     award.add(a);
                     awardCount--;
                 }                
-                levelFour officer = new levelFour(username, password, name, wing, location, baseSalary, balance, award);
+                levelFour officer = new levelFour(id, username, password, name, wing, location, baseSalary, bankAccountNumber, balance, award);
                 LevelFour.add(officer);
                 totalCount--;
             }
@@ -1032,13 +1034,13 @@ public class Driver {
         try
         {
             File directory = new File("");
-            System.out.println(directory.getAbsolutePath()+ "\\src\\Files\\TransactionRecord.txt"); 
-            fileRead = new FileReader(directory.getAbsolutePath()+ "\\src\\Files\\TransactionRecord.txt");
+            System.out.println(directory.getAbsolutePath()+ "\\Files\\TransactionRecord.txt"); 
+            fileRead = new FileReader(directory.getAbsolutePath()+ "\\Files\\TransactionRecord.txt");
             Scanner fin = new Scanner(fileRead);
-            totalCount=fin.nextInt();
+            totalCount=fin.nextInt();            
             while(totalCount>0)
-            {
-                temp=fin.next();
+            {           
+            	temp=fin.next();
                 temp=fin.next();
                 temp=fin.next();
                 id=fin.nextInt();
@@ -1067,6 +1069,7 @@ public class Driver {
                 //System.out.println(type); 
                 TransactionRecord tr = new TransactionRecord(id,date,bankAccountNumber,amount,type);
                 transactionRecord.add(tr);
+                totalCount--;
             }
             fin.close();
         }
@@ -1081,8 +1084,8 @@ public class Driver {
         try
         {
             File directory = new File("");
-            System.out.println(directory.getAbsolutePath()+ "\\src\\Files\\PromotionRecord.txt"); 
-            fileRead = new FileReader(directory.getAbsolutePath()+ "\\src\\Files\\PromotionRecord.txt");
+            System.out.println(directory.getAbsolutePath()+ "\\Files\\PromotionRecord.txt"); 
+            fileRead = new FileReader(directory.getAbsolutePath()+ "\\Files\\PromotionRecord.txt");
             Scanner fin = new Scanner(fileRead);
             totalCount=fin.nextInt();
             while(totalCount>0)
@@ -1109,6 +1112,7 @@ public class Driver {
                 //System.out.println(level);
                 PromotionRecord pr = new PromotionRecord(id,date,level);
                 promotionRecord.add(pr);
+                totalCount--;
             }
             fin.close();
         }
@@ -1122,8 +1126,8 @@ public class Driver {
         try
         {
             File directory = new File("");
-            System.out.println(directory.getAbsolutePath()+ "\\src\\Files\\RetirementRecord.txt"); 
-            fileRead = new FileReader(directory.getAbsolutePath()+ "\\src\\Files\\RetirementRecord.txt");
+            System.out.println(directory.getAbsolutePath()+ "\\Files\\RetirementRecord.txt"); 
+            fileRead = new FileReader(directory.getAbsolutePath()+ "\\Files\\RetirementRecord.txt");
             Scanner fin = new Scanner(fileRead);
             totalCount=fin.nextInt();
             while(totalCount>0)
@@ -1151,6 +1155,7 @@ public class Driver {
                 //System.out.println(level);   
                 RetirementRecord rr = new RetirementRecord(id,date,level);
                 retirementRecord.add(rr);
+                totalCount--;
             }
             fin.close();
         }
@@ -1163,8 +1168,8 @@ public class Driver {
         try
         {
             File directory = new File("");
-            System.out.println(directory.getAbsolutePath()+ "\\src\\Files\\AwardRecord.txt"); 
-            fileRead = new FileReader(directory.getAbsolutePath()+ "\\src\\Files\\AwardRecord.txt");
+            System.out.println(directory.getAbsolutePath()+ "\\Files\\AwardRecord.txt"); 
+            fileRead = new FileReader(directory.getAbsolutePath()+ "\\Files\\AwardRecord.txt");
             Scanner fin = new Scanner(fileRead);
             totalCount=fin.nextInt();
             while(totalCount>0)
@@ -1195,6 +1200,7 @@ public class Driver {
                 //System.out.println(prizeMoney);   
                 AwardRecord ar = new AwardRecord(id,date,awardName, prizeMoney);
                 awardRecord.add(ar);
+                totalCount--;
             }
             fin.close();
         }
@@ -1208,12 +1214,13 @@ public class Driver {
         try
         {
             File directory = new File("");
-            System.out.println(directory.getAbsolutePath()+ "\\src\\Files\\Manager.txt"); 
-            fileRead = new FileReader(directory.getAbsolutePath()+ "\\src\\Files\\Manager.txt");
+            System.out.println(directory.getAbsolutePath()+ "\\Files\\Manager.txt"); 
+            fileRead = new FileReader(directory.getAbsolutePath()+ "\\Files\\Manager.txt");
             Scanner fin = new Scanner(fileRead);
             totalCount=fin.nextInt();
             while(totalCount>0)
             {
+            	temp=fin.next();
                 temp=fin.next();
                 name=fin.next();
                 //System.out.println(name);
@@ -1229,7 +1236,11 @@ public class Driver {
                 
                 Manager m = new Manager(name, id, username, password);
                 manager.add(m);
+                totalCount--;
             }
+            temp=fin.next();
+            month=fin.nextInt();
+            Manager.setMonth(month);
             fin.close();
         }
         catch (FileNotFoundException e)
@@ -1238,17 +1249,17 @@ public class Driver {
         }      
         
         
-        //Veteran
-        
+        //Veteran        
         try
         {
             File directory = new File("");
-            System.out.println(directory.getAbsolutePath()+ "\\src\\Files\\Veteran.txt"); 
-            fileRead = new FileReader(directory.getAbsolutePath()+ "\\src\\Files\\Veteran.txt");
+            System.out.println(directory.getAbsolutePath()+ "\\Files\\Veteran.txt"); 
+            fileRead = new FileReader(directory.getAbsolutePath()+ "\\Files\\Veteran.txt");
             Scanner fin = new Scanner(fileRead);
             totalCount=fin.nextInt();
             while(totalCount>0)
             {
+            	temp=fin.next();
                 temp=fin.next();
                 name=fin.next();
                 //System.out.println(name);
@@ -1270,6 +1281,7 @@ public class Driver {
                 //System.out.println(balance);
                 Veteran v = new Veteran(name, id, bankAccountNumber,balance, pensionAmount);
                 veteran.add(v);
+                totalCount--;
             }
             fin.close();
         }
@@ -1407,7 +1419,8 @@ public class Driver {
 		int i=0;
 		PrintWriter fout;
 		try {
-			fout = new PrintWriter("Files\\LevelOne.txt");
+			File directory = new File("");
+			fout = new PrintWriter(directory.getAbsolutePath()+ "\\Files\\LevelOne.txt");
 			fout.println(LevelOne.size());
 			fout.println("------------------------------------------");			
 			for(i=0;i<LevelOne.size();i++)
@@ -1418,6 +1431,7 @@ public class Driver {
 				fout.println("Bank balance: "+LevelOne.get(i).getBalance());
 				fout.println("Level: "+LevelOne.get(i).getLevel());
 				fout.println("Wing: "+LevelOne.get(i).getWing());
+				fout.println("Location: "+LevelOne.get(i).getLocation());
 				fout.println("Base salary: "+LevelOne.get(i).getBaseSalary());
 				fout.println("Awards: ");
 				fout.println(LevelOne.get(i).awardsRecieved.size());
@@ -1438,13 +1452,15 @@ public class Driver {
 					}
 				}			
 			}
+			fout.close();
 		} catch (FileNotFoundException e) {
 			
 			System.out.println("File not found error");
 		}
 
 		try {
-			fout = new PrintWriter("Files\\LevelTwo.txt");
+			File directory = new File("");
+			fout = new PrintWriter(directory.getAbsolutePath()+ "\\Files\\LevelTwo.txt");
 			fout.println(LevelTwo.size());
 			fout.println("------------------------------------------");
 			for(i=0;i<LevelTwo.size();i++)
@@ -1455,6 +1471,7 @@ public class Driver {
 				fout.println("Bank balance: "+LevelTwo.get(i).getBalance());
 				fout.println("Level: "+LevelTwo.get(i).getLevel());
 				fout.println("Wing: "+LevelTwo.get(i).getWing());
+				fout.println("Location: "+LevelTwo.get(i).getLocation());
 				fout.println("Base salary: "+LevelTwo.get(i).getBaseSalary());
 				fout.println("Awards: ");
 				fout.println(LevelTwo.get(i).awardsRecieved.size());
@@ -1484,7 +1501,8 @@ public class Driver {
 		}
 		
 		try {
-			fout = new PrintWriter("Files\\LevelThree.txt");
+			File directory = new File("");
+			fout = new PrintWriter(directory.getAbsolutePath()+"\\Files\\LevelThree.txt");
 			fout.println(LevelThree.size());
 			fout.println("------------------------------------------");
 			for(i=0;i<LevelThree.size();i++)
@@ -1495,6 +1513,7 @@ public class Driver {
 				fout.println("Bank balance: "+LevelThree.get(i).getBalance());
 				fout.println("Level: "+LevelThree.get(i).getLevel());
 				fout.println("Wing: "+LevelThree.get(i).getWing());
+				fout.println("Location: "+LevelThree.get(i).getLocation());
 				fout.println("Base salary: "+LevelThree.get(i).getBaseSalary());
 				fout.println("Awards: ");
 				fout.println(LevelThree.get(i).awardsRecieved.size());
@@ -1519,13 +1538,15 @@ public class Driver {
 				 */
 				
 			}
+			fout.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("File not found error");
 			
 		}
 
 		try {
-			fout = new PrintWriter("Files\\LevelFour.txt");
+			File directory = new File("");
+			fout = new PrintWriter(directory.getAbsolutePath()+"\\Files\\LevelFour.txt");
 			fout.println(LevelFour.size());
 			fout.println("------------------------------------------");
 			for(i=0;i<LevelFour.size();i++)
@@ -1536,6 +1557,7 @@ public class Driver {
 				fout.println("Bank balance: "+LevelFour.get(i).getBalance());
 				fout.println("Level: "+LevelFour.get(i).getLevel());
 				fout.println("Wing: "+LevelFour.get(i).getWing());
+				fout.println("Location: "+LevelFour.get(i).getLocation());
 				fout.println("Base salary: "+LevelFour.get(i).getBaseSalary());
 				fout.println("Awards: ");
 				fout.println(LevelFour.get(i).awardsRecieved.size());
@@ -1560,12 +1582,14 @@ public class Driver {
 				 */
 				
 			}
+			fout.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("File not found error");
 		}
 		
 		try {
-			fout = new PrintWriter("Files\\AwardRecord.txt");
+			File directory = new File("");
+			fout = new PrintWriter(directory.getAbsolutePath()+"\\Files\\AwardRecord.txt");
 			fout.println(awardRecord.size());
 			fout.println("------------------------------------------");
 			for(i=0;i<awardRecord.size();i++)
@@ -1576,13 +1600,15 @@ public class Driver {
 				fout.println("Prize money: "+awardRecord.get(i).getPrizeMoney());
 				fout.println("------------------------------------------");
 			}
+			fout.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("File not found error");
 		}
 		
 		
 		try {
-			fout = new PrintWriter("Files\\PromotionRecord.txt");
+			File directory = new File("");
+			fout = new PrintWriter(directory.getAbsolutePath()+"\\Files\\PromotionRecord.txt");
 			fout.println(promotionRecord.size());
 			fout.println("------------------------------------------");
 			for(i=0;i<promotionRecord.size();i++)
@@ -1592,13 +1618,14 @@ public class Driver {
 				fout.println("Next level: "+promotionRecord.get(i).getNextLevel());
 				fout.println("------------------------------------------");
 			}
+			fout.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			System.out.println("File not found error");
 		}
 		
 		try {
-			fout = new PrintWriter("Files\\RetirementRecord.txt");
+			File directory = new File("");
+			fout = new PrintWriter(directory.getAbsolutePath()+"\\Files\\RetirementRecord.txt");
 			fout.println(retirementRecord.size());
 			fout.println("------------------------------------------");
 			for(i=0;i<retirementRecord.size();i++)
@@ -1608,12 +1635,14 @@ public class Driver {
 				fout.println("Level during retirement: "+retirementRecord.get(i).getRankDuringRetirement());
 				fout.println("------------------------------------------");
 			}
+			fout.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("File not found error");
 		}
 		
 		try {
-			fout = new PrintWriter("Files\\TransactionRecord.txt");
+			File directory = new File("");
+			fout = new PrintWriter(directory.getAbsolutePath()+"\\Files\\TransactionRecord.txt");
 			fout.println(transactionRecord.size());
 			fout.println("------------------------------------------");
 			for(i=0;i<transactionRecord.size();i++)
@@ -1625,8 +1654,59 @@ public class Driver {
 				fout.println("Type: "+transactionRecord.get(i).getType());
 				fout.println("------------------------------------------");
 			}
+			fout.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("File not found error");
-		}		
+		}	
+		
+		//Manager
+		
+		try {
+			File directory = new File("");
+			fout = new PrintWriter(directory.getAbsolutePath()+"\\Files\\Manager.txt");
+			fout.println(manager.size());
+			fout.println("------------------------------------------");
+			for(i=0;i<manager.size();i++)
+			{
+				fout.println("Name: "+manager.get(i).getName());
+				fout.println("ID: "+manager.get(i).getID());
+				fout.println("Username: "+manager.get(i).getUsername());
+				fout.println("Password: "+manager.get(i).getPassword());
+				fout.println("------------------------------------------");
+			}
+			fout.println(Manager.getMonth());
+			fout.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("File not found error");
+		}	
+		
+		
+		//Veteran
+		try {
+			File directory = new File("");
+			fout = new PrintWriter(directory.getAbsolutePath()+"\\Files\\Veteran.txt");
+			fout.println(veteran.size());
+			fout.println("------------------------------------------");
+			for(i=0;i<veteran.size();i++)
+			{
+				fout.println("Name: "+veteran.get(i).getName());
+				fout.println("ID: "+veteran.get(i).getID());
+				fout.println("Bank account number: "+veteran.get(i).bankaccount.getAccountNumber());
+				fout.println("Bank balance: "+veteran.get(i).getBalance());
+				fout.println("Pension amount: "+veteran.get(i).getPensionAmount());
+				fout.println("------------------------------------------");
+			}
+			fout.println(Manager.getMonth());
+			fout.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("File not found error");
+		}	
+		
+		
+		
+		
+		
+		
+		
 	}  
 }
