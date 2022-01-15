@@ -148,6 +148,7 @@ public class levelFour extends levelThree {
 						fout.println("Prize money: "+awardRecordReport.get(i).getPrizeMoney());
 						fout.println("------------------------------------------");
 					}
+					fout.close();
 				} catch (FileNotFoundException e) {
 					System.out.println("File not found");
 				}				
@@ -203,6 +204,7 @@ public class levelFour extends levelThree {
 						fout.println("Type: "+transactionRecordReport.get(i).getType());
 						fout.println("------------------------------------------");
 					}
+					fout.close();
 				} catch (FileNotFoundException e) {
 					System.out.println("File not found");
 				}  			
@@ -254,6 +256,7 @@ public class levelFour extends levelThree {
 						fout.println("Level during retirement: "+retirementRecordReport.get(i).getRankDuringRetirement());
 						fout.println("------------------------------------------");
 					}
+					fout.close();
 				} catch (FileNotFoundException e) {
 						System.out.println("File not found");
 				}			
@@ -301,12 +304,10 @@ public class levelFour extends levelThree {
 						fout.println("Next level: "+promotionRecordReport.get(i).getNextLevel());
 						fout.println("------------------------------------------");
 					}
+					fout.close();
 				} catch (FileNotFoundException e) {
 					System.out.println("File not found");
 				}	
-				/*
-				 * TODO: file handling
-				 */
 			}
 			
 		}			

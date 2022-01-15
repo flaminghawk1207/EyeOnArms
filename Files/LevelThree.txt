@@ -1,19 +1,40 @@
-1
-------------------------------------------
-Name: Kishore
-ID: 1
-Bank account number: 1
-Bank balance: 21579.0
-Level: 3
-Wing: dhsgkf
-Location: dfjs
-Base salary: 20000.0
-Awards: 
 2
-Name: hello
-Prize money: 2173123.0
-Date: 13-01-2022
-Name: World
-Prize money: 1234.0
-Date: 15-01-2022
+------------------------------------------
+Name: Rahane
+ID: 5
+Username: Rahane_Ajjinkya
+Password: rahane0606
+Bank account number: 5
+Bank balance: 200000.00
+Level: 3
+Wing: Army
+Location: Wagah
+Base salary: 30000.00
+Awards:
+2
+Name: Sena-Medal
+Prize money: 2000.00
+Date: 26-01-2012
+Name: Kriti_Chakra
+Prize Money: 9000.00
+Date: 15-08-2016
+------------------------------------------
+Name: Rishabh
+ID: 6
+Username: Rishabh_Pant
+Password: Rishabh0410
+Bank account number: 6
+Bank balance: 190000.00
+Level: 3
+Wing: Air-Force
+Location: Bangalore
+Base salary: 30000.00
+Awards:
+2
+Name: Sena-Medal
+Prize money: 2000.00
+Date: 26-01-2010
+Name: Vir_Chakra
+Prize Money: 7000.00
+Date: 15-09-2016
 ------------------------------------------

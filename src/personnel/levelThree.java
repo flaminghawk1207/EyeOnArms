@@ -101,7 +101,6 @@ public class levelThree extends levelTwo implements Login {
 		System.out.println("Enter the new password: ");
 		this.password=sc.next();
 		System.out.println("Credentials changed successfully!");
-		sc.close();
 	}
 	
 

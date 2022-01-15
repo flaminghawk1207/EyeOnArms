@@ -1,19 +1,30 @@
-1
+2
 ------------------------------------------
-Name: Kishore
+Name: Virat 
 ID: 1
 Bank account number: 1
-Bank balance: 21579.0
+Bank balance: 100000.00
 Level: 1
-Wing: dhsgkf
-Location: dfjs
-Base salary: 20000.0
+Wing: Army
+Location: Kashmir
+Base salary: 50000.00
 Awards: 
-2
-Name: hello
-Prize money: 2173123.0
-Date: 13-01-2022
-Name: World
-Prize money: 1234.0
-Date: 15-01-2022
+1
+Name: Kriti-Chakra
+Prize money: 9000.00
+Date: 02-08-2015
+------------------------------------------
+Name: Rahul 
+ID: 2
+Bank account number: 2
+Bank balance: 140000.00
+Level: 1
+Wing: Navy
+Location: Vizag
+Base salary: 50000.00
+Awards: 
+1
+Name: Shaurya-Chakra
+Prize money: 6000.00
+Date: 08-03-2020
 ------------------------------------------
