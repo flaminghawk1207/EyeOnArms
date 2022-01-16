@@ -221,12 +221,11 @@ public class Manager implements Login{
 			ArrayList<levelFour> LevelFour, ArrayList<Veteran> veteran, ArrayList<TransactionRecord> transactionRecord) {
 		
 		Date date = new Date();
+		Integer month = date.getMonth();
+		Manager.month = month;		
 		int i=0;
 		for(i=0;i<LevelOne.size();i++)
-		{
-			Date tempDate = new Date();
-			Integer month = tempDate.getMonth();
-			Manager.month = month;
+		{			
 			LevelOne.get(i).bankaccount.setBalance(LevelOne.get(i).getBalance()+LevelOne.get(i).getBaseSalary());
 			System.out.println("Salary paid for: "+LevelOne.get(i).getID()+" "+LevelOne.get(i).getName());
 			TransactionRecord tr = new TransactionRecord(LevelOne.get(i).getID(), date, 

@@ -673,7 +673,7 @@ public class Driver {
 					}
 					
 					System.out.println("Enter the search category\n1. Award report\n2. Transaction report\n3. Retirement report"
-							+ "\n4.Promotion report\nEnter a valid choice: ");
+							+ "\n4. Promotion report\nEnter a valid choice: ");
 					searchCategory = sc.nextInt();
 					while(searchCategory<=0 || searchCategory>=5)
 					{
