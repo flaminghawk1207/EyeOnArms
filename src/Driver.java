@@ -1265,7 +1265,7 @@ public class Driver {
                 temp=fin.next();
                 temp=fin.next();
                 pensionAmount=fin.nextDouble();
-                //System.out.println(balance);
+                //System.out.println(pensionAmount);
                 Veteran v = new Veteran(name, id, bankAccountNumber,balance, pensionAmount);
                 veteran.add(v);
                 totalCount--;
@@ -1682,6 +1682,7 @@ public class Driver {
 			fout.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("File not found error");
-		}		
+		}
+		System.out.println("Thank you!");
 	}  
 }

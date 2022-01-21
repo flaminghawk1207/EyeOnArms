@@ -6,6 +6,7 @@ public class Veteran extends Personnel {
 	public Veteran(String name, Integer id, Integer accountNumber, Double balance, double pensionAmount)//from files
 	{
 		super(id, name, accountNumber, balance);
+		this.pensionAmount = pensionAmount;
 		veteranCount++;
 	}
 	public Veteran(levelOne officer,double pensionAmount) {//creating new veteran
