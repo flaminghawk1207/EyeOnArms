@@ -127,9 +127,6 @@ public class levelFour extends levelThree {
 				}
 				PrintWriter fout;
 				try {
-					/*
-					 * TODO check path to file locations
-					 */
 					File directory = new File("");
 					fout = new PrintWriter(directory.getAbsolutePath()+"\\Files\\AwardRecordReport.txt");
 					fout.println(awardRecordReport.size());
@@ -184,9 +181,6 @@ public class levelFour extends levelThree {
 				try {
 					File directory = new File("");
 					fout = new PrintWriter(directory.getAbsolutePath()+"\\Files\\TransactionRecordReport.txt");
-					/*
-					 * Check file path
-					 */
 					fout.println(transactionRecordReport.size());
 					fout.println("------------------------------------------");
 					for(i=0;i<transactionRecordReport.size();i++)
@@ -236,9 +230,6 @@ public class levelFour extends levelThree {
 				
 				PrintWriter fout;
 				try {
-					/*
-					 * TODO check file path
-					 */
 					File directory = new File("");
 					fout = new PrintWriter(directory.getAbsolutePath()+"\\Files\\RetirementRecordReport.txt");
 					fout.println(retirementRecordReport.size());

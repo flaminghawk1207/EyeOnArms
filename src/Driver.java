@@ -714,10 +714,7 @@ public class Driver {
 		Integer totalCount=0, awardCount=0, id, bankAccountNumber, level,month;
 		String wing, location,temp, name, awardName,da,username,password, type;
 		Double baseSalary, balance, prizeMoney, amount, pensionAmount;
-		Date date = new Date();
-		/*
-		 * TODO: how to accommodate constant number counts into files
-		 */		
+		Date date = new Date();	
 		FileReader fileRead;
 		//levelOne
         try
@@ -1560,10 +1557,6 @@ public class Driver {
 						fout.println("------------------------------------------");
 					}
 				}
-				/*
-				 *TODO: Do we need to print allowances for each person?
-				 */
-				
 			}
 			fout.close();
 		} catch (FileNotFoundException e) {

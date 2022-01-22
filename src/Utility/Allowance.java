@@ -57,9 +57,6 @@ public class Allowance {
 		map.put("Piloting-Allowance", new Allowance("Piloting-Allowance", new Pair("Fixed", 25000.00), 4, "Air-Force"));		
 	}
 	
-	/*
-	 * TODO: functions to check eligibility (after officer classes)
-	 */
 	public static boolean eligibleforAllowance(String allowanceName, levelTwo officer, ArrayList<TransactionRecord> transactionRecord)
 	{	
 		if(Allowance.map.containsKey(allowanceName))

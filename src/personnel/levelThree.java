@@ -11,9 +11,6 @@ import Utility.PromotionRecord;
 
 public class levelThree extends levelTwo implements Login {
 	private String username,password;
-	/*
-	 * TODO: should user name and password be private or protected?
-	 */
 	public levelThree(Integer id, String username, String password, String name,String wing,String location,
 			Double BaseSalary, BankAccount bankAccount, ArrayList<Award> award){ //for promotion
 		super(id,name,wing,location,BaseSalary,bankAccount,award);
@@ -35,9 +32,6 @@ public class levelThree extends levelTwo implements Login {
 		String l;
 		System.out.println("enter the location");
 		l=sc.next();
-		/*
-		 * TODO: Check logic here
-		 */
 		levelOne officer=new levelOne(candidate.id,candidate.name,w,l,50000.00,candidate.bankaccount);
 		LevelOne.add(officer);
 //		Date date = new Date();
@@ -66,9 +60,6 @@ public class levelThree extends levelTwo implements Login {
 		{
 			LevelOne.remove(i);
 		}
-		/*
-		 * TODO: Check creation of new record and deletion of previous one
-		 */
 		
 	}
 	public String getUsername() {
@@ -86,10 +77,6 @@ public class levelThree extends levelTwo implements Login {
 	
 	public boolean validate(String username,String password)
 	{
-		/*
-		 * TODO: check validate function and integrate
-		 */
-		
 		return (this.username.equals(username) && this.password.equals(password));
 	}
 	

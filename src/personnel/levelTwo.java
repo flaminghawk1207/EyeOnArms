@@ -20,9 +20,6 @@ public class levelTwo extends levelOne {
 		allowance = new ArrayList<Allowance>();
 	}
 	public void requestAllowance(String allowancename, ArrayList<TransactionRecord> transactionRecord) {
-		/*
-		 * TODO: check request allowance function
-		 */
 		boolean flag= false;
 		flag=Allowance.eligibleforAllowance(allowancename, this, transactionRecord);
 		if(flag)

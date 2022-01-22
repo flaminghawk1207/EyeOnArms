@@ -74,9 +74,6 @@ public class Manager implements Login{
 		 {
 			LevelOne.remove(i);
 		 }
-		 /*
-		  * TODO: Check if both retirement and discharge differ in any way?
-		  */
 	}
 
 	public void initiateRetirement(levelTwo officer,ArrayList<levelTwo> LevelTwo, ArrayList<Veteran> veteran, 
