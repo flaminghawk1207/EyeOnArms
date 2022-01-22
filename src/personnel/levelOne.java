@@ -7,12 +7,12 @@ import Utility.Award;
 import Utility.BankAccount;
 
 public class levelOne extends Personnel {
-	public Integer level;
-	public String wing;
-	public String location;
-	public Double BaseSalary;
+	protected Integer level;
+	protected String wing;
+	protected String location;
+	protected Double BaseSalary;
 	public ArrayList<Award>awardsRecieved = new ArrayList<Award>();
-	public static Integer OfficerCount=0;
+	protected static Integer OfficerCount=0;
 	public static Integer GetOfficerCount() {
 		return OfficerCount;
 	}
@@ -49,9 +49,6 @@ public class levelOne extends Personnel {
 		awardsRecieved.add(dw);	
 		return dw;
 	}
-	/*
-	 * How to implement calculateIncome 
-	 */
 
 	double CalculateIncome() {
 		return this.BaseSalary;

@@ -5,8 +5,8 @@ import Utility.BankAccount;
 
 public class Personnel {
 	Scanner sc=new Scanner(System.in);
-	public Integer  id;
-	public String name;
+	protected Integer  id;
+	protected String name;
 	public BankAccount bankaccount;
 	//give bank account belonging to the class bank account
 	public static int PersonnelCount=0;
